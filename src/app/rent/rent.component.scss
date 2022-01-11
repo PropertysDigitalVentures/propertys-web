@@ -1,0 +1,154 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+:host {
+
+    .wrapper {
+        padding: 100px 0 100px;
+        width: $wrapper-container-width;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .window-text {
+        margin-bottom: 100px;
+    }
+
+    h2 {
+        font-size: 26px;
+        font-family: $font-family-body-medium;
+    }
+
+    /**
+     *  Street specific sections
+     */
+    .street-container {
+        margin-bottom: 100px;
+
+        h2 {
+            margin-bottom: 30px;
+        }
+
+        .total-possible-rent {
+            font-family: $font-family-body-medium;
+            color: $url-color;
+        }
+
+        ul.street-blocks {
+            display: flex;
+
+            li {
+                width: 150px;
+                height: 250px;
+                min-width: 150px;
+                margin-right: 20px;
+                border-radius: 4px;
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                img {
+                    object-fit: cover;
+                    height: 100%;
+                    border-radius: 4px;
+                }
+            }
+
+
+        }
+
+        .buy-card-btn {
+            height: 100%;
+            background: rgba(255, 255, 255, .5);
+            border: 2px dashed $primary-color;
+            color: $primary-color;
+            font-family: $font-family-body-bold;
+            outline: 0;
+            display: block;
+            width: 150px;
+            min-width: 150px;
+            height: 250px;
+            border-radius: 4px;
+            position: relative;
+            @include transition(.15s ease-in-out);
+
+            &:hover {
+                @include transform(scale(1.05));
+                background: rgba(0, 0, 0, .6);
+                color: #FFF;
+
+                img {
+                    opacity: .5;
+                }
+            }
+
+            img {
+                position: absolute;
+                z-index: 0;
+                top: 50%;
+                left: 50%;
+                opacity: .2;
+                @include transition(.15s ease-in-out);
+                @include transform(translateX(-50%) translateY(-50%));
+            }
+
+
+            .buy-text {
+                position: absolute;
+                top: 50%;
+                z-index: 1;
+                left: 50%;
+                @include transform(translateX(-50%) translateY(-50%));
+            }
+        }
+    }
+
+
+    .rent-collection-summary-container {
+        text-align: left;
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .brix-total {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            font-family: $font-family-body-semibold;
+
+            img {
+                margin-right: 10px;
+            }
+        }
+
+        .wallet-balance {
+            display: flex;
+            border-radius: 4px;
+            padding: 5px 20px;
+            border:2px solid $primary-font-color;
+            max-width: 250px;
+            align-items: center;
+
+            .total {
+                margin-left: auto;
+            }
+        }
+    }
+
+
+@media only screen and (min-width: 0px) and (max-width: 800px) {
+    .wrapper {
+        width: calc(100% - 40px);
+        margin: 0 auto;
+    }
+
+    ul.street-blocks {
+        width: 100%;
+        padding: 10px;
+        overflow: auto;
+    }
+}
+
+}

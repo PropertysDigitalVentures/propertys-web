@@ -1,0 +1,145 @@
+<div class="modal">
+    <button type="button" class="close" (click)="close()"><i class="fas fa-times-circle"></i></button>
+    
+    <div class="inner">
+        <div class="title">
+            <h3>Mint Propertys</h3>
+        </div>
+
+        <div class="countdown-container" *ngIf="countdownTime > 0">
+            <div class="timeleft count-down">
+                <div *ngIf="countdownDays > 0">{{countdownDays}}
+                    <div class="label">Days</div>
+                </div>
+                <div *ngIf="countdownHours > 0">{{countdownHours}}
+                    <div class="label">hours</div>
+                </div>
+                <div>{{countdownMins}}
+                    <div class="label">mins</div>
+                </div>
+                <div>{{countdownSecs}}
+                    <div class="label">secs</div>
+                </div>
+            </div>
+            <div class="sale-text">Until private sale</div>
+        </div>
+
+        <!-- Supply breakdown -->
+        <div class="supply-container-text">minting breakdown ({{totalMinted}}/6000 Minted)</div>
+        <div class="supply-breakdown">
+            <div class="supply private-sale"></div>
+            <div class="supply public-sale"></div>
+            <div class="supply team"></div>
+        </div>
+        <div class="breakdown-list-container">
+            <div class="pill private" [ngClass]="{ active: mintingStage['presale'] }">
+                <div class="active-now">Active</div>
+                <div class="amount">Presale</div>
+            </div>
+            <div class="pill public" [ngClass]="{ active: mintingStage['public'] }">
+                <div class="active-now">Active</div>
+                <div class="amount">Public Sale</div>
+            </div>
+            <div class="pill reserved">
+                <div class="amount">Reserved</div>
+            </div>
+        </div>
+
+        <!-- Loading animation -->
+        <div class="loading" *ngIf="!contentLoaded">
+            <img src="/assets/images/loading-dark.svg" width="50"  />
+        </div>
+
+        <!-- -->
+        <div class="no-active-sale" *ngIf="contentLoaded && !mintingStage.presale && !mintingStage.partner && !mintingStage.public">
+            There are no active sales going on. Come back when the sale windows open up.
+        </div>
+
+        <!-- Presale Minting -->
+        <div class="mint-container"  *ngIf="mintingStage.presale && mintingStage.partner && contentLoaded">
+            <h2 *ngIf="presaleTier.tier === 3 && presaleMintEnabled">Tier: Executive Realtors</h2>
+            <h2 *ngIf="presaleTier.tier === 2 && presaleMintEnabled">Tier: Senior Brokers</h2>
+            <h2 *ngIf="presaleTier.tier === 1 && presaleMintEnabled">Tier: Property Agents</h2>
+            <div class="mint-container-row">
+
+                <!-- PRESALE MINTING -->
+                <div class="price-block"  *ngIf="presaleMintEnabled">
+                    <div class="price margin-bottom-0">PRICE: <i class="fab fa-ethereum"></i> <span id="price">{{(presalePriceText * mintAmount).toFixed(3)}}</span> ETH + GAS</div>
+                    <div class="available-mints">{{presaleTier.mintAmount}} {{presaleTier.mintAmount === 1 ? 'Mint' : 'Mints'}}  Available</div>
+                    <img src="/assets/images/gold-house.png" width="80" style="opacity: .2; margin-top: 10px;" *ngIf="presaleTier.mintAmount === 0" />
+                    <div class="adjustable-houses-container" *ngIf="presaleTier.mintAmount > 0">
+                        <div class="house" *ngFor="let house of mintableHouses"><img src="/assets/images/gold-house.png" width="50" /></div>
+                    </div>
+                    <div class="pricing-range" *ngIf="presaleTier.mintAmount > 0">
+                        <input type="range"
+                                (input)="handleMintAmountSlider($event)"
+                                min="1"
+                                [max]="presaleTier.mintAmount"
+                                [disabled]="isPresaleMinting"
+                                step="1"
+                                value="1" 
+                                class="slider">
+                        <div class="purchase-amount-text">{{mintAmount}}</div>
+                    </div>
+                    <button class="mint scale-hover" type="button" [disabled]="isPresaleMinting" (click)="mint('presale')"  *ngIf="presaleTier.mintAmount > 0">
+                        <span *ngIf="isPresaleMinting" class="mint-loading"><img src="/assets/images/loading.gif" width="25"  /> Minting</span>
+                        <span *ngIf="!isPresaleMinting">Presale Mint</span>
+                    </button>
+                    <div class="ineligible" *ngIf="presaleTier.mintAmount === 0">
+                        <i class="fas fa-minus-circle"></i>Ineligible
+                    </div>
+                </div>
+
+                <!-- PARTNER MINTING -->
+                <div class="price-block" *ngIf="partnerMintEnabled">
+                    <div class="price margin-bottom-0">PRICE: <i class="fab fa-ethereum"></i> <span id="price">{{partnerSalePriceText}}</span> ETH + GAS</div>
+                    <div class="available-mints">{{isPartnerMinted ? '0 Mints' : '1 Mint'}} Available</div>
+                    <div class="single-quantity-container">
+                        <img src="/assets/images/gold-house.png" width="80" *ngIf="!isPartnerMinted" />
+                        <img src="/assets/images/gold-house.png" width="80" style="opacity: .2; margin-top: 10px;" *ngIf="isPartnerMinted" />
+                    </div>
+                    <button class="mint scale-hover" *ngIf="!isPartnerMinted" type="button" [disabled]="isPartnerMinting" (click)="mint('partner')">
+                        <span *ngIf="isPartnerMinting" class="mint-loading"><img src="/assets/images/loading.gif" width="25"  /> Minting</span>
+                        <span *ngIf="!isPartnerMinting">Partner Mint</span>
+                    </button>
+                    <div class="ineligible" *ngIf="isPartnerMinted">
+                        <i class="fas fa-minus-circle"></i>Ineligible
+                    </div>
+                </div>
+            </div>
+
+            <!-- Private sale eligibility-->
+            <div *ngIf="!presaleMintEnabled && !partnerMintEnabled && !mintingStage.public">
+                You are not eligible for any presales. Wait until the public sale to get your own Propertys NFT!
+            </div>
+        </div>
+
+
+        <!-- Public Minting -->
+        <div class="mint-container public" *ngIf="mintingStage.public && contentLoaded">
+            <h2>Public Sale</h2>
+            <p>Max limit of 16 mints per wallet address</p>
+            <div class="price-block public-sale">
+                <div class="price">PRICE: <i class="fab fa-ethereum"></i> <span id="price">{{(publicSalePriceText * mintAmount).toFixed(2)}}</span> ETH + GAS</div>
+                <div class="adjustable-houses-container">
+                    <div class="house" *ngFor="let house of mintableHouses"><img src="/assets/images/gold-house.png" width="50" /></div>
+                </div>
+                <div class="pricing-range">
+                    <input type="range"
+                            (input)="handleMintAmountSlider($event)"
+                            min="1"
+                            max="8"
+                            [disabled]="isMinting"
+                            step="1"
+                            value="1" 
+                            class="slider">
+                    <div class="purchase-amount-text">{{mintAmount}}</div>
+                </div>
+                <button class="mint scale-hover" type="button" [disabled]="isMinting" (click)="mint('public')">
+                    <span *ngIf="isMinting" class="mint-loading"><img src="/assets/images/loading.gif" width="25"  /> Minting</span>
+                    <span *ngIf="!isMinting">Mint</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

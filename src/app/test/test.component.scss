@@ -1,0 +1,32 @@
+@import '../../assets/scss/variables';
+@import '../../assets/scss/mixins';
+
+:host {
+
+    .wrapper {
+        padding: 100px 0 100px;
+        width: $wrapper-container-width;
+        margin: 0 auto;
+    }
+
+    h2 {
+        font-size: 32px;
+        margin-top: 50px;
+    }
+
+    p {
+        line-height:150%;
+        font-size: 22px;
+        font-family: $font-family-body;
+        margin-bottom: 20px;
+    }
+
+
+@media only screen and (min-width: 0px) and (max-width: 1120px) {
+    .wrapper {
+        width: calc(100% - 40px);
+        margin: 0 auto;
+    }
+}
+
+}

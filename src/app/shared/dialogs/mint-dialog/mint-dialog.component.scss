@@ -1,0 +1,401 @@
+@import "../../../../assets/scss/variables";
+@import "../../../../assets/scss/mixins";
+
+$private-sale-color: #EF7F19;
+$public-sale-color: #7732AA;
+
+:host {
+    .modal {
+        position: relative;
+        text-align: center;
+
+        .inner {
+            height: 100%;
+            overflow: auto;
+        }
+    }
+    // Countdown timer
+    .countdown-container {
+        width: 100%;
+        margin: 20px auto 30px auto;
+        padding: 15px;
+        box-sizing: border-box;
+        border-radius: 4px;
+    }
+
+    .no-active-sale {
+        padding: 50px
+    }
+
+    .loading {
+        margin: 100px 0;
+    }
+
+    .timeleft {
+        display: flex;
+        justify-content: center;
+
+        &> div {
+            text-align: center;
+            margin-right: 15px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+        .label {
+            text-transform: uppercase;
+            font-size: 12px;
+            margin-top: 5px;
+            font-weight: 100;
+        }
+    }
+
+    .count-down {
+        margin: 0 auto;
+        font-size: 30px;
+        font-family: $font-family-body;
+        font-weight: 600;
+        text-align: center;
+        line-height:1;
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+    }
+
+    .adjustable-houses-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5px;
+        flex-wrap: wrap;
+
+        .house {
+
+        }
+    }
+
+    .close {
+        position: absolute;
+        top: -35px;
+        right: -35px;
+        background: none;
+        border-radius: 30px;
+        color: $primary-font-color;
+        font-size: 23px;
+        padding: 3px;
+    }
+
+    .mint-container {
+        margin-top: 40px;
+        // border-top: 2px solid rgba(0, 0, 0, .4);
+        width: 100%;
+        padding: 20px;
+        box-sizing:border-box;
+
+        &.public {
+
+            h2 {
+                margin-bottom: 0;
+            }
+
+            p {
+                margin: 0 0 10px 0;
+                opacity: .7;
+                font-size: 16px;
+            }
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .mint-container-row {
+            display: flex;
+            align-items: center;
+        }
+
+        .mintable-image-container {
+            margin-right: 30px;
+        }
+    }
+
+    .sale-text {
+        font-family: $font-family-body-bold;
+        text-transform: uppercase;
+        font-size: 18px;
+    }
+
+    .available-mints {
+        font-size: 14px;
+        text-transform: uppercase;
+        margin-bottom: 35px;
+        opacity: .7;
+    }
+
+    .price-block {
+        width: 100%;
+
+        &:nth-child(2) {
+            margin-left: 20px;
+        }
+
+        &.public-sale {
+            &:nth-child(2) {
+                margin-left: 0;
+            }
+        }
+
+        .price {
+            font-family: $font-family-body-bold;
+            font-size: 16px;
+            margin-bottom: 15px;
+
+            i {
+                margin-right: 5px;
+            }
+
+            &.margin-bottom-0 {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .ineligible {
+        border-radius: 30px;
+        font-family: $font-family-body-bold;
+        padding: 12px 10px 12px;
+        background: $ineligible-bg-color;
+        color: $ineligible-color;
+        letter-spacing: 1px;
+        font-size: 14px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        text-transform: uppercase;
+        margin-top: 35px;
+
+        i {
+            margin-right: 10px;
+        }
+    }
+
+    .single-quantity-container {
+        width: 100px;
+        height:100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0px auto 30px;
+    }
+
+    .purchase-amount-text {
+        text-align: center;
+        min-width: 30px;
+        font-family: $font-family-body-bold; 
+        font-size: 16px;
+    }
+
+    .pricing-range {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+        width: 100%;
+
+        .slider {
+            width: 100%;
+        }
+    }
+
+    /**
+     *  Supply breakdown
+     */
+     .supply-container-text {
+         font-size:14px;
+         margin-top: 20px;
+         text-transform: uppercase;
+         
+     }
+     .breakdown-list-container {
+        margin-bottom: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 10px;
+        justify-content: center;
+
+        .amount {
+            font-family: $font-family-body-bold;
+            font-size:12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .pill {
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            background: $primary-bg-color-dark;
+            color: #FFF;
+            border-radius: 15px;
+            display: flex;
+            position: relative;
+            align-items: center;
+
+            .active-now {
+                position: absolute;
+                text-transform: uppercase;
+                font-size: 10px;
+                font-family: $font-family-body-bold;;
+                letter-spacing: 2px;
+                top: -23px;
+                left: 50%;
+                border-radius: 20px;
+                padding: 4px 10px;
+                color: $primary-font-color;
+                display: none;
+                transform-origin: top left;
+                -webkit-animation:activeScale .5s linear infinite;
+                -moz-animation:activeScale .5s linear infinite;
+                animation:activeScale .5s linear infinite;
+            }
+            
+            &.private {
+                background: $private-sale-color;
+
+                &.active {
+                    .active-now {
+                        display: block;
+                    }
+                }
+            }
+
+            &.public {
+                background: $public-sale-color;
+
+                &.active {
+                    .active-now {
+                        display: block;
+                    }
+                }
+            }
+
+            &.reserved {
+                background: #cce2dd;
+            }
+        }
+    }
+
+    .supply-breakdown {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        border-radius: 10px;
+        overflow:hidden;
+        margin-top: 10px;
+        margin-bottom: 20px;
+
+        .breakdown-title {
+
+        }
+
+        .supply {
+            height:10px;
+            width: 100%;
+
+            &.private-sale {
+                background: $private-sale-color;
+                width: 40%;
+            }
+
+            &.public-sale {
+                width: 55%;
+                background: $public-sale-color;
+            }
+
+            &.team {
+                width: 5%;
+                background: #cce2dd;
+                border-top-right-radius: 20px;
+                border-bottom-right-radius: 20px;
+            }
+        }
+    }
+
+    .mint-loading {
+        display: flex;
+        align-items: center;
+
+        img {
+            margin-right: 10px;
+        }
+    }
+
+    button.mint {
+        width: 100%;
+
+        &:disabled {
+            opacity: .5;
+            cursor: initial;
+
+            &.scale-hover {
+                @include transform(none);
+            }
+        }
+    }
+
+    @media only screen and (min-height: 0px) and (max-height: 680px) {
+        .modal {
+            height: 95vh;
+
+            .inner {
+                overflow: auto;
+                height: 97vh;
+            }
+        }
+
+    }
+
+    @media only screen and (min-width: 0px) and (max-width: 830px) {
+
+        .double-buttons {
+            flex-direction: column;
+        }
+
+        .countdown-container {
+            width: 100%;
+        }
+
+        .overflow-container {
+            overflow: auto;
+        }
+
+        .mint-container {
+            margin-top: 10px;
+            
+            h2 {
+                font-size: 19px;
+            }
+
+            .price-block {
+                margin-bottom: 20px;
+
+                &:nth-child(2) {
+                    margin-left: 0;
+                }
+            }
+
+            .mint-container-row {
+                flex-direction: column;
+            }
+        }
+
+
+        .close {
+            top: -23px;
+            right: -23px;
+        }
+        
+    }
+}
