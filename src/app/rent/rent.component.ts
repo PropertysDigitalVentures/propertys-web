@@ -13,8 +13,8 @@ import { environment } from '../../environments/environment';
 })
 export class RentComponent {
   public streetViewToggled = true;
-  public neighborhoodViewToggled = true;
   public districtViewToggled = true;
+  public cityViewToggled = true;
   public brixClaimLoading = false;
   public brixTokenApproved = true; // Need to dynamically set this based on smart contract
   public streets = {
@@ -94,10 +94,10 @@ export class RentComponent {
         this.streetViewToggled = !this.streetViewToggled;
       break;
       case "neighborhood":
-        this.neighborhoodViewToggled = !this.neighborhoodViewToggled;
+        this.districtViewToggled = !this.districtViewToggled;
         break;
       case "district":
-        this.districtViewToggled = !this.districtViewToggled;
+        this.cityViewToggled = !this.cityViewToggled;
       break;
     }
   }
@@ -163,9 +163,9 @@ export class RentComponent {
 		let t = endDate - now;
 		
 		if (t >= 0) {
-			this.countdownHours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-			this.countdownMins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
-			this.countdownSecs = Math.floor((t % (1000 * 60)) / 1000);
+			this.countdownHours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+			this.countdownMins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+			this.countdownSecs = Math.floor((t % (1000 * 60)) / 1000).toString().padStart(2, '0');
 		} 
 	}
 

@@ -66,50 +66,6 @@
 		</div>
 	</div>
 
-	<!-- Neighborhoods -->
-	<div class="property-type-container">
-		<div class="property-type-title">
-			<h3>Neighborhoods</h3>
-			<div class="info-and-actions">
-				<ul>
-					<li class="complete">
-						<div class="total">1</div> 
-						<div class="total-text">Completed </div>
-					</li>
-					<li>
-						<div class="total">3</div> 
-						<div class="total-text">In Progress </div>
-					</li>
-				</ul>
-				<button class="toggle-view-btn" (click)="toggleContainerType('neighborhood')">
-					<i *ngIf="neighborhoodViewToggled" class="fas fa-chevron-up"></i>
-					<i *ngIf="!neighborhoodViewToggled" class="fas fa-chevron-down"></i>
-				</button>
-			</div>
-		</div>
-		<div class="property-list-container" *ngIf="neighborhoodViewToggled">
-			<div class="info">
-				<div class="status-icon">
-					<i class="fas fa-tasks"></i>
-				</div>
-				<div class="column">
-					<div class="title-text">Name</div>
-					<div class="name">Muddy Mountains</div>
-				</div>
-				<div class="column">
-					<div class="title-text">Amount to earn</div>
-					<div class="amount-to-earn">2100 BRIX</div>
-				</div>
-			</div>
-			<ul class="street-blocks">
-				<li><img src="/assets/images/cards/beige-bay-1.webp" width="100%" /></li>
-				<li><img src="/assets/images/cards/beige-bay-1.webp" width="100%" /></li>
-			</ul>
-			<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=City%20Name&search[stringTraits][0][values][0]=Beige%20Bay" class="buy-more">Buy 2 more streets in this neighborhood for completion</a>
-		</div>
-	</div>
-
-
 	<!-- Districts -->
 	<div class="property-type-container">
 		<div class="property-type-title">
@@ -138,6 +94,50 @@
 				</div>
 				<div class="column">
 					<div class="title-text">Name</div>
+					<div class="name">Muddy Mountains</div>
+				</div>
+				<div class="column">
+					<div class="title-text">Amount to earn</div>
+					<div class="amount-to-earn">2100 BRIX</div>
+				</div>
+			</div>
+			<ul class="street-blocks">
+				<li><img src="/assets/images/cards/beige-bay-1.webp" width="100%" /></li>
+				<li><img src="/assets/images/cards/beige-bay-1.webp" width="100%" /></li>
+			</ul>
+			<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=City%20Name&search[stringTraits][0][values][0]=Beige%20Bay" class="buy-more">Buy 2 more streets in this district for completion</a>
+		</div>
+	</div>
+
+
+	<!-- Cities -->
+	<div class="property-type-container">
+		<div class="property-type-title">
+			<h3>Cities</h3>
+			<div class="info-and-actions">
+				<ul>
+					<li class="complete">
+						<div class="total">1</div> 
+						<div class="total-text">Completed </div>
+					</li>
+					<li>
+						<div class="total">3</div> 
+						<div class="total-text">In Progress </div>
+					</li>
+				</ul>
+				<button class="toggle-view-btn" (click)="toggleContainerType('city')">
+					<i *ngIf="cityViewToggled" class="fas fa-chevron-up"></i>
+					<i *ngIf="!cityViewToggled" class="fas fa-chevron-down"></i>
+				</button>
+			</div>
+		</div>
+		<div class="property-list-container" *ngIf="cityViewToggled">
+			<div class="info">
+				<div class="status-icon">
+					<i class="fas fa-tasks"></i>
+				</div>
+				<div class="column">
+					<div class="title-text">Name</div>
 					<div class="name">Beige Bay</div>
 				</div>
 				<div class="column">
@@ -148,7 +148,7 @@
 			<ul class="street-blocks">
 				<li><img src="/assets/images/cards/beige-bay-1.webp" width="100%" /></li>
 			</ul>
-			<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=City%20Name&search[stringTraits][0][values][0]=Beige%20Bay" class="buy-more">Buy 6 more streets in this district for completion</a>
+			<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=City%20Name&search[stringTraits][0][values][0]=Beige%20Bay" class="buy-more">Buy 6 more streets in this city for completion</a>
 		</div>
 	</div>
 
