@@ -32,6 +32,7 @@
     "crypto-js": "^4.1.1",
     "date-fns": "^2.23.0",
     "ethers": "^5.4.7",
+    "moralis": "^1.2.0",
     "ngx-google-analytics": "^11.2.1",
     "ngx-pixel": "^1.1.1",
     "ngx-toastr": "^14.1.4",

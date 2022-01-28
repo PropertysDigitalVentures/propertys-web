@@ -5,9 +5,14 @@ import { ethers, BigNumber } from "ethers";
 import { EventMessengerService } from './event-messenger.service';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { from, zip, of } from "rxjs";
+import { switchMap, catchError, tap, map } from "rxjs/operators";
+import Moralis from "moralis";
 
 // Contracts
 import coreContract from '../../../contracts/PropertysCore.json';
+
+Moralis.start({ serverUrl:environment.moralisServerUrl, appId: environment.moralisAppId });
 
 declare let window: any;
 
@@ -25,6 +30,8 @@ export class SmartContractCoreService {
         public eventMessengerService: EventMessengerService,
         private http: HttpClient,
     ) {
+
+        console.log('environment.moralisAppId', environment.moralisAppId);
 
         // Check if Ethereum is enabled via metamask or some other provider
         if (MetaMaskOnboarding.isMetaMaskInstalled()) {
@@ -366,6 +373,95 @@ export class SmartContractCoreService {
             gasEstimate = await contract.estimateGas.publicMint(quantity, { value: parsedPrice.mul(String(quantity)) })
             return contract.publicMint(quantity, { value: parsedPrice.mul(String(quantity)), gasLimit: addGasLimitBuffer(gasEstimate) })   
         }
+    }
+
+
+    /**
+     * Function to get all NFTs for a wallet address
+     */
+     getNFTsFromAddress() {
+        // This code is what grabs the NFT data from the blockchain
+        const options = {
+            chain:'eth',
+            token_address: '0x18cb9db75fa62a9717aa98292b939e579b7c7ccd',
+            address: '0x2dF2098A4350A7D73e78d1718f3913AF0d2f034E',
+        };
+        return from(Moralis.Web3API.account.getNFTsForContract(options)).pipe(
+            switchMap((data) => {
+                // Remove duplicates to prevent unecessary http calls
+                let { result } = data;
+
+                if (result.length === 0) {
+                    return of([]);
+                }
+
+                const nftResults = result.map((nft) => {
+                    if (nft["metadata"] !== null) {
+                        let nftMetadata = JSON.parse(
+                            nft.metadata.replace(/(\r\n|\n|\r)/gm, "")
+                        );
+
+                        console.log('metadata?', nftMetadata)
+                        nft["traits"] = {};
+                        nft["token_id"] = nft.token_id;
+                        nft["name"] = nftMetadata.name;
+                        nft["image"] = nftMetadata.image;
+
+                        nft["name"] = `#${nft["name"].split("#").pop()}`;
+
+                        // Reformat the attributes in a readable way
+                        for (let key in nftMetadata.attributes) {
+                            nft["traits"][
+                                nftMetadata.attributes[key].trait_type
+                            ] = nftMetadata.attributes[key].value;
+                        }
+
+                        return of(nft);
+                    } else {
+                        if (nft.token_uri) {
+                            return this.http.get(nft.token_uri).pipe(
+                                switchMap((propertyData) => {
+                                    nft["traits"] = {};
+                                    nft["token_id"] = nft.token_id;
+                                    nft["name"] = propertyData.name;
+                                    nft["image"] = propertyData.image;
+
+                                    // Reformat the attributes in a readable way
+
+                                    nft["name"] = `#${nft["name"]
+                                        .split("#")
+                                        .pop()}`;
+
+                                    // Reformat the attributes in a readable way
+                                    for (let key in propertyData.attributes) {
+                                        nft["traits"][
+                                            propertyData.attributes[
+                                                key
+                                            ].trait_type
+                                        ] = propertyData.attributes[key].value;
+                                    }
+                                })
+                            );
+                        } else {
+                            nft["traits"] = {};
+                            nft["token_id"] = nft.token_id;
+
+                            // Reformat the attributes in a readable way
+
+                            nft["name"] = `#${nft.token_id}`;
+                            return of(nft);
+                        }
+                    }
+                });
+
+                return zip(...nftResults).pipe(
+                    tap((nftData) => {}),
+                    catchError((error) => {
+                        return of({});
+                    })
+                );
+            })
+        );
     }
 
 

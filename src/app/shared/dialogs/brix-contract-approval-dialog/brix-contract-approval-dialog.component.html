@@ -1,0 +1,16 @@
+
+<div class="modal">
+    <div class="title">
+        <h3>Requesting Permissions</h3>
+    </div>
+
+    <p>We need your approval in order to claim BRIX Tokens</p>
+
+    <div class="actions">
+        <button (click)="approveBrix()" [disabled]="loading" class="primary cta">
+            <img *ngIf="loading" src="/assets/images/loading.gif" width="24"  />
+            <span *ngIf="!loading">Approve</span>
+        </button>
+        <button class="close" (click)="close()">Close</button>
+    </div>
+</div>
