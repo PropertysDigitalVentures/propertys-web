@@ -18,7 +18,7 @@ export class RentComponent {
   public cityViewToggled = true;
   public brixClaimLoading = false;
   public brixTokenApproved = true; // Need to dynamically set this based on smart contract
-  public propertys = {};
+  public propertys = []; // Breakdown of the streets
 
   public accounts = [];
 
@@ -156,71 +156,114 @@ export class RentComponent {
 	}
 
 
+  
+  /**
+   * 
+   * Determine if a street has 7 units
+   */
+   isStreetComplete(street) {
+    return street.length === 7 ? true : false;
+  }
+
+
+  /**
+   * Build the "Buy on Opensea" buttons for each street 
+   */
+  buildBuyButtonsForStreet(street) {
+    let buyOnOpenSeaArray = [];
+    for(let i = 0; i < (7 - street.length); i++) {
+      buyOnOpenSeaArray.push({
+        image: street[0]['image'],
+        street: street[0]['street'].replace(' ', '%20'),
+      });
+    }
+
+    return buyOnOpenSeaArray;
+  }
+
+
+
+  /**
+   * Loads all the propertys for a wallet and then organizes the table breakdown
+   */
   public loadPropertys() {
     this.smartContractCoreService
         .getNFTsFromAddress(this.accounts[0])
         .subscribe(async (data) => {
             this.loading = false;
 
+            // Create some test data
+            let streetData = data.concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data);
+
             // Iterate through the data and build the streets, districts, and cities
-            console.log('data?', data);
-            let streetBreakdown = data.map(property => {
+            let allUnits = streetData.map(property => {
 
               let propertyObj = {
                 image: property.image_preview_url
               };
               for(let trait of property.traits) {
-
+                // Street
                 if(trait.trait_type === 'Street Name') {
                  propertyObj['street'] = trait.value;
                 }
-                
+                // District
                 if(trait.trait_type === 'District Name') {
                   propertyObj['district'] = trait.value;
                 }
-
+                // City
                 if(trait.trait_type === 'City Name') {
                   propertyObj['city'] = trait.value;
                 }
-
+                // Unit
                 if(trait.trait_type === 'Unit') {
                   propertyObj['unit'] = trait.value;
                 }
               }
 
-
-              
               return propertyObj;
             })
 
 
+            // Create entries for each property in order to catalog all streets under a single street object
+            allUnits.forEach(property => {
+              let propertyExists = false;
+              this.propertys.forEach(singleProperty => {
+                if(property.street === singleProperty.streetName) {
+                  propertyExists = true;
+                }
+              });
+
+              if(!propertyExists) {
+                this.propertys.push({
+                  streetName: property.street,
+                  units: [],
+                  streets: []
+                })
+              }
+            });
+
+
             // Now that we know the streets, go through each one and initialize props for each
-            streetBreakdown.forEach(property => {
-              this.propertys[property.street] = { units: [] }
+            allUnits.forEach(property => {
+              // Now go through all the propertys
+              this.propertys.forEach(singleProperty => {
+
+                // We have a street match
+                if(singleProperty.streetName === property.street) {
+                  
+                  singleProperty.units.push(property);
+                }
+              })
             })
 
-            streetBreakdown.forEach(property => {
-              this.propertys[property.street]['units'].push(property)
+            // Now that we have all the property streets broken down, let's go through and divide them up
+            this.propertys.forEach(property => {
+              while(property.units.length) {
+                property.streets.push(property.units.splice(0,7));
+              }
             })
-
-            console.log('streetBreakdown?', this.propertys)
+            
+            console.log('propertys', this.propertys);
         });
-  }
-
-
-  isStreetComplete(units) {
-    return units.length === 7 ? true : false;
-  }
-
-  buildBuyButtonsForStreet(units) {
-    let buyOnOpenSeaArray = [];
-    for(let i = 0; i < (7 - units.length); i++) {
-      buyOnOpenSeaArray.push({
-        image: units[0]['image'],
-        street: units[0]['street'].replace(' ', '%20'),
-      });
-    }
-
-    return buyOnOpenSeaArray;
   }
 }
