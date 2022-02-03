@@ -10,10 +10,10 @@ const routes: Routes = [
     path: 'terms',
     loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule)
   },
-  {
-    path: 'rent',
-    loadChildren: () => import('./rent/rent.module').then(m => m.RentModule)
-  },
+  // {
+  //   path: 'rent',
+  //   loadChildren: () => import('./rent/rent.module').then(m => m.RentModule)
+  // },
   { 
     path: '**', 
     pathMatch: 'full',  
