@@ -379,83 +379,103 @@ export class SmartContractCoreService {
     /**
      * Function to get all NFTs for a wallet address
      */
-     getNFTsFromAddress() {
+     getNFTsFromAddress(address) {
         // This code is what grabs the NFT data from the blockchain
         const options = {
             chain:'eth',
-            token_address: '0x18cb9db75fa62a9717aa98292b939e579b7c7ccd',
-            address: '0x2dF2098A4350A7D73e78d1718f3913AF0d2f034E',
+            token_address: this.contractAddress,
+            address,
         };
         return from(Moralis.Web3API.account.getNFTsForContract(options)).pipe(
-            switchMap((data) => {
-                // Remove duplicates to prevent unecessary http calls
-                let { result } = data;
+            switchMap(async (data) => {
+                // Iterate over all tokens and create string to get data from Opensea
+                let tokenIds = data.result.map(nft => {
+                    return nft.token_id;
+                })
 
-                if (result.length === 0) {
-                    return of([]);
-                }
+                // Create string
+                let urlString = `https://api.opensea.io/api/v1/assets?&asset_contract_address=${this.contractAddress}&`;
 
-                const nftResults = result.map((nft) => {
-                    if (nft["metadata"] !== null) {
-                        let nftMetadata = JSON.parse(
-                            nft.metadata.replace(/(\r\n|\n|\r)/gm, "")
-                        );
+                tokenIds.forEach(id => {
+                    urlString += `token_ids=${id}&`;
+                })
 
-                        console.log('metadata?', nftMetadata)
-                        nft["traits"] = {};
-                        nft["token_id"] = nft.token_id;
-                        nft["name"] = nftMetadata.name;
-                        nft["image"] = nftMetadata.image;
+                // Call HTTP Request to get data from Opensea
+                let tokenData = await this.http.get(urlString).toPromise()
 
-                        nft["name"] = `#${nft["name"].split("#").pop()}`;
+                // Return the assets
+                return tokenData.assets;
 
-                        // Reformat the attributes in a readable way
-                        for (let key in nftMetadata.attributes) {
-                            nft["traits"][
-                                nftMetadata.attributes[key].trait_type
-                            ] = nftMetadata.attributes[key].value;
-                        }
+                // NOTE TODO: Uncomment this code if we want to use Moralis again
+                // let { result } = data;
 
-                        return of(nft);
-                    } else {
-                        if (nft.token_uri) {
-                            return this.http.get(nft.token_uri).pipe(
-                                switchMap((propertyData) => {
-                                    nft["traits"] = {};
-                                    nft["token_id"] = nft.token_id;
-                                    nft["name"] = propertyData.name;
-                                    nft["image"] = propertyData.image;
+                // if (result.length === 0) {
+                //     return of([]);
+                // }
 
-                                    // Reformat the attributes in a readable way
+                // const nftResults = result.map((nft) => {
+                //     if (nft["metadata"] !== null) {
+                //         let nftMetadata = JSON.parse(
+                //             nft.metadata.replace(/(\r\n|\n|\r)/gm, "")
+                //         );
 
-                                    nft["name"] = `#${nft["name"]
-                                        .split("#")
-                                        .pop()}`;
+                //         console.log('metadata?', nftMetadata)
+                //         nft["traits"] = {};
+                //         nft["token_id"] = nft.token_id;
+                //         nft["name"] = nftMetadata.name;
+                //         nft["image"] = nftMetadata.image;
 
-                                    // Reformat the attributes in a readable way
-                                    for (let key in propertyData.attributes) {
-                                        nft["traits"][
-                                            propertyData.attributes[
-                                                key
-                                            ].trait_type
-                                        ] = propertyData.attributes[key].value;
-                                    }
-                                })
-                            );
-                        } else {
-                            nft["traits"] = {};
-                            nft["token_id"] = nft.token_id;
+                //         nft["name"] = `#${nft["name"].split("#").pop()}`;
 
-                            // Reformat the attributes in a readable way
+                //         // Reformat the attributes in a readable way
+                //         for (let key in nftMetadata.attributes) {
+                //             nft["traits"][
+                //                 nftMetadata.attributes[key].trait_type
+                //             ] = nftMetadata.attributes[key].value;
+                //         }
 
-                            nft["name"] = `#${nft.token_id}`;
-                            return of(nft);
-                        }
-                    }
-                });
+                //         return of(nft);
+                //     } else {
+                //         if (nft.token_uri) {
+                //             return this.http.get(nft.token_uri).pipe(
+                //                 switchMap((propertyData) => {
+                //                     nft["traits"] = {};
+                //                     nft["token_id"] = nft.token_id;
+                //                     nft["name"] = propertyData.name;
+                //                     nft["image"] = propertyData.image;
+
+                //                     // Reformat the attributes in a readable way
+
+                //                     nft["name"] = `#${nft["name"]
+                //                         .split("#")
+                //                         .pop()}`;
+
+                //                     // Reformat the attributes in a readable way
+                //                     for (let key in propertyData.attributes) {
+                //                         nft["traits"][
+                //                             propertyData.attributes[
+                //                                 key
+                //                             ].trait_type
+                //                         ] = propertyData.attributes[key].value;
+                //                     }
+                //                 })
+                //             );
+                //         } else {
+                //             nft["traits"] = {};
+                //             nft["token_id"] = nft.token_id;
+
+                //             // Reformat the attributes in a readable way
+
+                //             nft["name"] = `#${nft.token_id}`;
+                //             return of(nft);
+                //         }
+                //     }
+                // });
 
                 return zip(...nftResults).pipe(
-                    tap((nftData) => {}),
+                    tap((nftData) => {
+             
+                    }),
                     catchError((error) => {
                         return of({});
                     })

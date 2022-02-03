@@ -25,45 +25,41 @@
 				</button>
 			</div>
 		</div>
-		<div class="property-list-container" *ngIf="streetViewToggled">
-			<div class="info">
-				<div class="status-icon complete">
-					<i class="fas fa-check"></i>
+		<ng-container  *ngIf="streetViewToggled">
+			<div class="property-list-container" *ngFor="let property of propertys | keyvalue">
+				<div class="info">
+					<!-- Complete -->
+					<div *ngIf="isStreetComplete(property.value['units'])" class="status-icon complete">
+						<i class="fas fa-check"></i>
+					</div>
+
+					<!-- In progress -->
+					<div *ngIf="!isStreetComplete(property.value['units'])" class="status-icon">
+						<i class="fas fa-tasks"></i>
+					</div>
+
+					<div class="column">
+						<div class="title-text">Name</div>
+						<div class="name">{{property.key}}</div>
+					</div>
+					<div class="column">
+						<div class="title-text">Amount Earned</div>
+						<div class="amount-to-earn earned">320 BRIX</div>
+					</div>
 				</div>
-				<div class="column">
-					<div class="title-text">Name</div>
-					<div class="name">Clay Circus</div>
-				</div>
-				<div class="column">
-					<div class="title-text">Amount Earned</div>
-					<div class="amount-to-earn earned">320 BRIX</div>
-				</div>
+				<ul class="street-blocks">
+					<li *ngFor="let unit of property.value['units']">
+						<img [src]="unit.image" width="100%" />
+					</li>
+					<li *ngFor="let buyButton of buildBuyButtonsForStreet(property.value['units'])">
+						<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=Street%20Name&search[stringTraits][0][values][0]={{buyButton.street}}" class="buy-card-btn">
+							<img [src]="buyButton.image" width="100%" />
+							<span class="buy-text">Buy on Opensea</span>
+						</a>
+					</li>
+				</ul>
 			</div>
-			<ul class="street-blocks">
-				<li><img src="/assets/images/cards/beige-bay-1.webp" width="100%" /></li>
-				<li><img src="/assets/images/cards/beige-bay-1.webp" width="100%" /></li>
-				<li><img src="/assets/images/cards/beige-bay-1.webp" width="100%" /></li>
-				<li><img src="/assets/images/cards/beige-bay-1.webp" width="100%" /></li>
-				<li>
-					<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=City%20Name&search[stringTraits][0][values][0]=Beige%20Bay" class="buy-card-btn">
-						<img src="/assets/images/cards/beige-bay-1.webp" width="100%" />
-						<span class="buy-text">Buy on Opensea</span>
-					</a>
-				</li>
-				<li>
-					<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=City%20Name&search[stringTraits][0][values][0]=Beige%20Bay" class="buy-card-btn">
-						<img src="/assets/images/cards/beige-bay-1.webp" width="100%" />
-						<span class="buy-text">Buy on Opensea</span>
-					</a>
-				</li>
-				<li>
-					<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=City%20Name&search[stringTraits][0][values][0]=Beige%20Bay" class="buy-card-btn">
-						<img src="/assets/images/cards/beige-bay-1.webp" width="100%" />
-						<span class="buy-text">Buy on Opensea</span>
-					</a>
-				</li>
-			</ul>
-		</div>
+		</ng-container>
 	</div>
 
 	<!-- Districts -->

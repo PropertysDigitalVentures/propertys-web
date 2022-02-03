@@ -5,6 +5,7 @@ import { BrixContractApprovalDialogComponent } from '../shared/dialogs/brix-cont
 import { SmartContractCoreService } from '../shared/services/smart-contract-core.service';
 import { EventMessengerService } from '../shared/services/event-messenger.service';
 import { environment } from '../../environments/environment';
+import { PropertyBinding } from 'three';
 
 @Component({
   selector: 'app-rent',
@@ -17,22 +18,7 @@ export class RentComponent {
   public cityViewToggled = true;
   public brixClaimLoading = false;
   public brixTokenApproved = true; // Need to dynamically set this based on smart contract
-  public streets = {
-    totalInProgress: 0,
-    totalCompleted: 0,
-    streets: [
-      {
-        name: 'Clay Circus',
-        earnableAmount: 320,
-        isComplete: false,
-        propertys: [
-          {
-            image: ''
-          }
-        ]
-      }
-    ]
-  }
+  public propertys = {};
 
   public accounts = [];
 
@@ -176,8 +162,65 @@ export class RentComponent {
         .subscribe(async (data) => {
             this.loading = false;
 
-
+            // Iterate through the data and build the streets, districts, and cities
             console.log('data?', data);
+            let streetBreakdown = data.map(property => {
+
+              let propertyObj = {
+                image: property.image_preview_url
+              };
+              for(let trait of property.traits) {
+
+                if(trait.trait_type === 'Street Name') {
+                 propertyObj['street'] = trait.value;
+                }
+                
+                if(trait.trait_type === 'District Name') {
+                  propertyObj['district'] = trait.value;
+                }
+
+                if(trait.trait_type === 'City Name') {
+                  propertyObj['city'] = trait.value;
+                }
+
+                if(trait.trait_type === 'Unit') {
+                  propertyObj['unit'] = trait.value;
+                }
+              }
+
+
+              
+              return propertyObj;
+            })
+
+
+            // Now that we know the streets, go through each one and initialize props for each
+            streetBreakdown.forEach(property => {
+              this.propertys[property.street] = { units: [] }
+            })
+
+            streetBreakdown.forEach(property => {
+              this.propertys[property.street]['units'].push(property)
+            })
+
+            console.log('streetBreakdown?', this.propertys)
         });
-}
+  }
+
+
+  isStreetComplete(units) {
+    return units.length === 7 ? true : false;
+  }
+
+  buildBuyButtonsForStreet(units) {
+    let buyOnOpenSeaArray = [];
+    for(let i = 0; i < (7 - units.length); i++) {
+      buyOnOpenSeaArray.push({
+        image: units[0]['image'],
+        street: units[0]['street'].replace(' ', '%20'),
+      });
+    }
+
+    return buyOnOpenSeaArray;
+  }
 }
