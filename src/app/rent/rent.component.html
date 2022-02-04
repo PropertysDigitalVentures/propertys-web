@@ -1,21 +1,38 @@
 <propertys-header></propertys-header>
 
-<div class="wrapper">
-	<h1>Claim $BRIX</h1>
-	<div class="window-text">Window for claiming ends in {{countdownHours}}:{{countdownMins}}:{{countdownSecs}}</div>
+<!-- Loading animation -->
+<div class="loading" *ngIf="loadingPropertys"><img src="/assets/images/loading-dark.svg" width="50"  />Loading Propertys</div>
 
+<!-- No propertys -->
+<div class="warning-message" *ngIf="!loadingPropertys && propertys.length === 0 && isOnMainnet" >
+	<img src="/assets/images/property-placeholder.png" width="80"/>
+	<span>You have no Propertys in this wallet. Try switching to another or <a target="_blank" href="https://opensea.io/collection/propertysofficial">buying some on OpenSea</a></span>
+</div>
+
+
+<div class="warning-message" *ngIf="!isOnMainnet && !loadingPropertys">
+	<i class="fab fa-ethereum"></i>
+	You must be on the Ethereum mainnet in order to claim $BRIX
+</div>
+
+<!-- Propertys breakdown -->
+<div class="wrapper" *ngIf="propertys.length > 0 && !loadingPropertys && isOnMainnet">
+	<h1>Claim $BRIX</h1>
+	
+	<div class="window-text">Window for claiming ends in <propertys-countdown-timer></propertys-countdown-timer></div>
+	
 	<!-- Streets -->
 	<div class="property-type-container">
 		<div class="property-type-title">
 			<h3>Streets</h3>
 			<div class="info-and-actions">
 				<ul>
-					<li class="complete">
-						<div class="total">1</div> 
+					<li class="complete" *ngIf="propertyTypeProgress['streets'].completed > 0">
+						<div class="total">{{propertyTypeProgress['streets'].completed}}</div> 
 						<div class="total-text">Completed </div>
 					</li>
-					<li>
-						<div class="total">3</div> 
+					<li  *ngIf="propertyTypeProgress['streets'].inProgress > 0">
+						<div class="total">{{propertyTypeProgress['streets'].inProgress}}</div> 
 						<div class="total-text">In Progress </div>
 					</li>
 				</ul>
@@ -41,7 +58,7 @@
 
 						<div class="column">
 							<div class="title-text">Name</div>
-							<div class="name">{{property['streetName']}}</div>
+							<div class="name">{{property['street']}}</div>
 						</div>
 						<div class="column">
 							<div class="title-text" *ngIf="isStreetComplete(street)">Amount Earned</div>
@@ -73,12 +90,12 @@
 			<h3>Districts</h3>
 			<div class="info-and-actions">
 				<ul>
-					<li class="complete">
-						<div class="total">1</div> 
+					<li class="complete" *ngIf="propertyTypeProgress['districts'].completed > 0">
+						<div class="total">{{propertyTypeProgress['districts'].completed}}</div> 
 						<div class="total-text">Completed </div>
 					</li>
-					<li>
-						<div class="total">3</div> 
+					<li  *ngIf="propertyTypeProgress['districts'].inProgress > 0">
+						<div class="total">{{propertyTypeProgress['districts'].inProgress}}</div> 
 						<div class="total-text">In Progress </div>
 					</li>
 				</ul>
@@ -88,26 +105,34 @@
 				</button>
 			</div>
 		</div>
-		<div class="property-list-container" *ngIf="districtViewToggled">
-			<div class="info">
-				<div class="status-icon">
-					<i class="fas fa-tasks"></i>
+		
+		<ng-container *ngIf="districtViewToggled">
+			<div class="property-list-container" *ngFor="let district of districts">
+				<div class="info">
+					<!-- Complete -->
+					<div *ngIf="isDistrictComplete(district)" class="status-icon complete">
+						<i class="fas fa-check"></i>
+					</div>
+
+					<!-- In progress -->
+					<div *ngIf="!isDistrictComplete(district)" class="status-icon">
+						<i class="fas fa-tasks"></i>
+					</div>
+					<div class="column">
+						<div class="title-text">Name</div>
+						<div class="name">{{district['name']}}</div>
+					</div>
+					<div class="column">
+						<div class="title-text">Amount to earn</div>
+						<div class="amount-to-earn">2100 BRIX</div>
+					</div>
 				</div>
-				<div class="column">
-					<div class="title-text">Name</div>
-					<div class="name">Muddy Mountains</div>
-				</div>
-				<div class="column">
-					<div class="title-text">Amount to earn</div>
-					<div class="amount-to-earn">2100 BRIX</div>
-				</div>
+				<ul class="street-blocks">
+					<li *ngFor="let street of district['streets']"><img [src]="street[0]['image']" width="100%" /></li>
+				</ul>
+				<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=District%20Name&search[stringTraits][0][values][0]={{replaceSpacesForUrlLink(district['name'])}}" class="buy-more">Own {{getRemainingDistrictStreetCount(district)}} more streets in this district for completion</a>
 			</div>
-			<ul class="street-blocks">
-				<li><img src="/assets/images/cards/beige-bay-1.webp" width="100%" /></li>
-				<li><img src="/assets/images/cards/beige-bay-1.webp" width="100%" /></li>
-			</ul>
-			<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=City%20Name&search[stringTraits][0][values][0]=Beige%20Bay" class="buy-more">Buy 2 more streets in this district for completion</a>
-		</div>
+		</ng-container>
 	</div>
 
 
@@ -117,12 +142,12 @@
 			<h3>Cities</h3>
 			<div class="info-and-actions">
 				<ul>
-					<li class="complete">
-						<div class="total">1</div> 
+					<li class="complete" *ngIf="propertyTypeProgress['cities'].completed > 0">
+						<div class="total">{{propertyTypeProgress['cities'].completed}}</div> 
 						<div class="total-text">Completed </div>
 					</li>
-					<li>
-						<div class="total">3</div> 
+					<li  *ngIf="propertyTypeProgress['cities'].inProgress > 0">
+						<div class="total">{{propertyTypeProgress['cities'].inProgress}}</div> 
 						<div class="total-text">In Progress </div>
 					</li>
 				</ul>
@@ -132,25 +157,32 @@
 				</button>
 			</div>
 		</div>
-		<div class="property-list-container" *ngIf="cityViewToggled">
-			<div class="info">
-				<div class="status-icon">
-					<i class="fas fa-tasks"></i>
+		<ng-container *ngIf="cityViewToggled">
+			<div class="property-list-container" *ngFor="let city of cities">
+					<ng-container *ngIf="hasDistricts(city)">
+					<div class="info">
+						<div class="status-icon">
+							<i class="fas fa-tasks"></i>
+						</div>
+						<div class="column">
+							<div class="title-text">Name</div>
+							<div class="name">{{city['name']}}</div>
+							
+						</div>
+						<div class="column">
+							<div class="title-text">Amount to earn</div>
+							<div class="amount-to-earn">15,500 BRIX</div>
+						</div>
+					</div>
+					<ul class="street-blocks">
+						<li *ngFor="let district of city['districts']">
+							<img [src]="district['streets'][0][0]['image']" width="100%" />
+						</li>
+					</ul>
+					<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=City%20Name&search[stringTraits][0][values][0]={{replaceSpacesForUrlLink(city['name'])}}" class="buy-more">Own {{getRemainingCityDistrictCount(city)}} more districts in this city for completion</a>
+				</ng-container>
 				</div>
-				<div class="column">
-					<div class="title-text">Name</div>
-					<div class="name">Beige Bay</div>
-				</div>
-				<div class="column">
-					<div class="title-text">Amount to earn</div>
-					<div class="amount-to-earn">15,500 BRIX</div>
-				</div>
-			</div>
-			<ul class="street-blocks">
-				<li><img src="/assets/images/cards/beige-bay-1.webp" width="100%" /></li>
-			</ul>
-			<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=City%20Name&search[stringTraits][0][values][0]=Beige%20Bay" class="buy-more">Buy 6 more streets in this city for completion</a>
-		</div>
+		</ng-container>
 	</div>
 
 	<!-- Totals to earn -->

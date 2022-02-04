@@ -23,6 +23,10 @@ a {
     }
 }
 
+input {
+    font-family: $font-family-body;
+}
+
 .carousel {
     height: 140px !important;
     z-index: 2 !important;
