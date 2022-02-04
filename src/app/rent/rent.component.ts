@@ -196,7 +196,7 @@ export class RentComponent {
             let streetData = data.concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data);
 
             // Iterate through the data and build the streets, districts, and cities
-            let allUnits = streetData.map(property => {
+            let allUnits = data.map(property => {
 
               let propertyObj = {
                 image: property.image_preview_url
