@@ -7,6 +7,9 @@ export const environment = {
   chainId: 1,
   netlifyFnServer: 'https://propertys.xyz/.netlify/functions/',
   apiUrl: 'https://lit-island-00614.herokuapp.com/api/v1',
+  moralisAppId: "CogdixbWSkIWeBJugIu1HGp8vD3D4y2ch8dpk8Hf",
+  moralisServerUrl: "https://m49vwuu7jmep.usemoralis.com:2053/server",
+  network: "eth",
 };
 
 /*
