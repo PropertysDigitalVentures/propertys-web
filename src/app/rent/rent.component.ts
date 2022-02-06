@@ -211,7 +211,20 @@ export class RentComponent {
 
 
   hasDistricts(city) {
+    console.log('city?', city)
     return city.districts.length > 0;
+  }
+
+
+  hasCities() {
+    let districtTotal = 0;
+    this.cities.forEach(city => {
+      if(city.districts.length > 0) {
+        districtTotal++;
+      }
+    })
+
+    return districtTotal > 0 ? true : false;
   }
 
 

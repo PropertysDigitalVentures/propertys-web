@@ -158,8 +158,8 @@
 			</div>
 		</div>
 		<ng-container *ngIf="cityViewToggled">
-			<div class="property-list-container" *ngFor="let city of cities">
-					<ng-container *ngIf="hasDistricts(city)">
+			<ng-container *ngFor="let city of cities">
+				<div class="property-list-container" *ngIf="hasDistricts(city)">
 					<div class="info">
 						<div class="status-icon">
 							<i class="fas fa-tasks"></i>
@@ -180,8 +180,11 @@
 						</li>
 					</ul>
 					<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=City%20Name&search[stringTraits][0][values][0]={{replaceSpacesForUrlLink(city['name'])}}" class="buy-more">Own {{getRemainingCityDistrictCount(city)}} more districts in this city for completion</a>
+					</div>
 				</ng-container>
-				</div>
+			<div *ngIf="!hasCities()" class="no-propertys">
+				You don't have enough Propertys to begin owning a city. <a target="_blank" href="https://opensea.io/collection/propertysofficial">Buy more on Opensea</a>
+			</div>
 		</ng-container>
 	</div>
 
