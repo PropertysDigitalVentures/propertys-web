@@ -798,34 +798,21 @@
                     min-width: 150px;
                     width: 150px;
                     height: 150px;
-                    border-radius: 4px;
                     margin: 0 auto 20px auto;
 
                     &.image-crispy, .image-crispy {
                         display: flex;
                         justify-content: center;
-
-                        img {
-                            margin-top: 26px;
-                            width: 115px;
-                            height: 123px;
-                        }
                     }
 
                     .image-container {
                         height:150px;
                         width: 150px;
                         border-radius: 4px;
-
-                        img {
-                            border-radius: 0;
-                            margin-left: -6px;
-                            @include transition(.3s ease-in-out);
-                        }
                     }
 
                     img {
-                        border-radius: 4px;
+                        border-radius: 100px;
                         height: 100%;
                         object-fit: contain;
                         @include transition(.3s ease-in-out);
@@ -1280,7 +1267,6 @@
                         margin: 0 auto 15px auto;
         
                         img {
-                            border-radius: 4px;
                             width: 100% !important;
                         }
                     }
