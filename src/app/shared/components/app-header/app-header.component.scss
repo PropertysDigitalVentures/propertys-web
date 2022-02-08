@@ -11,16 +11,30 @@
         top: 0;
         @include transition(.25s ease-in-out background);
 
+        .mobile-menu-toggle {
+
+            .propertys-logo {
+                margin-top: -7px;
+            }
+        }
+
         &.sticky {
             background: $header-bg;
+
+            .mobile-menu-active {
+                svg, path {
+                    fill: $primary-color !important;
+                }
+            }
 
             .toggle-menu-btn {
                 color: #FFF;
             }
 
             .mobile-menu-toggle {
-                .propertys-logo {
-                    color: #FFF
+
+                .propertys-logo svg {
+                    fill: #FFF
                 }
             }
 
@@ -31,6 +45,10 @@
 
             .action-links li a {
                 color: #FFF;
+
+                svg {
+                    fill: #FFF;
+                }
 
                 &:after {
                     background: #FFF;
@@ -58,6 +76,11 @@
         .mobile-menu-toggle {
             align-items: center;
             display: none;
+
+            .propertys-logo svg {
+                fill: $primary-color;
+                width: 200px;
+            }
             
             .propertys-logo {
                 color: $primary-font-color;
@@ -122,8 +145,6 @@
         }
 
         .action-links {
-            margin-left: auto;
-            margin-right: auto;
             display: flex;
             align-items: center;
 
@@ -131,16 +152,29 @@
                 margin-left: 20px;
                 min-width: 130px;
 
+                &.full-width {
+                    margin-left: 36px;
+
+                    button {
+                        margin-left: auto;
+                    }
+                }
+
                 &.logo {
-                    margin-left: 13px;
 
                     a {
+                        margin-left: 40px;
+                        margin-right: 36px;
+                    }
+
+                    a,  svg {
                         display: block;
-                        width: 310px;
-                        font-family: $font-family-heading;
-                        color: $primary-color;
+                        width: 210px;
+                        fill: $primary-color;
                         text-align: center;
                         font-size: 30px;
+
+
 
                         &:after {
                             content: initial;
@@ -264,6 +298,10 @@
     
     @media only screen and (min-width: 0px) and (max-width: 900px) {
         
+        header.sticky .social-links li a svg path {
+            fill: $primary-font-color;
+        }
+        
         header {
             .mobile-menu-toggle {
                 display: flex !important;
@@ -304,6 +342,11 @@
 
                     &.header-inner-active {
                         display: block;
+                        margin-top:40px;
+
+                        svg {
+                            fill: $primary-font-color;
+                        }
                     }
     
                     .social-links {
