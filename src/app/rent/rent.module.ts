@@ -5,6 +5,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RentComponent } from './rent.component';
 import {AppHeaderModule} from '../shared/components/app-header/app-header.module';
 import {AppFooterModule} from '../shared/components/app-footer/app-footer.module';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { BrixContractApprovalDialogModule } from '../shared/dialogs/brix-contract-approval-dialog/brix-contract-approval-dialog.module';
+import { CountdownTimerModule } from '../shared/components/countdown-timer/countdown-timer.module';
 
 @NgModule({
   declarations: [
@@ -15,12 +18,20 @@ import {AppFooterModule} from '../shared/components/app-footer/app-footer.module
     FontAwesomeModule,
     AppHeaderModule,
     AppFooterModule,
+    CountdownTimerModule,
+    MatDialogModule,
+    BrixContractApprovalDialogModule,
     RouterModule.forChild([{
       path: '',
       component: RentComponent
   }])
   ],
-  providers: [],
+  providers: [
+    {
+      provide: MatDialogRef,
+      useValue: {}
+    },
+  ],
   exports: [
     RentComponent
   ],

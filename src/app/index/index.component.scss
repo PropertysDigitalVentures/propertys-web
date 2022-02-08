@@ -27,7 +27,7 @@
     .banner-link {
         margin-top: 15px;
         display: inline-block;
-    
+
         i {
             margin-right: 7px;
         }
@@ -187,21 +187,21 @@
         position: relative;
         min-height: 450px;
         margin-bottom: 50px;
-
-
+    
+    
         .signup-for-newsletter {
             height: 300px;
             font-family: $font-family-body;
-
+    
             h3 {
                 text-align: center;
                 margin-bottom: 20px;
             }
-
+    
             #mc_embed_signup input.email {
                 font-family: $font-family-body;
             }
-
+    
             #mc_embed_signup .button {
                 background: $primary-color;
                 color: #FFF;

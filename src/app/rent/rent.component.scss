@@ -16,33 +16,181 @@
 
     h2 {
         font-size: 26px;
-        font-family: $font-family-body-medium;
+        font-family: $font-family-heading;
+    }
+
+    .property-type-container {
+        border-radius: 5px;
+        border:1px solid #DDDDDD;
+        margin-bottom: 40px;
+
+        h3 {
+            font-size: 30px;
+        }
+
+        .property-type-title {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #DDD;
+        }
+
+        
+
+        .info-and-actions {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+
+            ul {
+                display: flex;
+                align-items: center;
+
+                li {
+                    margin-right: 20px;
+                    display: flex;
+                    align-items: center;
+
+                    &.complete {
+
+                        .total {
+                            background: $color-bg-green;
+                            
+                            color: $color-green;
+                        }
+
+                        .total-text {
+                            color: $color-green;
+                        }
+                    }
+
+                    .total {
+                        margin-right: 10px;
+                        font-size: 14px;
+                        border-radius: 4px;
+                        color: #666666;
+                        padding: 5px;
+                        line-height: 1;
+                        font-family: $font-family-body-bold;
+                        background: #EEEEEE;
+                    }
+
+                    .total-text {
+                        font-size: 14px;
+                        text-transform: uppercase;
+                        font-family: $font-family-body;
+                    }
+                }
+            }
+        }
+
+        .toggle-view-btn {
+            margin-left: auto;
+            background: none;
+            color: #CCC;
+            @include transition(.15s ease-in-out);
+
+            &:hover {
+                color: #444;
+            }
+        }
+
     }
 
     /**
      *  Street specific sections
      */
-    .street-container {
-        margin-bottom: 100px;
+    .property-list-container {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #DDDDDD;
+        padding: 40px;
+
+        .info {
+            display: flex;
+            align-items: center;
+        }
+
+        .status-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 40px;
+            background: #EEE;
+            font-size: 14px;
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            border-radius: 50px;
+
+            &.complete {
+                background: #E6FFF0;
+                color: $color-green;
+                font-size: 12px;
+            }
+        }
+
+        .column {
+            width: 180px;
+            text-align: left;
+
+            .name {
+                font-size: 18px;
+            }
+
+            .title-text {
+                font-family: $font-family-body-bold;
+                color: #666666;
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+
+            .amount-to-earn {
+                padding: 5px 15px;
+                border-radius: 4px;
+                font-size:18px;
+                text-align: center;
+                line-height: 1;
+                background: #EEE;
+                color: #6D6D6D;
+
+                &.earned {
+                    color: $primary-color;
+                    background: rgba(143, 0, 255, 0.1);
+                }
+            }
+        }
 
         h2 {
             margin-bottom: 30px;
+            display: flex;
+            font-size: 30px;
+            align-items: center;
+            justify-content: center;
         }
 
         .total-possible-rent {
             font-family: $font-family-body-medium;
-            color: $url-color;
+            color: $primary-color;
+            padding:5px 15px;
+            border-radius: 4px;
+            margin-left: 10px;
+            font-size: 14px;
+            background: rgba(143, 0, 255, .1);
         }
 
         ul.street-blocks {
             display: flex;
+            margin-left: 40px;
 
             li {
-                width: 150px;
-                height: 250px;
-                min-width: 150px;
+                width: 80px;
+                min-width: 80px;
+                max-width: 100px;
                 margin-right: 20px;
                 border-radius: 4px;
+                height: 120px;
 
                 &:last-child {
                     margin-right: 0;
@@ -50,7 +198,6 @@
 
                 img {
                     object-fit: cover;
-                    height: 100%;
                     border-radius: 4px;
                 }
             }
@@ -60,23 +207,23 @@
 
         .buy-card-btn {
             height: 100%;
-            background: rgba(255, 255, 255, .5);
+            background: rgba(255,255,255,.8);
             border: 2px dashed $primary-color;
             color: $primary-color;
             font-family: $font-family-body-bold;
             outline: 0;
+            font-size:15px;
             display: block;
-            width: 150px;
-            min-width: 150px;
-            height: 250px;
+            width: 80px;
             border-radius: 4px;
             position: relative;
             @include transition(.15s ease-in-out);
 
             &:hover {
                 @include transform(scale(1.05));
-                background: rgba(0, 0, 0, .6);
+                background: rgba(0, 0, 0, .8);
                 color: #FFF;
+                border-color: #FFF;
 
                 img {
                     opacity: .5;
@@ -104,19 +251,110 @@
         }
     }
 
+    .no-propertys {
+        padding: 30px 0;
+    }
+
+    .buy-more {
+        margin-left: 30px;
+        font-family: $font-family-body-semibold;
+        color: #666666;
+        font-size: 16px;
+        @include transition(.15s ease-in-out);
+
+        &:hover {
+            color: $primary-color;
+        }
+    }
+
+    .loading, .warning-message {
+        width: 500px;
+        display: flex;
+        margin:200px auto;
+        justify-content: center;
+        align-items: center;
+        
+        img {
+            margin-right: 10px;
+        }
+    }
+
+    .warning-message {
+        flex-direction: column;
+        text-align: center;
+        line-height: 160%;
+        font-size: 20px;
+
+        i {
+            font-size: 90px;
+            margin-bottom: 20px;
+            opacity: .7;
+        }
+        
+        img {
+            margin-bottom: 15px;
+            margin-right: 0;
+            text-align: center;
+        }
+    }
+
 
     .rent-collection-summary-container {
-        text-align: left;
+        width: 500px;
+        margin: 100px auto;
 
         h2 {
             margin-bottom: 10px;
+            font-family: $font-family-body;
+        }
+
+        .top {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+
+            .brix-total {
+                margin-left: auto;
+                font-family: $font-family-body-medium;
+                color: $primary-color;
+                padding:10px 15px;
+                border-radius: 4px;
+                font-size: 24px;
+                line-height:1;
+                background: rgba(143, 0, 255, .1);
+            }
+        }
+
+        .claim-all-btn {
+            background: $primary-color;
+            font-size: 30px;
+            text-transform: uppercase;
+            text-align: center;
+            width: 100%;
+            padding: 15px 0;
+            box-sizing: border-box;
+            font-family: $font-family-body-bold;
+            @include transition(.15s ease-in-out);
+
+            &:disabled {
+                cursor: default;
+                &:hover {
+                    background: $primary-color;
+                }
+            }
+
+            &:hover {
+                background: $primary-color-light;
+            }
         }
 
         .brix-total {
             margin-bottom: 10px;
             display: flex;
+            justify-content: flex-end;
             align-items: center;
-            font-family: $font-family-body-semibold;
+            text-align: right;
+            font-family: $font-family-body;
 
             img {
                 margin-right: 10px;
@@ -127,8 +365,14 @@
             display: flex;
             border-radius: 4px;
             padding: 5px 20px;
-            border:2px solid $primary-font-color;
-            max-width: 250px;
+            font-size: 16px;
+            box-sizing:border-box;
+            margin-left: auto;
+            background: #f1f1f1;
+            justify-content: flex-right;
+            margin-top: 15px;
+            width: 100%;
+            text-transform: uppercase;
             align-items: center;
 
             .total {
@@ -144,11 +388,51 @@
         margin: 0 auto;
     }
 
-    ul.street-blocks {
-        width: 100%;
-        padding: 10px;
-        overflow: auto;
+    .property-type-container {
+        h3 {
+            font-size: 20px;
+        }
     }
+
+    .window-text {
+        margin-bottom: 50px;
+    }
+
+    .toggle-view-btn {
+        padding: 0;
+    }
+
+    .property-list-container {
+        flex-direction: column;
+        padding: 30px;
+
+        .info {
+            margin-bottom: 40px;
+        }
+
+        ul.street-blocks {
+            width: 100%;
+            padding: 10px;
+            margin-left: 0;
+            justify-content: center;
+            overflow: auto;
+        }
+
+        .buy-more {
+            display: block;
+            margin-top: 30px;
+            margin-left: 0;
+        }
+    }
+
+    .rent-collection-summary-container {
+        width: 100%;
+        margin: 50px auto 0;
+    }
+        
+      
+
+    
 }
 
 }

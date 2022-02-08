@@ -23,6 +23,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     IvyCarouselModule,
     MintDialogModule,
     MatDialogModule,
+    // FormsModule,
     RouterModule.forChild([{
       path: '',
       component: IndexComponent
