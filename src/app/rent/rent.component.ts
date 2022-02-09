@@ -20,9 +20,6 @@ export class RentComponent {
   public brixClaimLoading = false;
   public loadingPropertys = true;
   public isOnMainnet = true;
-  public propertysForCompletion = 7;
-  public streetsForCompletion = 7;
-  public districtsForCompletion = 7;
   public brixTokenApproved = true; // Need to dynamically set this based on smart contract
   public propertys = []; // Breakdown of the streets
   public districts = [];
@@ -331,7 +328,7 @@ export class RentComponent {
    * 
    * Determine the amount of brix earned on a per street, district, and city level
    */
-  public getEarnedBrixAmount(type, propertyList) {
+  public getEarnedBrixAmount(type, propertyList, showPossibleRewards?) {
     if(type === 'street') {
       let total = 0;
       total += (propertyList.length * this.brixPropertyBonuses[propertyList[0].city].house)
@@ -340,10 +337,52 @@ export class RentComponent {
       }
       return total; 
     } else if(type === 'district') {
-      return this.brixPropertyBonuses[propertyList.city].district
+      if(showPossibleRewards) {
+        return this.brixPropertyBonuses[propertyList.city].district
+      } else {
+        if(this.isDistrictComplete(propertyList)) {
+          return this.brixPropertyBonuses[propertyList.city].district
+        } else {
+          return 0;
+        }
+      }
     } else if(type === 'city') {
-      return this.brixPropertyBonuses[propertyList.name].city
+      if(showPossibleRewards) {
+        return this.brixPropertyBonuses[propertyList.name].city
+      } else {
+        if((propertyList.districts.length - this.neededPropertysForCompletion[propertyList.name].districtsPerCity) === 0) {
+          return this.brixPropertyBonuses[propertyList.name].city
+        } else {
+          return 0;
+        }
+      }
     }
+  }
+
+
+  /**
+   * Show the total of earned brix, please.
+   */
+  getTotalEarnedBrix() {
+
+    let total = 0;
+      if(this.propertys.length > 0) {
+      this.propertys.forEach(property => {
+        total += this.getEarnedBrixAmount('street', property.streets[0],);
+      });
+    }
+
+    // Districts
+    this.districts.forEach(district => {
+      total += this.getEarnedBrixAmount('district', district);
+    });
+
+    // Cities
+    this.cities.forEach(city => {
+      total += this.getEarnedBrixAmount('city', city);
+    });
+
+    return total;
   }
 
 
@@ -458,13 +497,14 @@ export class RentComponent {
 
             // Now that we have all the property streets broken down, let's go through and divide them up
             this.propertys.forEach(property => {
+              
               while(property.units.length) {
-                property.streets.push(property.units.splice(0,this.propertysForCompletion));
+                property.streets.push(property.units.splice(0,this.neededPropertysForCompletion[property.city]['housesPerStreet']));
               }
 
               // Determine how many are complete and in progress
               property.streets.forEach(street => {
-                if(street.length === this.propertysForCompletion) {
+                if(street.length === this.neededPropertysForCompletion[street[0].city]['housesPerStreet']) {
                    this.propertyTypeProgress['streets'].completed++;
                    
                    // Determine breakdown of districts
@@ -485,12 +525,11 @@ export class RentComponent {
 
             // FINALLY, let's create a breakdown of all districts and cities, based on what streets are owned
             this.districts.forEach(district => {
-              if(district.streets.length === this.streetsForCompletion) {
+              if(district.streets.length === this.neededPropertysForCompletion[district.city]['streetsPerDistrict']) {
                 this.propertyTypeProgress['districts'].completed++;
                 
                 // Determine breakdown of cities
                 this.cities.forEach(city => {
-                  console.log('city', city.name, district.city);
                   if(city.name === district.city) {
                      city.districts.push(district);
                   }
@@ -503,7 +542,7 @@ export class RentComponent {
 
             // Cities
             this.cities.forEach(city => {
-              if(city.districts.length === this.districtsForCompletion) { // NOTE: Change this to whatever number is required to own a district
+              if(city.districts.length === this.neededPropertysForCompletion[city.name]['districtsPerCity']) { // NOTE: Change this to whatever number is required to own a district
                 this.propertyTypeProgress['cities'].completed++;
               } else if(city.districts.length >= 1) {
                   this.propertyTypeProgress['cities'].inProgress++;

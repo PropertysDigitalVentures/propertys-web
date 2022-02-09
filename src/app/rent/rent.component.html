@@ -64,7 +64,7 @@
 							<div class="title-text">Bonus Amount</div>
 							<!-- <div class="title-text" *ngIf="!isStreetComplete(street)">Amount to Earn</div> -->
 							<div class="amount-to-earn earned"
-							>{{getEarnedBrixAmount('street', street)}} BRIX</div>
+							>{{getEarnedBrixAmount('street', street, true)}} BRIX</div>
 						</div>
 					</div>
 					<ul class="street-blocks">
@@ -123,11 +123,11 @@
 					</div>
 					<div class="column" *ngIf="!isDistrictComplete(district)">
 						<div class="title-text">Bonus possible</div>
-						<div class="amount-to-earn">{{getEarnedBrixAmount('district', district)}} BRIX</div>
+						<div class="amount-to-earn">{{getEarnedBrixAmount('district', district, true)}} BRIX</div>
 					</div>
 					<div class="column" *ngIf="isDistrictComplete(district)">
 						<div class="title-text">Bonus Amount</div>
-						<div class="amount-to-earn earned">{{getEarnedBrixAmount('district', district)}} BRIX</div>
+						<div class="amount-to-earn earned">{{getEarnedBrixAmount('district', district, true)}} BRIX</div>
 					</div>
 				</div>
 				<ul class="street-blocks">
@@ -174,11 +174,11 @@
 						</div>
 						<div class="column" *ngIf="!isCityComplete(city)">
 							<div class="title-text">Bonus possible</div>
-							<div class="amount-to-earn">{{getEarnedBrixAmount('city', city)}} BRIX</div>
+							<div class="amount-to-earn">{{getEarnedBrixAmount('city', city, true)}} BRIX</div>
 						</div>
 						<div class="column" *ngIf="isCityComplete(city)">
 							<div class="title-text">Bonus Amount</div>
-							<div class="amount-to-earn earned">{{getEarnedBrixAmount('city', city)}} BRIX</div>
+							<div class="amount-to-earn earned">{{getEarnedBrixAmount('city', city, true)}} BRIX</div>
 						</div>
 					</div>
 					<ul class="street-blocks">
@@ -199,7 +199,7 @@
 	<div class="rent-collection-summary-container">
 		<div class="top">
 			<h2>Total Brix to Claim</h2>
-			<div class="brix-total">2500 BRIX</div>
+			<div class="brix-total">{{getTotalEarnedBrix()}} BRIX</div>
 		</div>
 		<button [disabled]="brixClaimLoading" (click)="claimBrix()" class="claim-all-btn">
 			<span *ngIf="!brixClaimLoading">Claim all</span>
