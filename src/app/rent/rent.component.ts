@@ -415,7 +415,7 @@ export class RentComponent {
                 }
                 // City
                 if(trait.trait_type === 'City Name') {
-                  propertyObj['city'] = trait.value;
+                  propertyObj['city'] = trait.value.trim();
                 }
                 // Unit
                 if(trait.trait_type === 'Unit') {
@@ -495,9 +495,9 @@ export class RentComponent {
               })
             })
 
+
             // Now that we have all the property streets broken down, let's go through and divide them up
             this.propertys.forEach(property => {
-              
               while(property.units.length) {
                 property.streets.push(property.units.splice(0,this.neededPropertysForCompletion[property.city]['housesPerStreet']));
               }
