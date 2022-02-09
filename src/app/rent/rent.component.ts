@@ -23,7 +23,7 @@ export class RentComponent {
   public brixTokenApproved = true; // Need to dynamically set this based on smart contract
   public propertys = []; // Breakdown of the streets
   public districts = [];
-  public cityFilter = 'Beige Bay';
+  public cityFilter = '';
   public cityFilters = {
     'X AE X-II': false,
     'Blue Bayside': false,
