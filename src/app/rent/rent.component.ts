@@ -40,7 +40,7 @@ export class RentComponent {
   }
 
   public brixPropertyBonuses = {
-    'X AE A-11': {
+    'X AE X-II': {
       house: 80,
       street: 650,
       district: 1600, 
@@ -85,7 +85,7 @@ export class RentComponent {
   }
 
   public neededPropertysForCompletion = {
-    'X AE A-11': {
+    'X AE X-II': {
       housesPerStreet: 7,
       streetsPerDistrict: 3,
       districtsPerCity: 3
