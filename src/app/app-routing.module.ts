@@ -14,6 +14,10 @@ const routes: Routes = [
     path: 'rent',
     loadChildren: () => import('./rent/rent.module').then(m => m.RentModule)
   },
+  {
+    path: 'propertys-tool',
+    loadChildren: () => import('./propertys-tool/propertys-tool.module').then(m => m.PropertysToolModule)
+  },
   { 
     path: '**', 
     pathMatch: 'full',  
