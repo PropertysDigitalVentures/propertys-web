@@ -23,6 +23,16 @@ export class RentComponent {
   public brixTokenApproved = true; // Need to dynamically set this based on smart contract
   public propertys = []; // Breakdown of the streets
   public districts = [];
+  public cityFilter = 'Beige Bay';
+  public cityFilters = {
+    'X AE X-II': false,
+    'Blue Bayside': false,
+    'Purple Palms': false,
+    'Green Grove': false,
+    'Yellow Yards': false,
+    'Orange Oasis': false,
+    'Beige Bay': false
+  }
   public cities = [];
   public propertyTypeProgress = {
     streets: {
@@ -38,6 +48,7 @@ export class RentComponent {
       inProgress: 0
     },
   }
+  
 
   public brixPropertyBonuses = {
     'X AE X-II': {
@@ -155,6 +166,25 @@ export class RentComponent {
      })
 
      this.loadPropertys();
+  }
+
+
+  toggleCityFilter(city) {
+    if(this.cityFilter === city) {
+			this.cityFilter = '';
+			// Update the toggle filter
+      for(let key in this.cityFilters) {
+        this.cityFilters[key] = false;
+      }
+		} else {
+			this.cityFilter = city;
+			// Update the toggle filter
+			for(let key in this.cityFilters) {
+				this.cityFilters[key] = false;
+				this.cityFilters[city] = true;
+			}
+
+		}
   }
 
 

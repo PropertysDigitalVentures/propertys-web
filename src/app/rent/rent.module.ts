@@ -8,6 +8,7 @@ import {AppFooterModule} from '../shared/components/app-footer/app-footer.module
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { BrixContractApprovalDialogModule } from '../shared/dialogs/brix-contract-approval-dialog/brix-contract-approval-dialog.module';
 import { CountdownTimerModule } from '../shared/components/countdown-timer/countdown-timer.module';
+import { PropertysCityFilterPipeModule } from '../shared/pipes/propertys-city-filter/propertys-city-filter.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CountdownTimerModule } from '../shared/components/countdown-timer/count
     AppFooterModule,
     CountdownTimerModule,
     MatDialogModule,
+    PropertysCityFilterPipeModule,
     BrixContractApprovalDialogModule,
     RouterModule.forChild([{
       path: '',

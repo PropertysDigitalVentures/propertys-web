@@ -22,6 +22,16 @@
 	<div class="window-text">Window for claiming ends in <propertys-countdown-timer></propertys-countdown-timer></div>
 	
 	<!-- Streets -->
+	<div class="select-city-text">Filter by City</div>
+	<ul class="city-filter">
+		<li><button class="beige-bay" [class]="{ 'active': cityFilter === 'Beige Bay'}" (click)="toggleCityFilter('Beige Bay')"></button></li>
+		<li><button class="orange-oasis" [class]="{ 'active': cityFilter === 'Orange Oasis'}" (click)="toggleCityFilter('Orange Oasis')"></button></li>
+		<li><button class="yellow-yards" [class]="{ 'active': cityFilter === 'Yellow Yards'}" (click)="toggleCityFilter('Yellow Yards')"></button></li>
+		<li><button class="green-grove" [class]="{ 'active': cityFilter === 'Green Grove'}" (click)="toggleCityFilter('Green Grove')"></button></li>
+		<li><button class="purple-palms" [class]="{ 'active': cityFilter === 'Purple Palms'}" (click)="toggleCityFilter('Purple Palms')"></button></li>
+		<li><button class="blue-bayside" [class]="{ 'active': cityFilter === 'Blue Bayside'}" (click)="toggleCityFilter('Blue Bayside')"></button></li>
+		<li><button class="x-ae-x-ii" [class]="{ 'active': cityFilter === 'X AE X-II'}" (click)="toggleCityFilter('X AE X-II')"></button></li>
+	</ul>
 	<div class="property-type-container">
 		<div class="property-type-title">
 			<h3>Streets</h3>
@@ -44,7 +54,7 @@
 		</div>
 		<ng-container  *ngIf="streetViewToggled">
 			<div *ngFor="let property of propertys">
-				<div class="property-list-container" *ngFor="let street of property['streets']">
+				<div class="property-list-container" *ngFor="let street of property['streets'] | cityFilter: cityFilter">
 					<div class="info">
 						<!-- Complete -->
 						<div *ngIf="isStreetComplete(street)" class="status-icon complete">
@@ -106,7 +116,7 @@
 		</div>
 		
 		<ng-container *ngIf="districtViewToggled">
-			<div class="property-list-container" *ngFor="let district of districts">
+			<div class="property-list-container" *ngFor="let district of districts | cityFilter: cityFilter">
 				<div class="info">
 					<!-- Complete -->
 					<div *ngIf="isDistrictComplete(district)" class="status-icon complete">
@@ -161,7 +171,7 @@
 			</div>
 		</div>
 		<ng-container *ngIf="cityViewToggled">
-			<ng-container *ngFor="let city of cities">
+			<ng-container *ngFor="let city of cities | cityFilter: cityFilter">
 				<div class="property-list-container">
 					<div class="info">
 						<div class="status-icon">

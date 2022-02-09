@@ -251,8 +251,106 @@
         }
     }
 
+    .select-city-text {
+        text-transform: uppercase;
+        font-family: $font-family-body-semibold;
+        font-size: 14px;
+    }
+
     .no-propertys {
         padding: 30px 0;
+    }
+
+    .city-filter {
+        display: flex;
+        align-items: center;
+        margin-bottom: 30px;
+        justify-content: center;
+
+        li {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            cursor: pointer;
+
+            button {
+                width: 30px;
+                height: 30px;
+                border-radius: 30px;
+                background: $primary-color;
+                @include transition(.15s ease-in-out);
+                position: absolute;
+                padding:0;
+                top: 50%;
+                left: 50%;
+                @include transform( translateY(-50%) translateX(-50%));
+
+                &.active, &:hover {
+                    width: 50px;
+                    height: 50px;
+                    position: relative;
+
+                    &:after {
+                        content: '';
+                        width: calc(100% + 20px);
+                        height: calc(100% + 20px);
+                        position: absolute;
+                        border-radius: 50px;
+                        border:2px solid inherit;
+                    }
+                }
+            }
+
+            button.beige-bay {
+                background: $color-light-orange;
+
+                &.active::after {
+                    border: 2px solid $color-light-orange;
+                }
+            }
+            button.orange-oasis { 
+                background: $color-orange; 
+
+                &.active::after {
+                    border: 2px solid $color-orange;
+                }
+            }
+            button.yellow-yards {
+                background: $color-yellow;
+
+                &.active::after {
+                    border: 2px solid $color-yellow;
+                }
+            }
+            button.green-grove {  
+                background: $color-green; 
+
+                &.active::after {
+                    border: 2px solid $color-green;
+                }
+            }
+            button.purple-palms { 
+                background: $primary-color; 
+
+                &.active::after {
+                    border: 2px solid $primary-color;
+                }
+            }
+            button.blue-bayside { 
+                background: $color-blue; 
+
+                &.active::after {
+                    border: 2px solid $color-blue;
+                }
+            }
+            button.x-ae-x-ii {    
+                background: $color-red; 
+
+                &.active::after {
+                    border: 2px solid $color-red;
+                }
+            }
+        }
     }
 
     .buy-more {
