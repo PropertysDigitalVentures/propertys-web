@@ -15,7 +15,7 @@ const routes: Routes = [
     loadChildren: () => import('./rent/rent.module').then(m => m.RentModule)
   },
   {
-    path: 'propertys-tool',
+    path: 'virtual-realty-assistant',
     loadChildren: () => import('./propertys-tool/propertys-tool.module').then(m => m.PropertysToolModule)
   },
   { 

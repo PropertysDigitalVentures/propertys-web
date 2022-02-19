@@ -43,8 +43,10 @@
                 @include transition(.15s ease-in-out);
             }
 
+
+
             .action-links li a {
-                color: #FFF;
+                color: #FFF !important;
 
                 svg {
                     fill: #FFF;
@@ -54,6 +56,7 @@
                     background: #FFF;
                 }
             }
+
 
             .social-links {
                 li a {
@@ -151,6 +154,12 @@
             li {
                 margin-left: 20px;
                 min-width: 130px;
+                position: relative;
+                cursor: pointer;
+
+                &:hover a {
+                    color: $primary-color;
+                }
 
                 &.full-width {
                     margin-left: 36px;
@@ -160,11 +169,21 @@
                     }
                 }
 
+                &:hover {
+                    .dropdown-container {
+                        height: initial;
+                    }
+                }
+
                 &.logo {
 
                     a {
                         margin-left: 40px;
                         margin-right: 36px;
+                    }
+
+                    img.show-mobile-logo {
+                        display: block;
                     }
 
                     a,  svg {
@@ -239,6 +258,18 @@
                     position: relative;
                     text-align: center;
                     display: block;
+                    @include transition(.15s ease-in-out);
+
+                    &.no-hover {
+                        &:after {
+                            content: initial;
+                        }
+                    }
+
+                    i {
+                        font-size: 12px;
+                        margin-left: 5px;
+                    }
 
                     &:after {
                         content: '';
@@ -255,9 +286,54 @@
                     }
 
                     &:hover {
+                        color: $primary-color;
+
                         &:after {
                             opacity: 1;
                             @include transform(translateY(-10px) translateX(-50%));
+                        }
+                    }
+                }
+
+                .dropdown-container {
+                    height: 0;
+                    overflow: hidden;
+                    left: 50%;
+                    padding-top: 15px;
+                    position: absolute;
+                    @include transform(translateX(-50%));
+                }
+
+                
+                .dropdown-menu {
+                    border-radius: 4px;
+                    width: 200px;
+                    padding: 0;
+                    overflow: hidden;
+                    flex-direction: column;
+                    justify-content: center;
+                    background: $primary-color;
+                    @include transition(0.15s ease-in-out opacity);
+
+                    li {
+                        padding: 0;
+                        margin: 0;
+
+                        a, button {
+                            padding: 10px 0;
+                            color: #FFF;
+                            @include transition(0.15s ease-in-out);
+                            text-align: center;
+                            display: block;
+
+                            &:hover,
+                            &.active {
+                                color: #FFF;
+                            }
+
+                            &:after {
+                                @include transform(scaleX(0));
+                            }
                         }
                     }
                 }
@@ -301,10 +377,20 @@
         header.sticky .social-links li a svg path {
             fill: $primary-font-color;
         }
+
+        .show-mobile-logo {
+            display: none !important;
+        }
         
         header {
             .mobile-menu-toggle {
                 display: flex !important;
+            }
+
+            &.sticky {
+                .action-links li a {
+                    color: $primary-font-color !important;
+                }
             }
             
             .header-inner {
@@ -377,8 +463,56 @@
                             display: flex;
                             justify-content: center;
 
+                            a {
+                                &:hover {
+                                    color: $primary-color !important;
+                                }
+
+                                &:after {
+                                    content: initial;
+                                }
+                            }
+
+                            a.no-hover {
+                                text-align: center;
+                                width: 100%;
+                                display: none;
+
+                                i {
+                                    display: none;
+                                }
+                            }
+
+                            .dropdown-container {
+                                height: initial;
+                                left: initial;
+                                position: relative;
+                                padding-top: 0;
+                                top: initial;
+                                transform: initial;
+                    
+                                .dropdown-menu {
+                                    background: none;
+                                    margin-bottom: 0;
+
+                                    li:first-child a {
+                                        padding-top: 0;
+                                    }
+
+                                    li:last-child a {
+                                        padding-bottom: 0;
+                                        padding-top: 0;
+                                    }
+                                }
+                            }
+
                             &.logo {
                                 order: -1;
+
+
+                                img.show-mobile-logo {
+                                    display: block;
+                                }
                                 
                                 a {
                                     padding-left: 0 !important;
