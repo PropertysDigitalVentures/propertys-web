@@ -34,7 +34,7 @@
         <ul class="action-links">
             <li><a [routerLink]="['/']" (click)="toggleMobileNav(false)" fragment="story" href="#">About</a></li>
             <li><a [routerLink]="['/']" (click)="toggleMobileNav(false)" fragment="metaverse" href="#">Metaverse</a></li>
-            <li class="logo"><a [routerLink]="['/']" (click)="toggleMobileNav(false)" href="#"  [ngStyle]="{ 'display':  (showNavMobile ? 'none' : 'block')}">
+            <li class="logo"><a [routerLink]="['/']" (click)="toggleMobileNav(false)" href="#"  [class]="{ 'show-mobile-logo': showNavMobile }">
                 <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="93.5244mm" height="10.9584mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
                     viewBox="0 0 9352.44 1095.84"
                     xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -45,8 +45,26 @@
                     </g>
                 </svg>
             </a></li>
-            <li><a [routerLink]="['/']" (click)="toggleMobileNav(false)" fragment="team" href="#">Team</a></li>
-            <li><a [routerLink]="['/']" (click)="toggleMobileNav(false)" fragment="work-with-us" href="#">Work with us</a></li>
+            <li><a class="no-hover" href="#">Team <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-container">
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a [routerLink]="['/']" (click)="toggleMobileNav(false)" fragment="team" href="#">Members</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/']" (click)="toggleMobileNav(false)" fragment="work-with-us" href="#">Work with us</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li><a class="no-hover" href="#">Economy <i class="fas fa-chevron-down"></i></a>
+                <div class="dropdown-container">
+                    <ul class="dropdown-menu">
+                        <!-- <li><a [routerLink]="['/rent']" (click)="toggleMobileNav(false)" href="#">$BRIX</a></li> -->
+                        <li><a [routerLink]="['/virtual-realty-assistant']" (click)="toggleMobileNav(false)" href="#">Virtual Assistant</a></li>
+                    </ul>
+                </div>
+            </li>
             <li *ngIf="mintEnabled" class="full-width">
                 <button class="install-wallet-cta" (click)="onboardWalletConnection()" *ngIf="!isWalletSourceEnabled"><i class="fas fa-download"></i> metamask</button>
                 <button class="wallet-login" (click)="connectWallet()" *ngIf="isWalletSourceEnabled" type="button"

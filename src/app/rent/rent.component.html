@@ -22,6 +22,16 @@
 	<div class="window-text">Window for claiming ends in <propertys-countdown-timer></propertys-countdown-timer></div>
 	
 	<!-- Streets -->
+	<div class="select-city-text">Filter by City</div>
+	<ul class="city-filter">
+		<li><button class="beige-bay" [class]="{ 'active': cityFilter === 'Beige Bay'}" (click)="toggleCityFilter('Beige Bay')"></button></li>
+		<li><button class="orange-oasis" [class]="{ 'active': cityFilter === 'Orange Oasis'}" (click)="toggleCityFilter('Orange Oasis')"></button></li>
+		<li><button class="yellow-yards" [class]="{ 'active': cityFilter === 'Yellow Yards'}" (click)="toggleCityFilter('Yellow Yards')"></button></li>
+		<li><button class="green-grove" [class]="{ 'active': cityFilter === 'Green Grove'}" (click)="toggleCityFilter('Green Grove')"></button></li>
+		<li><button class="purple-palms" [class]="{ 'active': cityFilter === 'Purple Palms'}" (click)="toggleCityFilter('Purple Palms')"></button></li>
+		<li><button class="blue-bayside" [class]="{ 'active': cityFilter === 'Blue Bayside'}" (click)="toggleCityFilter('Blue Bayside')"></button></li>
+		<li><button class="x-ae-x-ii" [class]="{ 'active': cityFilter === 'X AE X-II'}" (click)="toggleCityFilter('X AE X-II')"></button></li>
+	</ul>
 	<div class="property-type-container">
 		<div class="property-type-title">
 			<h3>Streets</h3>
@@ -44,7 +54,7 @@
 		</div>
 		<ng-container  *ngIf="streetViewToggled">
 			<div *ngFor="let property of propertys">
-				<div class="property-list-container" *ngFor="let street of property['streets']">
+				<div class="property-list-container" *ngFor="let street of property['streets'] | cityFilter: cityFilter">
 					<div class="info">
 						<!-- Complete -->
 						<div *ngIf="isStreetComplete(street)" class="status-icon complete">
@@ -61,11 +71,10 @@
 							<div class="name">{{property['street']}}</div>
 						</div>
 						<div class="column">
-							<div class="title-text" *ngIf="isStreetComplete(street)">Amount Earned</div>
-							<div class="title-text" *ngIf="!isStreetComplete(street)">Amount to Earn</div>
+							<div class="title-text">Bonus Amount</div>
+							<!-- <div class="title-text" *ngIf="!isStreetComplete(street)">Amount to Earn</div> -->
 							<div class="amount-to-earn earned"
-								[class]="{'earned': isStreetComplete(street) }"
-							>320 BRIX</div>
+							>{{getEarnedBrixAmount('street', street, true)}} BRIX</div>
 						</div>
 					</div>
 					<ul class="street-blocks">
@@ -107,7 +116,7 @@
 		</div>
 		
 		<ng-container *ngIf="districtViewToggled">
-			<div class="property-list-container" *ngFor="let district of districts">
+			<div class="property-list-container" *ngFor="let district of districts | cityFilter: cityFilter">
 				<div class="info">
 					<!-- Complete -->
 					<div *ngIf="isDistrictComplete(district)" class="status-icon complete">
@@ -122,15 +131,19 @@
 						<div class="title-text">Name</div>
 						<div class="name">{{district['name']}}</div>
 					</div>
-					<div class="column">
-						<div class="title-text">Amount to earn</div>
-						<div class="amount-to-earn">2100 BRIX</div>
+					<div class="column" *ngIf="!isDistrictComplete(district)">
+						<div class="title-text">Bonus possible</div>
+						<div class="amount-to-earn">{{getEarnedBrixAmount('district', district, true)}} BRIX</div>
+					</div>
+					<div class="column" *ngIf="isDistrictComplete(district)">
+						<div class="title-text">Bonus Amount</div>
+						<div class="amount-to-earn earned">{{getEarnedBrixAmount('district', district, true)}} BRIX</div>
 					</div>
 				</div>
 				<ul class="street-blocks">
 					<li *ngFor="let street of district['streets']"><img [src]="street[0]['image']" width="100%" /></li>
 				</ul>
-				<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=District%20Name&search[stringTraits][0][values][0]={{replaceSpacesForUrlLink(district['name'])}}" class="buy-more">Own {{getRemainingDistrictStreetCount(district)}} more streets in this district for completion</a>
+				<a *ngIf="!isDistrictComplete(district)" target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=District%20Name&search[stringTraits][0][values][0]={{replaceSpacesForUrlLink(district['name'])}}" class="buy-more">Own {{getRemainingDistrictStreetCount(district)}} more streets in this district for completion</a>
 			</div>
 		</ng-container>
 	</div>
@@ -158,8 +171,8 @@
 			</div>
 		</div>
 		<ng-container *ngIf="cityViewToggled">
-			<ng-container *ngFor="let city of cities">
-				<div class="property-list-container" *ngIf="hasDistricts(city)">
+			<ng-container *ngFor="let city of cities | cityFilter: cityFilter">
+				<div class="property-list-container">
 					<div class="info">
 						<div class="status-icon">
 							<i class="fas fa-tasks"></i>
@@ -169,9 +182,13 @@
 							<div class="name">{{city['name']}}</div>
 							
 						</div>
-						<div class="column">
-							<div class="title-text">Amount to earn</div>
-							<div class="amount-to-earn">15,500 BRIX</div>
+						<div class="column" *ngIf="!isCityComplete(city)">
+							<div class="title-text">Bonus possible</div>
+							<div class="amount-to-earn">{{getEarnedBrixAmount('city', city, true)}} BRIX</div>
+						</div>
+						<div class="column" *ngIf="isCityComplete(city)">
+							<div class="title-text">Bonus Amount</div>
+							<div class="amount-to-earn earned">{{getEarnedBrixAmount('city', city, true)}} BRIX</div>
 						</div>
 					</div>
 					<ul class="street-blocks">
@@ -182,9 +199,9 @@
 					<a target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=City%20Name&search[stringTraits][0][values][0]={{replaceSpacesForUrlLink(city['name'])}}" class="buy-more">Own {{getRemainingCityDistrictCount(city)}} more districts in this city for completion</a>
 					</div>
 				</ng-container>
-			<div *ngIf="!hasCities()" class="no-propertys">
+			<!-- <div *ngIf="!hasCities()" class="no-propertys">
 				You don't have enough Propertys to begin owning a city. <a target="_blank" href="https://opensea.io/collection/propertysofficial">Buy more on Opensea</a>
-			</div>
+			</div> -->
 		</ng-container>
 	</div>
 
@@ -192,7 +209,7 @@
 	<div class="rent-collection-summary-container">
 		<div class="top">
 			<h2>Total Brix to Claim</h2>
-			<div class="brix-total">2500 BRIX</div>
+			<div class="brix-total">{{getTotalEarnedBrix()}} BRIX</div>
 		</div>
 		<button [disabled]="brixClaimLoading" (click)="claimBrix()" class="claim-all-btn">
 			<span *ngIf="!brixClaimLoading">Claim all</span>
@@ -202,7 +219,7 @@
 			In your wallet 
 			<span class="total">
 				<!-- <img src="/assets/images/brix-icon.png" width="16" /> -->
-				436
+				0
 			</span>
 		</div>
 	</div>

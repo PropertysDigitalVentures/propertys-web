@@ -20,12 +20,19 @@ export class RentComponent {
   public brixClaimLoading = false;
   public loadingPropertys = true;
   public isOnMainnet = true;
-  public propertysForCompletion = 7;
-  public streetsForCompletion = 7;
-  public districtsForCompletion = 7;
   public brixTokenApproved = true; // Need to dynamically set this based on smart contract
   public propertys = []; // Breakdown of the streets
   public districts = [];
+  public cityFilter = '';
+  public cityFilters = {
+    'X AE X-II': false,
+    'Blue Bayside': false,
+    'Purple Palms': false,
+    'Green Grove': false,
+    'Yellow Yards': false,
+    'Orange Oasis': false,
+    'Beige Bay': false
+  }
   public cities = [];
   public propertyTypeProgress = {
     streets: {
@@ -40,6 +47,90 @@ export class RentComponent {
       completed: 0,
       inProgress: 0
     },
+  }
+  
+
+  public brixPropertyBonuses = {
+    'X AE X-II': {
+      house: 80,
+      street: 650,
+      district: 1600, 
+      city: 4300
+    },
+    'Blue Bayside': {
+      house: 60,
+      street: 550,
+      district: 1000, 
+      city: 2000
+    },
+    'Purple Palms': {
+      house: 50,
+      street: 500,
+      district: 900, 
+      city: 1800
+    },
+    'Green Grove': {
+      house: 40,
+      street: 450,
+      district: 800, 
+      city: 1600
+    },
+    'Yellow Yards': {
+      house: 30,
+      street: 400,
+      district: 700, 
+      city: 1400
+    },
+    'Orange Oasis': {
+      house: 20,
+      street: 350,
+      district: 600, 
+      city: 1200
+    },
+    'Beige Bay': {
+      house: 10,
+      street: 300,
+      district: 500, 
+      city: 1000
+    }
+  }
+
+  public neededPropertysForCompletion = {
+    'X AE X-II': {
+      housesPerStreet: 7,
+      streetsPerDistrict: 3,
+      districtsPerCity: 3
+    },
+    'Blue Bayside': {
+      housesPerStreet: 7,
+      streetsPerDistrict: 3,
+      districtsPerCity: 3
+    },
+    'Purple Palms': {
+      housesPerStreet: 7,
+      streetsPerDistrict: 3,
+      districtsPerCity: 4
+    },
+    'Green Grove': {
+      housesPerStreet: 7,
+      streetsPerDistrict: 3,
+      districtsPerCity: 4
+    },
+    'Yellow Yards': {
+      housesPerStreet: 7,
+      streetsPerDistrict: 3,
+      districtsPerCity: 4
+    },
+    'Orange Oasis': {
+      housesPerStreet: 7,
+      streetsPerDistrict: 3,
+      districtsPerCity: 5
+    },
+    'Beige Bay': {
+      housesPerStreet: 7,
+      streetsPerDistrict: 3,
+      districtsPerCity: 5
+    }
   }
 
   public accounts = [];
@@ -75,6 +166,25 @@ export class RentComponent {
      })
 
      this.loadPropertys();
+  }
+
+
+  toggleCityFilter(city) {
+    if(this.cityFilter === city) {
+			this.cityFilter = '';
+			// Update the toggle filter
+      for(let key in this.cityFilters) {
+        this.cityFilters[key] = false;
+      }
+		} else {
+			this.cityFilter = city;
+			// Update the toggle filter
+			for(let key in this.cityFilters) {
+				this.cityFilters[key] = false;
+				this.cityFilters[city] = true;
+			}
+
+		}
   }
 
 
@@ -152,10 +262,11 @@ export class RentComponent {
   
   /**
    * 
-   * Determine if a street has 7 units
+   * Determine if a street has 7 units (comes in as array of houses that have metadata on them)
    */
    isStreetComplete(street) {
-    return street.length === this.propertysForCompletion ? true : false;
+     let city = street[0].city;
+    return street.length === this.neededPropertysForCompletion[city]['housesPerStreet'] ? true : false;
   }
 
 
@@ -163,8 +274,18 @@ export class RentComponent {
    * 
    * Determine if a street has 7 units
    */
-  isDistrictComplete(streets) {
-    return streets.length === this.streetsForCompletion ? true : false;
+  isDistrictComplete(district) {
+    let city = district.city;
+    return district.streets.length === this.neededPropertysForCompletion[city]['streetsPerDistrict'] ? true : false;
+  }
+
+
+  /**
+   * 
+   * Determine if a street has 7 units
+   */
+   isCityComplete(city) {
+    return city.districts.length === this.neededPropertysForCompletion[city.name]['districtsPerCity'] ? true : false;
   }
 
 
@@ -173,7 +294,8 @@ export class RentComponent {
    */
   buildBuyButtonsForStreet(street) {
     let buyOnOpenSeaArray = [];
-    for(let i = 0; i < (this.propertysForCompletion - street.length); i++) {
+    let city = street[0].city;
+    for(let i = 0; i < (this.neededPropertysForCompletion[city]['housesPerStreet'] - street.length); i++) {
       buyOnOpenSeaArray.push({
         image: street[0]['image'],
         street: street[0]['street'].replace(' ', '%20'),
@@ -196,7 +318,7 @@ export class RentComponent {
    * Get remaining districts
    */
   getRemainingDistrictStreetCount(district) {
-    return this.streetsForCompletion - district.streets.length;
+    return this.neededPropertysForCompletion[district.city].streetsPerDistrict - district.streets.length;
   }
 
 
@@ -205,17 +327,21 @@ export class RentComponent {
    * Get remaining districts
    */
    getRemainingCityDistrictCount(city) {
-    return this.districtsForCompletion - city.districts.length;
+    return this.neededPropertysForCompletion[city.name].districtsPerCity - city.districts.length;
   }
 
 
-
+  /**
+   * Determine if a city even has districts
+   */
   hasDistricts(city) {
-    console.log('city?', city)
     return city.districts.length > 0;
   }
 
 
+  /**
+   * Determine if a city even has districts
+   */
   hasCities() {
     let districtTotal = 0;
     this.cities.forEach(city => {
@@ -225,6 +351,68 @@ export class RentComponent {
     })
 
     return districtTotal > 0 ? true : false;
+  }
+
+
+  /**
+   * 
+   * Determine the amount of brix earned on a per street, district, and city level
+   */
+  public getEarnedBrixAmount(type, propertyList, showPossibleRewards?) {
+    if(type === 'street') {
+      let total = 0;
+      total += (propertyList.length * this.brixPropertyBonuses[propertyList[0].city].house)
+      if(this.isStreetComplete(propertyList)) {
+        total += this.brixPropertyBonuses[propertyList[0].city].street;
+      }
+      return total; 
+    } else if(type === 'district') {
+      if(showPossibleRewards) {
+        return this.brixPropertyBonuses[propertyList.city].district
+      } else {
+        if(this.isDistrictComplete(propertyList)) {
+          return this.brixPropertyBonuses[propertyList.city].district
+        } else {
+          return 0;
+        }
+      }
+    } else if(type === 'city') {
+      if(showPossibleRewards) {
+        return this.brixPropertyBonuses[propertyList.name].city
+      } else {
+        if((propertyList.districts.length - this.neededPropertysForCompletion[propertyList.name].districtsPerCity) === 0) {
+          return this.brixPropertyBonuses[propertyList.name].city
+        } else {
+          return 0;
+        }
+      }
+    }
+  }
+
+
+  /**
+   * Show the total of earned brix, please.
+   */
+  getTotalEarnedBrix() {
+
+    let total = 0;
+      if(this.propertys.length > 0) {
+      this.propertys.forEach(property => {
+        total += this.getEarnedBrixAmount('street', property.streets[0],);
+      });
+    }
+
+    // Districts
+    this.districts.forEach(district => {
+      total += this.getEarnedBrixAmount('district', district);
+    });
+
+    // Cities
+    this.cities.forEach(city => {
+      total += this.getEarnedBrixAmount('city', city);
+    });
+
+    return total;
   }
 
 
@@ -257,7 +445,7 @@ export class RentComponent {
                 }
                 // City
                 if(trait.trait_type === 'City Name') {
-                  propertyObj['city'] = trait.value;
+                  propertyObj['city'] = trait.value.trim();
                 }
                 // Unit
                 if(trait.trait_type === 'Unit') {
@@ -309,6 +497,7 @@ export class RentComponent {
                 // Districts
                 this.districts.push({
                   name: property.district,
+                  city: property.city,
                   streets: []
                 })
               }
@@ -336,15 +525,16 @@ export class RentComponent {
               })
             })
 
+
             // Now that we have all the property streets broken down, let's go through and divide them up
             this.propertys.forEach(property => {
               while(property.units.length) {
-                property.streets.push(property.units.splice(0,this.propertysForCompletion));
+                property.streets.push(property.units.splice(0,this.neededPropertysForCompletion[property.city]['housesPerStreet']));
               }
 
               // Determine how many are complete and in progress
               property.streets.forEach(street => {
-                if(street.length === this.propertysForCompletion) {
+                if(street.length === this.neededPropertysForCompletion[street[0].city]['housesPerStreet']) {
                    this.propertyTypeProgress['streets'].completed++;
                    
                    // Determine breakdown of districts
@@ -365,12 +555,11 @@ export class RentComponent {
 
             // FINALLY, let's create a breakdown of all districts and cities, based on what streets are owned
             this.districts.forEach(district => {
-              if(district.streets.length === this.streetsForCompletion) {
+              if(district.streets.length === this.neededPropertysForCompletion[district.city]['streetsPerDistrict']) {
                 this.propertyTypeProgress['districts'].completed++;
                 
                 // Determine breakdown of cities
                 this.cities.forEach(city => {
-                  console.log('city', city.name, district.city);
                   if(city.name === district.city) {
                      city.districts.push(district);
                   }
@@ -383,7 +572,7 @@ export class RentComponent {
 
             // Cities
             this.cities.forEach(city => {
-              if(city.districts.length === this.districtsForCompletion) { // NOTE: Change this to whatever number is required to own a district
+              if(city.districts.length === this.neededPropertysForCompletion[city.name]['districtsPerCity']) { // NOTE: Change this to whatever number is required to own a district
                 this.propertyTypeProgress['cities'].completed++;
               } else if(city.districts.length >= 1) {
                   this.propertyTypeProgress['cities'].inProgress++;
@@ -393,7 +582,6 @@ export class RentComponent {
            
             
             this.loadingPropertys = false;
-            console.log('cities', this.cities);
         });
   }
 }

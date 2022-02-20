@@ -65,10 +65,11 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
       // Make sure this is false
       if(toggle !== undefined) {
         if(!toggle) {
-          this.showNavMObile = false;
+          this.showNavMobile = false;
         }
+      } else {
+        this.showNavMobile = !this.showNavMobile;
       }
-      this.showNavMobile = !this.showNavMobile;
     }
 
 
