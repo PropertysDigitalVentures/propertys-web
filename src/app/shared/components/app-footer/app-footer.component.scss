@@ -59,7 +59,6 @@
 
     .links {
         display: flex;
-        justify-content: center;
 
         li {
             margin-right: 15px;
@@ -93,6 +92,12 @@
             font-size: 18px;
             color: #FFF;
             font-family: $font-family-body;
+
+            &.primary-button {
+                text-decoration: none !important;
+                font-family: $font-family-body-bold;
+                font-size: 14px;
+            }
 
             &:hover {
                 text-decoration: underline;
