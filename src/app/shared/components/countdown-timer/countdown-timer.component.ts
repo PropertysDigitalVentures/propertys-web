@@ -1,9 +1,10 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, NgZone, ChangeDetectionStrategy, ChangeDetectorRef} from '@angular/core';
 
 @Component({
     selector: 'propertys-countdown-timer',
     templateUrl: './countdown-timer.component.html',
-    styleUrls: ['./countdown-timer.component.scss']
+    styleUrls: ['./countdown-timer.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CountdownTimerComponent {
     
@@ -15,16 +16,22 @@ export class CountdownTimerComponent {
     @Input('endDate') endDate: any
 
     constructor(
+        private ngZone: NgZone,
+        public changeDetectorRef: ChangeDetectorRef
     ) {
        
     }
 
     ngOnInit() {
-            // Initialize the countdown
-        this.countdownTimer = setInterval(() => {
+        // Initialize the countdown
+        this.ngZone.runOutsideAngular(() => {
             this.updateCountdownTimer();
-        }, 1000);
-        this.updateCountdownTimer();
+            this.countdownTimer = setInterval(() => {
+                this.updateCountdownTimer();
+                this.changeDetectorRef.detectChanges(); 
+            }, 1000);
+      
+        })
     }
 
 
