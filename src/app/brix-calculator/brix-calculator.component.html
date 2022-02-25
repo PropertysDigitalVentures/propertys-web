@@ -2,6 +2,11 @@
 
 <div class="wrapper">
 	<h1>$BRIX Calculator</h1>
+	<div class="addresses-block">
+		<p>Note: All wallet addresses must be in this format: 'wallet1', 'wallet2', 'wallet3', or else the page will break and you will be confused.</p>
+		<textarea [(ngModel)]="addresses" class="addresses" placeholder="Enter all addresses"></textarea>
+		<button (click)="calculateBrix()">Calculate $BRIX</button>
+	</div>
 	<table class="bonus-breakdown-table">
 		<tr>
 			<th>Wallet Address</th>

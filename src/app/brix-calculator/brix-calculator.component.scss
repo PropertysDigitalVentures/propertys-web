@@ -12,6 +12,26 @@ $border-color: #EAEAEA;
         border-radius: 10px;
     }
 
+    .addresses-block {
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 40px;
+
+        button {
+            width: 100%;
+        }
+
+        .addresses {
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100px;
+            font-family: $font-family-body;
+        }
+    }
+
+    
+
 
     table {
         border: 1px solid $border-color;
