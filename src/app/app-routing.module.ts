@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./rent/rent.module').then(m => m.RentModule)
   },
   {
+    path: 'brix-calculator',
+    loadChildren: () => import('./brix-calculator/brix-calculator.module').then(m => m.RentModule)
+  },
+  {
     path: 'virtual-realty-assistant',
     loadChildren: () => import('./propertys-tool/propertys-tool.module').then(m => m.PropertysToolModule)
   },

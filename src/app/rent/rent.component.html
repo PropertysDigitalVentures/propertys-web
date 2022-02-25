@@ -116,35 +116,37 @@
 		</div>
 		
 		<ng-container *ngIf="districtViewToggled">
-			<div class="property-list-container" *ngFor="let district of districts | cityFilter: cityFilter">
-				<div class="info">
-					<!-- Complete -->
-					<div *ngIf="isDistrictComplete(district)" class="status-icon complete">
-						<i class="fas fa-check"></i>
-					</div>
+			<ng-container *ngFor="let district of districts | cityFilter: cityFilter">
+				<div *ngIf="district.type !== 'Special'" class="property-list-container">
+					<div class="info">
+						<!-- Complete -->
+						<div *ngIf="isDistrictComplete(district)" class="status-icon complete">
+							<i class="fas fa-check"></i>
+						</div>
 
-					<!-- In progress -->
-					<div *ngIf="!isDistrictComplete(district)" class="status-icon">
-						<i class="fas fa-tasks"></i>
+						<!-- In progress -->
+						<div *ngIf="!isDistrictComplete(district)" class="status-icon">
+							<i class="fas fa-tasks"></i>
+						</div>
+						<div class="column">
+							<div class="title-text">Name</div>
+							<div class="name">{{district['name']}}</div>
+						</div>
+						<div class="column" *ngIf="!isDistrictComplete(district)">
+							<div class="title-text">Bonus possible</div>
+							<div class="amount-to-earn">{{getEarnedBrixAmount('district', district, true)}} BRIX</div>
+						</div>
+						<div class="column" *ngIf="isDistrictComplete(district)">
+							<div class="title-text">Bonus Amount</div>
+							<div class="amount-to-earn earned">{{getEarnedBrixAmount('district', district, true)}} BRIX</div>
+						</div>
 					</div>
-					<div class="column">
-						<div class="title-text">Name</div>
-						<div class="name">{{district['name']}}</div>
-					</div>
-					<div class="column" *ngIf="!isDistrictComplete(district)">
-						<div class="title-text">Bonus possible</div>
-						<div class="amount-to-earn">{{getEarnedBrixAmount('district', district, true)}} BRIX</div>
-					</div>
-					<div class="column" *ngIf="isDistrictComplete(district)">
-						<div class="title-text">Bonus Amount</div>
-						<div class="amount-to-earn earned">{{getEarnedBrixAmount('district', district, true)}} BRIX</div>
-					</div>
-				</div>
-				<ul class="street-blocks">
-					<li *ngFor="let street of district['streets']"><img [src]="street[0]['image']" width="100%" /></li>
-				</ul>
+					<ul class="street-blocks">
+						<li *ngFor="let street of district['streets']"><img [src]="street[0]['image']" width="100%" /></li>
+					</ul>
 				<a *ngIf="!isDistrictComplete(district)" target="_blank" href="https://opensea.io/collection/propertysofficial?search[sortAscending]=true&search[sortBy]=PRICE&search[stringTraits][0][name]=District%20Name&search[stringTraits][0][values][0]={{replaceSpacesForUrlLink(district['name'])}}" class="buy-more">Own {{getRemainingDistrictStreetCount(district)}} more streets in this district for completion</a>
-			</div>
+				</div>
+			</ng-container>
 		</ng-container>
 	</div>
 
@@ -172,7 +174,7 @@
 		</div>
 		<ng-container *ngIf="cityViewToggled">
 			<ng-container *ngFor="let city of cities | cityFilter: cityFilter">
-				<div class="property-list-container">
+				<div *ngIf="city.type !== 'Special'" class="property-list-container">
 					<div class="info">
 						<div class="status-icon">
 							<i class="fas fa-tasks"></i>

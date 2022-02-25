@@ -388,23 +388,45 @@ export class SmartContractCoreService {
         };
         return from(Moralis.Web3API.account.getNFTsForContract(options)).pipe(
             switchMap(async (data) => {
+
+                // Limited to 30
+                // Create multiple sets of max 30 to ensure compliance with OpenSea API Limits
+                let querySets = [];
+                const queryLimit = 20;
+                while(data.result.length) {
+                    querySets.push(data.result.splice(0,queryLimit));
+                }
+
                 // Iterate over all tokens and create string to get data from Opensea
-                let tokenIds = data.result.map(nft => {
-                    return nft.token_id;
+                let propertySetTokenIds = querySets.map(set => {
+                    return set.map(propertySet => {
+                        return propertySet.token_id;
+                    })
                 })
 
-                // Create string
-                let urlString = `https://api.opensea.io/api/v1/assets?&asset_contract_address=${this.contractAddress}&`;
+                // Create an array of promises, based on the data sets and query limit of Opensea
+                let tokenSetPromises = propertySetTokenIds.map(async tokenIds => {
+                    let urlString = `https://api.opensea.io/api/v1/assets?&asset_contract_address=${this.contractAddress}&`;
 
-                tokenIds.forEach(id => {
-                    urlString += `token_ids=${id}&`;
+                    tokenIds.forEach((id, i) => {
+                        urlString += `token_ids=${id}&`;
+                    })
+
+    
+                    // Call HTTP Request to get data from Opensea
+                    let tokenData = await this.http.get(urlString).toPromise()
+    
+                    // Return the assets
+                    return tokenData;
+                });
+                
+                let promisesRes = await Promise.all(tokenSetPromises);
+                let nftData = promisesRes.map(set => {
+                    return set.assets;
                 })
 
-                // Call HTTP Request to get data from Opensea
-                let tokenData = await this.http.get(urlString).toPromise()
-
-                // Return the assets
-                return tokenData.assets;
+                return nftData.flat();
+               
 
                 // NOTE TODO: Uncomment this code if we want to use Moralis again
                 // let { result } = data;

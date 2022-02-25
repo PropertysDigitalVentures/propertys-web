@@ -5,49 +5,28 @@ import { BrixContractApprovalDialogComponent } from '../shared/dialogs/brix-cont
 import { SmartContractCoreService } from '../shared/services/smart-contract-core.service';
 import { EventMessengerService } from '../shared/services/event-messenger.service';
 import { environment } from '../../environments/environment';
-import { PropertyBinding } from 'three';
-import { stripGeneratedFileSuffix } from '@angular/compiler/src/aot/util';
 
 @Component({
-  selector: 'app-rent',
-  templateUrl: './rent.component.html',
-  styleUrls: ['./rent.component.scss']
+  selector: 'app-brix-calculator',
+  templateUrl: './brix-calculator.component.html',
+  styleUrls: ['./brix-calculator.component.scss']
 })
-export class RentComponent {
+export class BrixCalculatorComponent {
   public streetViewToggled = true;
   public districtViewToggled = true;
   public cityViewToggled = true;
   public brixClaimLoading = false;
   public loadingPropertys = true;
   public isOnMainnet = true;
-  public brixTokenApproved = true; // Need to dynamically set this based on smart contract
-  public propertys = []; // Breakdown of the streets
-  public districts = [];
-  public cityFilter = '';
-  public cityFilters = {
-    'X AE X-II': false,
-    'Blue Bayside': false,
-    'Purple Palms': false,
-    'Green Grove': false,
-    'Yellow Yards': false,
-    'Orange Oasis': false,
-    'Beige Bay': false
-  }
-  public cities = [];
-  public propertyTypeProgress = {
-    streets: {
-      completed: 0,
-      inProgress: 0
-    },
-    districts: {
-      completed: 0,
-      inProgress: 0
-    },
-    cities: {
-      completed: 0,
-      inProgress: 0
-    },
-  }
+  public brixEarnedBreakdown = [];
+  public propertysHolders = [
+    '0x75dd8773c3dbc4e3346838fffd526043e07f59bd',
+    '0x302f23818ecc618f728beb5383195fc146123fc1',
+    '0x574a782a00dd152d98ff85104f723575d870698e',
+    '0x8983ad6d63d7ab3701d74e1e72fd9dadf113f3f9',
+    '0x6cc6f59f7016a83e1d7c5fad30cdd8c4cdb4aad1',
+  ];
+
   
 
   public brixPropertyBonuses = {
@@ -104,12 +83,12 @@ export class RentComponent {
     'The Money Pool':        { house: 1200, street: 0, district: 0, city: 0},
     'Fort in the Leaves':    { house: 1200, street: 0, district: 0, city: 0},
     'The Impossible Bridge': { house: 600, street: 0, district: 0, city: 0},
-    'Peters Great Wall':     { house: 600, street: 0, district: 0, city: 0},
+    "Peter's Great Wall":      { house: 600, street: 0, district: 0, city: 0},
     'Candy Castle':          { house: 600, street: 0, district: 0, city: 0},
     "Property's Stadium":    { house: 600, street: 0, district: 0, city: 0},
     'Cathedral of Wisdom':   { house: 600, street: 0, district: 0, city: 0},
     'Palace of Eternity':    { house: 600, street: 0, district: 0, city: 0},
-    'Spikey Singers':        { house: 250, street: 0, district: 0, city: 0},
+    'Spiky Singers':        { house: 250, street: 0, district: 0, city: 0},
     'The Guardian':          { house: 250, street: 0, district: 0, city: 0},
     'Casa Blanca':           { house: 250, street: 0, district: 0, city: 0},
     'Mystic Rocks':          { house: 250, street: 0, district: 0, city: 0},
@@ -151,26 +130,26 @@ export class RentComponent {
       streetsPerDistrict: 3,
       districtsPerCity: 5
     },
-    'Question Cat':          { housesPerStreet: 1, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'The Sunken City':       { housesPerStreet: 1, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Le Tower':              { housesPerStreet: 1, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Ancient Labyrinth':     { housesPerStreet: 1, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Mount Proper':          { housesPerStreet: 1, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Great Temple of Peter': { housesPerStreet: 1, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'The Emperors Arena':    { housesPerStreet: 1, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Secret Glass Pyramid':  { housesPerStreet: 1, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'The Money Pool':        { housesPerStreet: 1, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Fort in the Leaves':    { housesPerStreet: 1, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'The Impossible Bridge': { housesPerStreet: 5, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Peters Great Wall':      { housesPerStreet: 5, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Candy Castle':          { housesPerStreet: 5, streetsPerDistrict: 1,  districtsPerCity: 1},
-    "Property's Stadium":    { housesPerStreet: 5, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Cathedral of Wisdom':   { housesPerStreet: 5, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Palace of Eternity':    { housesPerStreet: 5, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Spikey Singers':        { housesPerStreet: 20, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'The Guardian':          { housesPerStreet: 20, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Casa Blanca':           { housesPerStreet: 20, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Mystic Rocks':          { housesPerStreet: 20, streetsPerDistrict: 1,  districtsPerCity: 1},
+    'Question Cat':          { housesPerStreet: 1, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'The Sunken City':       { housesPerStreet: 1, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Le Tower':              { housesPerStreet: 1, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Ancient Labyrinth':     { housesPerStreet: 1, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Mount Proper':          { housesPerStreet: 1, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Great Temple of Peter': { housesPerStreet: 1, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'The Emperors Arena':    { housesPerStreet: 1, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Secret Glass Pyramid':  { housesPerStreet: 1, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'The Money Pool':        { housesPerStreet: 1, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Fort in the Leaves':    { housesPerStreet: 1, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'The Impossible Bridge': { housesPerStreet: 5, streetsPerDistrict: 0,  districtsPerCity: 0},
+    "Peter's Great Wall":      { housesPerStreet: 5, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Candy Castle':          { housesPerStreet: 5, streetsPerDistrict: 0,  districtsPerCity: 0},
+    "Property's Stadium":    { housesPerStreet: 5, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Cathedral of Wisdom':   { housesPerStreet: 5, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Palace of Eternity':    { housesPerStreet: 5, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Spiky Singers':        { housesPerStreet: 20, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'The Guardian':          { housesPerStreet: 20, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Casa Blanca':           { housesPerStreet: 20, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Mystic Rocks':          { housesPerStreet: 20, streetsPerDistrict: 0,  districtsPerCity: 0},
   }
 
   public accounts = [];
@@ -205,47 +184,11 @@ export class RentComponent {
        await this.checkChain();
      })
 
-     this.loadPropertys();
+     this.propertysHolders.forEach(address => {
+       this.loadPropertys(address);
+     });
   }
 
-
-  toggleCityFilter(city) {
-    if(this.cityFilter === city) {
-			this.cityFilter = '';
-			// Update the toggle filter
-      for(let key in this.cityFilters) {
-        this.cityFilters[key] = false;
-      }
-		} else {
-			this.cityFilter = city;
-			// Update the toggle filter
-			for(let key in this.cityFilters) {
-				this.cityFilters[key] = false;
-				this.cityFilters[city] = true;
-			}
-
-		}
-  }
-
-
-
-  /**
-   * Toggle the container type
-   */
-  toggleContainerType(type) {
-    switch(type) {
-
-      case "street":
-        this.streetViewToggled = !this.streetViewToggled;
-      break;
-      case "district":
-        this.districtViewToggled = !this.districtViewToggled;
-        break;
-      case "city":
-        this.cityViewToggled = !this.cityViewToggled;
-      break;
-    }
-  }
 
 
    /**
@@ -280,25 +223,6 @@ export class RentComponent {
 	}
 
   
-  /**
-   * Claim Brix button
-   */
-   public claimBrix() {
-
-    // If token hasn't been approved, show modal to approve it
-    if(this.brixTokenApproved) {
-      this._dialog.open(BrixContractApprovalDialogComponent, {
-          width: '630px',
-          data: {
-            accounts: this.accounts
-          }
-      });
-    } else {
-      this.brixClaimLoading = true;
-    }
-}
-
-
   
   /**
    * 
@@ -326,31 +250,6 @@ export class RentComponent {
    */
    isCityComplete(city) {
     return city.districts.length === this.neededPropertysForCompletion[city.name]['districtsPerCity'] ? true : false;
-  }
-
-
-  /**
-   * Build the "Buy on Opensea" buttons for each street 
-   */
-  buildBuyButtonsForStreet(street) {
-    let buyOnOpenSeaArray = [];
-    let city = street[0].city;
-    for(let i = 0; i < (this.neededPropertysForCompletion[city]['housesPerStreet'] - street.length); i++) {
-      buyOnOpenSeaArray.push({
-        image: street[0]['image'],
-        street: street[0]['street'].replace(' ', '%20'),
-      });
-    }
-
-    return buyOnOpenSeaArray;
-  }
-
-
-  /**
-   * Replace spaces in name for URL
-   */
-  replaceSpacesForUrlLink(name) {
-    return name.replace(' ', '%20');
   }
 
   /**
@@ -433,22 +332,22 @@ export class RentComponent {
   /**
    * Show the total of earned brix, please.
    */
-  getTotalEarnedBrix() {
+  getTotalEarnedBrix(propertys, districts, cities) {
 
     let total = 0;
-      if(this.propertys.length > 0) {
-      this.propertys.forEach(property => {
+      if(propertys.length > 0) {
+      propertys.forEach(property => {
         total += this.getEarnedBrixAmount('street', property.streets[0],);
       });
     }
 
     // Districts
-    this.districts.forEach(district => {
+    districts.forEach(district => {
       total += this.getEarnedBrixAmount('district', district);
     });
 
     // Cities
-    this.cities.forEach(city => {
+    cities.forEach(city => {
       total += this.getEarnedBrixAmount('city', city);
     });
 
@@ -459,58 +358,57 @@ export class RentComponent {
   /**
    * Loads all the propertys for a wallet and then organizes the table breakdown
    */
-  public loadPropertys() {
-    this.smartContractCoreService
-        .getNFTsFromAddress(this.accounts[0])
+  public loadPropertys(address) {
+
+      let propertys = []; // Breakdown of the streets
+      let districts = [];
+      let cities = [];
+  
+      this.smartContractCoreService
+        .getNFTsFromAddress(address)
         .subscribe(async (data) => {
             this.loading = false;
 
-            // Create some test data
-            let streetData = data.concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data).concat(data);
-            
             // Iterate through the data and build the streets, districts, and cities
             let allUnits = data.map(property => {
-              
+
               let propertyObj = {
                 image: property.image_preview_url
               };
-
-              let propertyType = 'Regular';
+              
 
               for(let trait of property.traits) {
+
                 // Is this a SPECIAL type?
-             
                 if(trait.trait_type !== 'Special') {
-                  // Street
-                  if(trait.trait_type === 'Street Name') {
-                    propertyObj['street'] = trait.value;
-                  }
-                  // District
-                  if(trait.trait_type === 'District Name') {
-                    propertyObj['district'] = trait.value;
-                  }
-                  // City
-                  if(trait.trait_type === 'City Name') {
-                    propertyObj['city'] = trait.value.trim();
-                  }
-                  // Unit
-                  if(trait.trait_type === 'Unit') {
-                    propertyObj['unit'] = trait.value;
-                  }
+                    // Street
+                    if(trait.trait_type === 'Street Name') {
+                      propertyObj['street'] = trait.value;
+                    }
+                    // District
+                    if(trait.trait_type === 'District Name') {
+                      propertyObj['district'] = trait.value;
+                    }
+                    // City
+                    if(trait.trait_type === 'City Name') {
+                      propertyObj['city'] = trait.value.trim();
+                    }
+                    // Unit
+                    if(trait.trait_type === 'Unit') {
+                      propertyObj['unit'] = trait.value;
+                    }
                 } else {
-                  propertyType = "Special";
+                  console.log('property', trait.value);
                   propertyObj['street'] = trait.value.trim();
                   propertyObj['district'] = trait.value.trim();
                   propertyObj['city'] = trait.value.trim();
                   propertyObj['unit'] = trait.value.trim();
-
-        
                 }
               }
 
-              propertyObj['type'] = propertyType;
               return propertyObj;
             })
+
 
 
             // Create entries for each property in order to catalog all streets under a single street object
@@ -518,21 +416,23 @@ export class RentComponent {
               let propertyExists = false;
               let districtExists = false;
               let cityExists = false;
-              this.propertys.forEach(singleProperty => {
+              propertys.forEach(singleProperty => {
                 if(property.street === singleProperty.street) {
                   propertyExists = true;
                 }
               });
 
+      
+
               // Districts
-              this.districts.forEach(district => {
+              districts.forEach(district => {
                 if(district.name === property.district) {
                   districtExists = true;
                 }
               });
 
               // Cities
-              this.cities.forEach(city => {
+              cities.forEach(city => {
                 if(city.name === property.city) {
                   cityExists = true;
                 }
@@ -540,31 +440,29 @@ export class RentComponent {
 
               // Let's initialize all the streets, districts, and cities for future use
               if(!propertyExists) {
-                this.propertys.push({
+                propertys.push({
                   street: property.street,
-                  type: property.type,
                   district: property.district,
                   city: property.city,
                   units: [],
                   streets: []
                 })
+
               }
 
               if(!districtExists) {
                 // Districts
-                this.districts.push({
+                districts.push({
                   name: property.district,
                   city: property.city,
-                  type: property.type,
                   streets: []
                 })
               }
 
               if(!cityExists) {
                 // Cities
-                this.cities.push({
+                cities.push({
                   name: property.city,
-                  type: property.type,
                   districts: []
                 })
               }
@@ -574,8 +472,7 @@ export class RentComponent {
             // Now that we know the streets, go through each one and initialize props for each
             allUnits.forEach(property => {
               // Now go through all the propertys
-              this.propertys.forEach(singleProperty => {
-
+              propertys.forEach(singleProperty => {
                 // We have a street match
                 if(singleProperty.street === property.street) {
                   
@@ -585,8 +482,9 @@ export class RentComponent {
             })
 
 
+
             // Now that we have all the property streets broken down, let's go through and divide them up
-            this.propertys.forEach(property => {
+            propertys.forEach(property => {
               while(property.units.length) {
                 property.streets.push(property.units.splice(0,this.neededPropertysForCompletion[property.city]['housesPerStreet']));
               }
@@ -594,53 +492,42 @@ export class RentComponent {
               // Determine how many are complete and in progress
               property.streets.forEach(street => {
                 if(street.length === this.neededPropertysForCompletion[street[0].city]['housesPerStreet']) {
-                   this.propertyTypeProgress['streets'].completed++;
                    
                    // Determine breakdown of districts
-                   this.districts.forEach(district => {
+                   districts.forEach(district => {
                      if(district.name === property.district) {
                        district.streets.push(street)
                        district['city'] = property.city;
                      }
                    })
                   
-                  } else {
-                    this.propertyTypeProgress['streets'].inProgress++;
-                }
+                  }
               })
             })
 
 
 
             // FINALLY, let's create a breakdown of all districts and cities, based on what streets are owned
-            this.districts.forEach(district => {
+            districts.forEach(district => {
               if(district.streets.length === this.neededPropertysForCompletion[district.city]['streetsPerDistrict']) {
-                this.propertyTypeProgress['districts'].completed++;
                 
                 // Determine breakdown of cities
-                this.cities.forEach(city => {
+                cities.forEach(city => {
                   if(city.name === district.city) {
                      city.districts.push(district);
                   }
                 })
                 
-              } else if(district.streets.length >= 1) {
-                  this.propertyTypeProgress['districts'].inProgress++;
               }
             })
 
-            // Cities
-            this.cities.forEach(city => {
-              if(city.districts.length === this.neededPropertysForCompletion[city.name]['districtsPerCity']) { // NOTE: Change this to whatever number is required to own a district
-                this.propertyTypeProgress['cities'].completed++;
-              } else if(city.districts.length >= 1) {
-                  this.propertyTypeProgress['cities'].inProgress++;
-              }
-            })
-           
-           
-            
-            this.loadingPropertys = false;
+
+            // Finally return the total returned brix
+            this.brixEarnedBreakdown.push({
+              address,
+              amount: this.getTotalEarnedBrix(propertys, districts, cities)
+            });
         });
+    
   }
 }

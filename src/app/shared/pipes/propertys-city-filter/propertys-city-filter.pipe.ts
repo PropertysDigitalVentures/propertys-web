@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PropertysCityFilterPipe implements PipeTransform {
 
   transform(results: any, term: any): any {
-    console.log('results?', results);
     if(term === undefined || term === '') {
       return results;
     } else {

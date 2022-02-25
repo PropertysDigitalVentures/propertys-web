@@ -1,0 +1,20 @@
+<propertys-header></propertys-header>
+
+<div class="wrapper">
+	<h1>$BRIX Calculator</h1>
+	<table class="bonus-breakdown-table">
+		<tr>
+			<th>Wallet Address</th>
+			<th>Brix Earned</th>
+		</tr>
+		<tr *ngFor="let brixEarned of brixEarnedBreakdown">
+			<td>
+				{{brixEarned['address']}}
+			</td>
+			<td valign="right">
+				{{brixEarned['amount']}}
+			</td>
+		</tr>
+	</table>
+</div>
+<propertys-footer></propertys-footer>
