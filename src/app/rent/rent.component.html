@@ -15,11 +15,19 @@
 	You must be on the Ethereum mainnet in order to claim $BRIX
 </div>
 
+<!-- TODO: Remove for PROD -->
+<div style="margin: 200px auto 50px; width: 500px;">
+	<div style="margin-bottom: 15px;text-align: center;" class="select-city-text">See Wallet Owner Breakdown</div>
+	<input type="text" style="padding:20px; width: 500px; margin-bottom: 10px; text-align: center;" [(ngModel)]="ownerWalletAddress" placeholder="Enter Owner Wallet Address" />
+	<button style="margin: 0 auto; width: 100%" (click)="loadPropertys(ownerWalletAddress)">Update</button>
+</div>
+
 <!-- Propertys breakdown -->
 <div class="wrapper" *ngIf="propertys.length > 0 && !loadingPropertys && isOnMainnet">
 	<h1>Claim $BRIX</h1>
 	
 	<div class="window-text">Window for claiming ends in <propertys-countdown-timer></propertys-countdown-timer></div>
+
 	
 	<!-- Streets -->
 	<div class="select-city-text">Filter by City</div>

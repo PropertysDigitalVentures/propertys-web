@@ -6,6 +6,7 @@ import { RentComponent } from './rent.component';
 import {AppHeaderModule} from '../shared/components/app-header/app-header.module';
 import {AppFooterModule} from '../shared/components/app-footer/app-footer.module';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms'; // Remove this for PROD
 import { BrixContractApprovalDialogModule } from '../shared/dialogs/brix-contract-approval-dialog/brix-contract-approval-dialog.module';
 import { CountdownTimerModule } from '../shared/components/countdown-timer/countdown-timer.module';
 import { PropertysCityFilterPipeModule } from '../shared/pipes/propertys-city-filter/propertys-city-filter.module';
@@ -21,6 +22,7 @@ import { PropertysCityFilterPipeModule } from '../shared/pipes/propertys-city-fi
     AppFooterModule,
     CountdownTimerModule,
     MatDialogModule,
+    FormsModule, // Remove this for PROD
     PropertysCityFilterPipeModule,
     BrixContractApprovalDialogModule,
     RouterModule.forChild([{

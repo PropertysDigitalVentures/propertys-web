@@ -20,6 +20,7 @@ export class RentComponent {
   public brixClaimLoading = false;
   public loadingPropertys = true;
   public isOnMainnet = true;
+  public ownerWalletAddress = '';
   public brixTokenApproved = true; // Need to dynamically set this based on smart contract
   public propertys = []; // Breakdown of the streets
   public districts = [];
@@ -112,7 +113,7 @@ export class RentComponent {
     'Spikey Singers':        { house: 250, street: 0, district: 0, city: 0},
     'The Guardian':          { house: 250, street: 0, district: 0, city: 0},
     'Casa Blanca':           { house: 250, street: 0, district: 0, city: 0},
-    'Mystic Rocks':          { house: 250, street: 0, district: 0, city: 0},
+    'Mystical Rocks':          { house: 250, street: 0, district: 0, city: 0},
   }
 
   public neededPropertysForCompletion = {
@@ -170,7 +171,7 @@ export class RentComponent {
     'Spikey Singers':        { housesPerStreet: 20, streetsPerDistrict: 1,  districtsPerCity: 1},
     'The Guardian':          { housesPerStreet: 20, streetsPerDistrict: 1,  districtsPerCity: 1},
     'Casa Blanca':           { housesPerStreet: 20, streetsPerDistrict: 1,  districtsPerCity: 1},
-    'Mystic Rocks':          { housesPerStreet: 20, streetsPerDistrict: 1,  districtsPerCity: 1},
+    'Mystical Rocks':          { housesPerStreet: 20, streetsPerDistrict: 1,  districtsPerCity: 1},
   }
 
   public accounts = [];
@@ -205,7 +206,11 @@ export class RentComponent {
        await this.checkChain();
      })
 
-     this.loadPropertys();
+     if(this.accounts.length > 0) {
+       this.loadPropertys(this.accounts[0]);
+     } else {
+       this.loading = false;
+     }
   }
 
 
@@ -459,9 +464,15 @@ export class RentComponent {
   /**
    * Loads all the propertys for a wallet and then organizes the table breakdown
    */
-  public loadPropertys() {
+  public loadPropertys(walletAddress?) {
+    // Reset propertys
+    this.propertys = [];
+    this.cities = [];
+    this.districts = [];
+    this.loading = true;
+
     this.smartContractCoreService
-        .getNFTsFromAddress(this.accounts[0])
+        .getNFTsFromAddress(walletAddress)
         .subscribe(async (data) => {
             this.loading = false;
 

@@ -375,6 +375,16 @@ export class SmartContractCoreService {
         }
     }
 
+    async getNFTOwners(params?) {
+        const options = {
+            chain:'eth',
+            address: this.contractAddress,
+            limit: params['limit'] || 500,
+            offset: params['offset'] || 0
+        };
+        return await Moralis.Web3API.token.getNFTOwners(options);
+    }
+
 
     /**
      * Function to get all NFTs for a wallet address

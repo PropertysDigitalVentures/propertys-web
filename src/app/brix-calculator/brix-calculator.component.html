@@ -7,9 +7,9 @@
 			<th>Wallet Address</th>
 			<th>Brix Earned</th>
 		</tr>
-		<tr *ngFor="let brixEarned of brixEarnedBreakdown">
+		<tr *ngFor="let brixEarned of brixEarnedBreakdown;  index as i">
 			<td>
-				{{brixEarned['address']}}
+				{{i + 1}}. {{brixEarned['address']}}
 			</td>
 			<td valign="right">
 				{{brixEarned['amount']}}

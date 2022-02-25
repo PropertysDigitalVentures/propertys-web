@@ -5,6 +5,7 @@ import { BrixContractApprovalDialogComponent } from '../shared/dialogs/brix-cont
 import { SmartContractCoreService } from '../shared/services/smart-contract-core.service';
 import { EventMessengerService } from '../shared/services/event-messenger.service';
 import { environment } from '../../environments/environment';
+import Bottleneck from "bottleneck";
 
 @Component({
   selector: 'app-brix-calculator',
@@ -91,7 +92,7 @@ export class BrixCalculatorComponent {
     'Spiky Singers':        { house: 250, street: 0, district: 0, city: 0},
     'The Guardian':          { house: 250, street: 0, district: 0, city: 0},
     'Casa Blanca':           { house: 250, street: 0, district: 0, city: 0},
-    'Mystic Rocks':          { house: 250, street: 0, district: 0, city: 0},
+    'Mystical Rocks':          { house: 250, street: 0, district: 0, city: 0},
   }
 
   public neededPropertysForCompletion = {
@@ -149,7 +150,7 @@ export class BrixCalculatorComponent {
     'Spiky Singers':        { housesPerStreet: 20, streetsPerDistrict: 0,  districtsPerCity: 0},
     'The Guardian':          { housesPerStreet: 20, streetsPerDistrict: 0,  districtsPerCity: 0},
     'Casa Blanca':           { housesPerStreet: 20, streetsPerDistrict: 0,  districtsPerCity: 0},
-    'Mystic Rocks':          { housesPerStreet: 20, streetsPerDistrict: 0,  districtsPerCity: 0},
+    'Mystical Rocks':          { housesPerStreet: 20, streetsPerDistrict: 0,  districtsPerCity: 0},
   }
 
   public accounts = [];
@@ -168,6 +169,184 @@ export class BrixCalculatorComponent {
 
      // Make sure we're on the right chain
      await this.checkChain();
+
+
+     let loadPropertys = (address) => {
+
+          let propertys = []; // Breakdown of the streets
+          let districts = [];
+          let cities = [];
+      
+          this.smartContractCoreService
+            .getNFTsFromAddress(address)
+            .subscribe(async (data) => {
+                this.loading = false;
+
+                // Iterate through the data and build the streets, districts, and cities
+                let allUnits = data.map(property => {
+
+                  let propertyObj = {
+                    image: property.image_preview_url
+                  };
+                  
+
+                  for(let trait of property.traits) {
+
+                    // Is this a SPECIAL type?
+                    if(trait.trait_type !== 'Special') {
+                        // Street
+                        if(trait.trait_type === 'Street Name') {
+                          propertyObj['street'] = trait.value;
+                        }
+                        // District
+                        if(trait.trait_type === 'District Name') {
+                          propertyObj['district'] = trait.value;
+                        }
+                        // City
+                        if(trait.trait_type === 'City Name') {
+                          propertyObj['city'] = trait.value.trim();
+                        }
+                        // Unit
+                        if(trait.trait_type === 'Unit') {
+                          propertyObj['unit'] = trait.value;
+                        }
+                    } else {
+                      propertyObj['street'] = trait.value.trim();
+                      propertyObj['district'] = trait.value.trim();
+                      propertyObj['city'] = trait.value.trim();
+                      propertyObj['unit'] = trait.value.trim();
+                    }
+                  }
+
+                  return propertyObj;
+                })
+
+
+
+                // Create entries for each property in order to catalog all streets under a single street object
+                allUnits.forEach(property => {
+                  let propertyExists = false;
+                  let districtExists = false;
+                  let cityExists = false;
+                  propertys.forEach(singleProperty => {
+                    if(property.street === singleProperty.street) {
+                      propertyExists = true;
+                    }
+                  });
+
+          
+
+                  // Districts
+                  districts.forEach(district => {
+                    if(district.name === property.district) {
+                      districtExists = true;
+                    }
+                  });
+
+                  // Cities
+                  cities.forEach(city => {
+                    if(city.name === property.city) {
+                      cityExists = true;
+                    }
+                  });
+
+                  // Let's initialize all the streets, districts, and cities for future use
+                  if(!propertyExists) {
+                    propertys.push({
+                      street: property.street,
+                      district: property.district,
+                      city: property.city,
+                      units: [],
+                      streets: []
+                    })
+
+                  }
+
+                  if(!districtExists) {
+                    // Districts
+                    districts.push({
+                      name: property.district,
+                      city: property.city,
+                      streets: []
+                    })
+                  }
+
+                  if(!cityExists) {
+                    // Cities
+                    cities.push({
+                      name: property.city,
+                      districts: []
+                    })
+                  }
+                });
+
+
+                // Now that we know the streets, go through each one and initialize props for each
+                allUnits.forEach(property => {
+                  // Now go through all the propertys
+                  propertys.forEach(singleProperty => {
+                    // We have a street match
+                    if(singleProperty.street === property.street) {
+                      
+                      singleProperty.units.push(property);
+                    }
+                  })
+                })
+
+
+
+                // Now that we have all the property streets broken down, let's go through and divide them up
+                propertys.forEach(property => {
+                  console.log(property.city);
+                  while(property.units.length) {
+                    property.streets.push(property.units.splice(0,this.neededPropertysForCompletion[property.city]['housesPerStreet']));
+                  }
+
+                  // Determine how many are complete and in progress
+                  property.streets.forEach(street => {
+                    if(street.length === this.neededPropertysForCompletion[street[0].city]['housesPerStreet']) {
+                      
+                      // Determine breakdown of districts
+                      districts.forEach(district => {
+                        if(district.name === property.district) {
+                          district.streets.push(street)
+                          district['city'] = property.city;
+                        }
+                      })
+                      
+                      }
+                  })
+                })
+
+
+
+                // FINALLY, let's create a breakdown of all districts and cities, based on what streets are owned
+                districts.forEach(district => {
+                  if(district.streets.length === this.neededPropertysForCompletion[district.city]['streetsPerDistrict']) {
+                    
+                    // Determine breakdown of cities
+                    cities.forEach(city => {
+                      if(city.name === district.city) {
+                        city.districts.push(district);
+                      }
+                    })
+                    
+                  }
+                })
+
+
+                // Finally return the total returned brix
+                this.brixEarnedBreakdown.push({
+                  address,
+                  amount: this.getTotalEarnedBrix(propertys, districts, cities)
+                });
+
+                this.brixEarnedBreakdown.sort((a, b) => {
+                  return b.amount - a.amount
+                })
+            });
+        
+      }
  
  
      // Handle events when wallet accounts change
@@ -184,8 +363,17 @@ export class BrixCalculatorComponent {
        await this.checkChain();
      })
 
-     this.propertysHolders.forEach(address => {
-       this.loadPropertys(address);
+     let holders = await this.smartContractCoreService.getNFTOwners({ offset: 0, limit: 500});
+
+     console.log('holders', holders)
+
+     let limiter = new Bottleneck({
+      minTime: 250,
+    });
+
+    let holdersThrottledData = await limiter.wrap(loadPropertys);
+    holders.result.forEach(async (token) => {
+      await holdersThrottledData(token.owner_of);
      });
   }
 
@@ -358,175 +546,5 @@ export class BrixCalculatorComponent {
   /**
    * Loads all the propertys for a wallet and then organizes the table breakdown
    */
-  public loadPropertys(address) {
-
-      let propertys = []; // Breakdown of the streets
-      let districts = [];
-      let cities = [];
   
-      this.smartContractCoreService
-        .getNFTsFromAddress(address)
-        .subscribe(async (data) => {
-            this.loading = false;
-
-            // Iterate through the data and build the streets, districts, and cities
-            let allUnits = data.map(property => {
-
-              let propertyObj = {
-                image: property.image_preview_url
-              };
-              
-
-              for(let trait of property.traits) {
-
-                // Is this a SPECIAL type?
-                if(trait.trait_type !== 'Special') {
-                    // Street
-                    if(trait.trait_type === 'Street Name') {
-                      propertyObj['street'] = trait.value;
-                    }
-                    // District
-                    if(trait.trait_type === 'District Name') {
-                      propertyObj['district'] = trait.value;
-                    }
-                    // City
-                    if(trait.trait_type === 'City Name') {
-                      propertyObj['city'] = trait.value.trim();
-                    }
-                    // Unit
-                    if(trait.trait_type === 'Unit') {
-                      propertyObj['unit'] = trait.value;
-                    }
-                } else {
-                  propertyObj['street'] = trait.value.trim();
-                  propertyObj['district'] = trait.value.trim();
-                  propertyObj['city'] = trait.value.trim();
-                  propertyObj['unit'] = trait.value.trim();
-                }
-              }
-
-              return propertyObj;
-            })
-
-
-
-            // Create entries for each property in order to catalog all streets under a single street object
-            allUnits.forEach(property => {
-              let propertyExists = false;
-              let districtExists = false;
-              let cityExists = false;
-              propertys.forEach(singleProperty => {
-                if(property.street === singleProperty.street) {
-                  propertyExists = true;
-                }
-              });
-
-      
-
-              // Districts
-              districts.forEach(district => {
-                if(district.name === property.district) {
-                  districtExists = true;
-                }
-              });
-
-              // Cities
-              cities.forEach(city => {
-                if(city.name === property.city) {
-                  cityExists = true;
-                }
-              });
-
-              // Let's initialize all the streets, districts, and cities for future use
-              if(!propertyExists) {
-                propertys.push({
-                  street: property.street,
-                  district: property.district,
-                  city: property.city,
-                  units: [],
-                  streets: []
-                })
-
-              }
-
-              if(!districtExists) {
-                // Districts
-                districts.push({
-                  name: property.district,
-                  city: property.city,
-                  streets: []
-                })
-              }
-
-              if(!cityExists) {
-                // Cities
-                cities.push({
-                  name: property.city,
-                  districts: []
-                })
-              }
-            });
-
-
-            // Now that we know the streets, go through each one and initialize props for each
-            allUnits.forEach(property => {
-              // Now go through all the propertys
-              propertys.forEach(singleProperty => {
-                // We have a street match
-                if(singleProperty.street === property.street) {
-                  
-                  singleProperty.units.push(property);
-                }
-              })
-            })
-
-
-
-            // Now that we have all the property streets broken down, let's go through and divide them up
-            propertys.forEach(property => {
-              while(property.units.length) {
-                property.streets.push(property.units.splice(0,this.neededPropertysForCompletion[property.city]['housesPerStreet']));
-              }
-
-              // Determine how many are complete and in progress
-              property.streets.forEach(street => {
-                if(street.length === this.neededPropertysForCompletion[street[0].city]['housesPerStreet']) {
-                   
-                   // Determine breakdown of districts
-                   districts.forEach(district => {
-                     if(district.name === property.district) {
-                       district.streets.push(street)
-                       district['city'] = property.city;
-                     }
-                   })
-                  
-                  }
-              })
-            })
-
-
-
-            // FINALLY, let's create a breakdown of all districts and cities, based on what streets are owned
-            districts.forEach(district => {
-              if(district.streets.length === this.neededPropertysForCompletion[district.city]['streetsPerDistrict']) {
-                
-                // Determine breakdown of cities
-                cities.forEach(city => {
-                  if(city.name === district.city) {
-                     city.districts.push(district);
-                  }
-                })
-                
-              }
-            })
-
-
-            // Finally return the total returned brix
-            this.brixEarnedBreakdown.push({
-              address,
-              amount: this.getTotalEarnedBrix(propertys, districts, cities)
-            });
-        });
-    
-  }
 }
