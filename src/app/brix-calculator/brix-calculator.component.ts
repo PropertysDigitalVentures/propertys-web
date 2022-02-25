@@ -398,7 +398,6 @@ export class BrixCalculatorComponent {
                       propertyObj['unit'] = trait.value;
                     }
                 } else {
-                  console.log('property', trait.value);
                   propertyObj['street'] = trait.value.trim();
                   propertyObj['district'] = trait.value.trim();
                   propertyObj['city'] = trait.value.trim();
