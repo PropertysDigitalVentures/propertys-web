@@ -1,5 +1,12 @@
 <propertys-header></propertys-header>
 
+<!-- TODO: Remove for PROD -->
+<div style="margin: 200px auto 50px; width: 500px;">
+	<div style="margin-bottom: 15px;text-align: center;" class="select-city-text">See Wallet Owner Breakdown</div>
+	<input type="text" style="padding:20px; width: 500px; margin-bottom: 10px; text-align: center; box-sizing: border-box;" [(ngModel)]="ownerWalletAddress" placeholder="Enter Owner Wallet Address" />
+	<button style="margin: 0 auto; width: 100%" (click)="loadPropertys(ownerWalletAddress)">Update</button>
+</div>
+
 <!-- Loading animation -->
 <div class="loading" *ngIf="loadingPropertys"><img src="/assets/images/loading-dark.svg" width="50"  />Loading Propertys</div>
 
@@ -15,12 +22,7 @@
 	You must be on the Ethereum mainnet in order to claim $BRIX
 </div>
 
-<!-- TODO: Remove for PROD -->
-<div style="margin: 200px auto 50px; width: 500px;">
-	<div style="margin-bottom: 15px;text-align: center;" class="select-city-text">See Wallet Owner Breakdown</div>
-	<input type="text" style="padding:20px; width: 500px; margin-bottom: 10px; text-align: center;" [(ngModel)]="ownerWalletAddress" placeholder="Enter Owner Wallet Address" />
-	<button style="margin: 0 auto; width: 100%" (click)="loadPropertys(ownerWalletAddress)">Update</button>
-</div>
+
 
 <!-- Propertys breakdown -->
 <div class="wrapper" *ngIf="propertys.length > 0 && !loadingPropertys && isOnMainnet">
