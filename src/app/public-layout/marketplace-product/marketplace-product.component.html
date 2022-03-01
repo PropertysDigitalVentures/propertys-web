@@ -1,0 +1,101 @@
+<propertys-header></propertys-header>
+	<div class="wrapper">
+		<div class="top">
+			<h1>Marketplace</h1>
+			<div class="search-block">
+				<i class="fas fa-search"></i>
+				<input type="text" placeholder="Search" [(ngModel)]="searchTerm" />
+			</div>
+		</div>
+
+		<!-- Product Information -->
+		<div class="product-container">
+
+			<div class="product-info">
+				<div class="listing-name">Property's NFT</div>
+				<h2 class="product-name">Property’s #01-02-06-1e</h2>
+				<button type="button" (click)="toggleFavorite()" class="hearts"><i class="fas fa-heart"></i> 42</button>
+
+				<div class="price-container">
+					<div class="title">Price</div>
+					<ul class="prices-list">
+						<li><i class="fab fa-ethereum"></i>47.45 ETH</li>
+						<!-- <li><i class="fa fa-block-brick"></i>25.2K BRIX</li>
+						<li><i class="fas fa-usd"></i>30.6K USD</li> -->
+					</ul>
+				</div>
+				<div class="actions-container">
+					<button type="button" class="primary buy" (click)="buy($event)">Buy Now</button>
+				</div>
+			</div>
+
+			<div class="showcase">
+				<img src="/assets/images/cards/beige-bay-1.webp" width="300" />
+			</div>
+		
+		</div>
+
+		<!-- Further information & stats about product -->
+		<div class="stats-container">
+			<div class="properties">
+				<div class="title"><i class="fas fa-list"></i>Properties</div>
+
+				<div class="headers">
+					<div>Name</div>
+					<div>Count</div>
+				</div>
+				<ul>
+					<li>
+						<div class="type-container">
+							<div class="property-type">City</div>
+							<div class="property-name">Beige Bay</div>
+						</div>
+						<div class="count">1050</div>
+					</li>
+					<li>
+						<div class="type-container">
+							<div class="property-type">District</div>
+							<div class="property-name">The Soils</div>
+						</div>
+						<div class="count">1050</div>
+					</li>
+					<li>
+						<div class="type-container">
+							<div class="property-type">Street</div>
+							<div class="property-name">Pidgeon Park</div>
+						</div>
+						<div class="count">1050</div>
+					</li>
+					<li>
+						<div class="type-container">
+							<div class="property-type">Unit</div>
+							<div class="property-name">34</div>
+						</div>
+						<div class="count">1050</div>
+					</li>
+				</ul>
+			</div>
+
+			<div class="token-data-container">
+				<ul>
+					<li>
+						<div class="type">Token ID</div>
+						<div class="data">84018243</div>
+					</li>
+					<li>
+						<div class="type">Contract Address</div>
+						<a href="#" target="_blank" class="data">0x18cb...7ccd <i class="fas fa-arrow-up-right-from-square"></i></a>
+					</li>
+					<li>
+						<div class="type">Token Standard</div>
+						<div class="data">ERC-721</div>
+					</li>
+					<li>
+						<div class="type">Blockchain</div>
+						<div class="data">Ethereum</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<propertys-footer></propertys-footer>

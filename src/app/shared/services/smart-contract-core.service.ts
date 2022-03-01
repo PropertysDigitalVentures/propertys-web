@@ -31,8 +31,6 @@ export class SmartContractCoreService {
         private http: HttpClient,
     ) {
 
-        console.log('environment.moralisAppId', environment.moralisAppId);
-
         // Check if Ethereum is enabled via metamask or some other provider
         if (MetaMaskOnboarding.isMetaMaskInstalled()) {
 

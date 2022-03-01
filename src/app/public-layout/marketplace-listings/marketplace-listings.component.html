@@ -1,0 +1,65 @@
+<propertys-header></propertys-header>
+	<div class="wrapper">
+		<div class="top">
+			<h1>Marketplace</h1>
+			<div class="search-block">
+				<i class="fas fa-search"></i>
+				<input type="text" placeholder="Search" [(ngModel)]="searchTerm" />
+			</div>
+		</div>
+
+		<div class="two-column">
+			<ul class="filters">
+				<li><button (click)="toggleFilter('price-range')"><i class="fa-solid fa-circle-dollar"></i>Price Range <i class="fas fa-chevron-down"></i></button></li>
+				<li><button (click)="toggleFilter('price-range')"><i class="fa-solid fa-circle-dollar"></i>Streets <i class="fas fa-chevron-down"></i></button></li>
+				<li><button (click)="toggleFilter('price-range')"><i class="fa-solid fa-circle-dollar"></i>Districts <i class="fas fa-chevron-down"></i></button></li>
+				<li><button (click)="toggleFilter('price-range')"><i class="fa-solid fa-circle-dollar"></i>Cities <i class="fas fa-chevron-down"></i></button></li>
+				<li><button (click)="toggleFilter('price-range')"><i class="fa-solid fa-circle-dollar"></i>Special <i class="fas fa-chevron-down"></i></button></li>
+				<li><button (click)="toggleFilter('price-range')"><i class="fa-solid fa-circle-dollar"></i>SANDBOX <i class="fas fa-chevron-down"></i></button></li>
+			</ul>
+
+			<!-- Listings-->
+			<div class="listings-container">
+				<div class="active-filters-container">
+					<div class="text">Filters</div>
+					<ul class="active-filters">
+						<li>
+							<div class="filter-type-text">CITY</div>
+							<div class="filter-text">Beige Bay</div>
+							<button class="remove"><i class="fas fa-times"></i></button>
+						</li>
+					</ul>
+				</div>
+
+				<!-- All listings-->
+				<ul class="listings">
+					<li>
+						<a [routerLink]="['/marketplace/123']">
+							<div class="project-type">Property's NFT</div>
+							<div class="image">
+								<img src="/assets/images/cards/beige-bay-1.webp" width="300" />
+							</div>
+							<div class="listing-details">
+								<div class="price-container">
+									<div class="title">Price</div>
+									<ul class="prices-list">
+										<li><i class="fab fa-ethereum"></i>47.45 ETH</li>
+										<!-- <li><i class="fas fa-block-brick"></i>25.2K BRIX</li>
+										<li><i class="fas fa-circle-dollar"></i>30.6K USD</li> -->
+									</ul>
+								</div>
+								
+							</div>
+
+							<div class="actions-container">
+								<button type="button" class="primary" (click)="buy($event)">Buy Now</button>
+								<div class="hearts"><i class="fas fa-heart"></i> 42</div>
+							</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+	</div>
+<propertys-footer></propertys-footer>

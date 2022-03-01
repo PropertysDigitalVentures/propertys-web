@@ -25,6 +25,11 @@ a {
 
 input {
     font-family: $font-family-body;
+
+    &:focus {
+        border-color: $primary-color !important;
+        outline: 0;
+    }
 }
 
 .carousel {
