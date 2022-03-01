@@ -10,12 +10,54 @@
 
 		<div class="two-column">
 			<ul class="filters">
-				<li><button (click)="toggleFilter('price-range')"><i class="fa-solid fa-circle-dollar"></i>Price Range <i class="fas fa-chevron-down"></i></button></li>
-				<li><button (click)="toggleFilter('price-range')"><i class="fa-solid fa-circle-dollar"></i>Streets <i class="fas fa-chevron-down"></i></button></li>
-				<li><button (click)="toggleFilter('price-range')"><i class="fa-solid fa-circle-dollar"></i>Districts <i class="fas fa-chevron-down"></i></button></li>
-				<li><button (click)="toggleFilter('price-range')"><i class="fa-solid fa-circle-dollar"></i>Cities <i class="fas fa-chevron-down"></i></button></li>
-				<li><button (click)="toggleFilter('price-range')"><i class="fa-solid fa-circle-dollar"></i>Special <i class="fas fa-chevron-down"></i></button></li>
-				<li><button (click)="toggleFilter('price-range')"><i class="fa-solid fa-circle-dollar"></i>SANDBOX <i class="fas fa-chevron-down"></i></button></li>
+				<li [class]="{ 'active': isFilterToggled('price-range') }"><button (click)="toggleFilter('price-range')"><i class="fas fa-circle-dollar"></i>Price Range <i class="fas fa-chevron-down"></i></button></li>
+				<li [class]="{ 'active': isFilterToggled('streets') }">
+					<button (click)="toggleFilter('streets')"><i class="fas fa-circle-dollar"></i>Streets <i class="fas fa-chevron-down"></i></button>
+					<div class="subfilters-container">
+						<button type="button" class="clear-btn">Clear</button>
+						<ul>
+							<li><button type="button" class="subfilter-toggle-btn">Clay Circus<span class="count">1050</span></button></li>
+						</ul>
+					</div>
+				</li>
+				<li [class]="{ 'active': isFilterToggled('districts') }">
+					<button (click)="toggleFilter('districts')"><i class="fas fa-circle-dollar"></i>Districts <i class="fas fa-chevron-down"></i></button>
+					<div class="subfilters-container">
+						<button type="button" class="clear-btn">Clear</button>
+						<ul>
+							<li><button type="button" class="subfilter-toggle-btn">Muddy Mountains<span class="count">1050</span></button></li>
+						</ul>
+					</div>
+				</li>
+				<li [class]="{ 'active': isFilterToggled('cities') }">
+					<button (click)="toggleFilter('cities')"><i class="fas fa-circle-dollar"></i>Cities <i class="fas fa-chevron-down"></i></button>
+					<div class="subfilters-container">
+						<button type="button" class="clear-btn">Clear</button>
+						<ul>
+							<li><button type="button" class="subfilter-toggle-btn">Beige Bay<span class="count">1050</span></button></li>
+						</ul>
+					</div>
+				</li>
+				<li [class]="{ 'active': isFilterToggled('specials') }">
+					<button (click)="toggleFilter('specials')"><i class="fas fa-circle-dollar"></i>Special <i class="fas fa-chevron-down"></i></button>
+					<div class="subfilters-container">
+						<button type="button" class="clear-btn">Clear</button>
+						<ul>
+							<li><button type="button" class="subfilter-toggle-btn">Beige Bay<span class="count">1050</span></button></li>
+						</ul>
+					</div>
+				</li>
+				<li [class]="{ 'active': isFilterToggled('sandbox') }">
+					<button (click)="toggleFilter('sandbox')"><i class="fas fa-circle-dollar"></i>SANDBOX <i class="fas fa-chevron-down"></i></button>
+					<div class="subfilters-container">
+						<button type="button" class="clear-btn">Clear</button>
+						<ul>
+							<li><button type="button" class="subfilter-toggle-btn">House Ornaments<span class="count">6580</span></button></li>
+							<li><button type="button" class="subfilter-toggle-btn">Cars<span class="count">500</span></button></li>
+							<li><button type="button" class="subfilter-toggle-btn">Random<span class="count">10311</span></button></li>
+						</ul>
+					</div>
+				</li>
 			</ul>
 
 			<!-- Listings-->

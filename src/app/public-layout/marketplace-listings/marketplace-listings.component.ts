@@ -10,6 +10,14 @@ import { MatDialog } from '@angular/material/dialog';
 export class MarketplaceListingsComponent {
   
   public searchTerm: any = '';
+  public filters = {
+    'price-range': false,
+    'streets': false,
+    'districts': false,
+    'cities': false,
+    'special': false,
+    'sandbox': false
+  }
 
   constructor(
     
@@ -20,9 +28,31 @@ export class MarketplaceListingsComponent {
    
   }
 
-  toggleFilter(filter) {
 
+  /**
+   * Toggle a filter
+   */
+  toggleFilter(filter) {
+    this.filters[filter] = !this.filters[filter];
   }
+
+
+  /**
+   * 
+   * Check if a filter is toggled
+   */
+  isFilterToggled(filter) {
+    let isFilteredToggled = false;
+    for(let key in this.filters) {
+      if(this.filters[filter] === true) {
+        isFilteredToggled = true;
+      }
+    }
+
+    return isFilteredToggled;
+  }
+
+  
 
   buy(e) {
     e.stopPropagation();
