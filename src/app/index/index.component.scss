@@ -236,6 +236,20 @@
         }
     }
 
+
+    .subscribe-btn {
+        display: block;
+        padding: 20px;
+        border-radius: 10px;
+        width: 150px;
+        align-items: center;
+        margin: 30px auto;
+        font-family: $font-family-body-bold;
+        background: $primary-color;
+        color: #FFF;
+        text-align: center;
+    }
+
     section .columns {
         display: flex;
         align-items: flex-start;
