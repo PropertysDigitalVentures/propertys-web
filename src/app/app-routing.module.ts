@@ -14,10 +14,14 @@ const routes: Routes = [
     path: 'b2c',
     loadChildren: () => import('./b2c/b2c.module').then(m => m.B2CModule)
   },
-  // {
-  //   path: 'rent',
-  //   loadChildren: () => import('./rent/rent.module').then(m => m.RentModule)
-  // },
+  {
+    path: 'b2b',
+    loadChildren: () => import('./b2b/b2b.module').then(m => m.B2BModule)
+  },
+  {
+    path: 'company',
+    loadChildren: () => import('./company/company.module').then(m => m.CompanyModule)
+  },
   {
     path: 'virtual-realty-assistant',
     loadChildren: () => import('./propertys-tool/propertys-tool.module').then(m => m.PropertysToolModule)

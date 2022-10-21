@@ -100,18 +100,17 @@
         .header-inner {
             width: $wrapper-container-width;
             margin: 0 auto;
-            padding: 10px 0;
             display: flex;
             align-items: center;
         }
 
         .social-links {
-
+            margin-left: auto;
             display: flex;
             align-items: center;
 
             li {
-                margin-right: 10px;
+                margin-right: 20px;
 
                 &:last-child {
                     margin-right: 0;
@@ -119,8 +118,8 @@
             }
 
             a {
-                color: $primary-font-color;
-                font-size: 24px;
+                color: $primary-color;
+                font-size: 31px;
                 padding: 5px;
                 border-radius: 4px;
                 display: flex;
@@ -131,8 +130,12 @@
                 @include transition(.15s ease-in-out);
 
                 svg {
-                    width: 26px;
+                    width: 31px;
                     @include transition(.3s ease-in-out);
+                }
+
+                &.opensea path {
+                    fill: $primary-color;
                 }
 
                 &.opensea:hover {
@@ -152,8 +155,7 @@
             align-items: center;
 
             li {
-                margin-left: 20px;
-                min-width: 130px;
+                min-width: 110px;
                 position: relative;
                 cursor: pointer;
 
@@ -176,10 +178,17 @@
                 }
 
                 &.logo {
+                    display: block;
+                    min-width: 60px;
 
                     a {
-                        margin-left: 40px;
-                        margin-right: 36px;
+                        margin-right: 0;
+                        display: block;
+                    }
+
+                    img {
+                        display: block;
+                        margin-right: 0;
                     }
 
                     img.show-mobile-logo {
@@ -188,7 +197,6 @@
 
                     a,  svg {
                         display: block;
-                        width: 210px;
                         fill: $primary-color;
                         text-align: center;
                         font-size: 30px;

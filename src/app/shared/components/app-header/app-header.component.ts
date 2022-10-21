@@ -41,17 +41,17 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
 
 
     async ngOnInit() {
-      this.checkWalletSourceEnabled();
-      this.eventMessengerService.subscribe('accountsChanged', (event) => {
-        this.accounts = event.data.accounts;
-        this.checkWalletSourceEnabled();
-      });
+      // this.checkWalletSourceEnabled();
+      // this.eventMessengerService.subscribe('accountsChanged', (event) => {
+      //   this.accounts = event.data.accounts;
+      //   this.checkWalletSourceEnabled();
+      // });
 
-      this.eventMessengerService.subscribe('disconnect', (event: any) => {
-        this.checkWalletSourceEnabled();
-      })
+      // this.eventMessengerService.subscribe('disconnect', (event: any) => {
+      //   this.checkWalletSourceEnabled();
+      // })
 
-      this.mintEnabled = this.smartContractCoreService.isMintingEnabled;
+      // this.mintEnabled = this.smartContractCoreService.isMintingEnabled;
     }
 
     ngOnDestroy() {}
