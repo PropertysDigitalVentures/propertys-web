@@ -1,1 +1,234 @@
-b2c
+<section class="banner">
+	<propertys-header></propertys-header>
+	<div class="banner-inner">
+		<div class="main-area">
+			<div class="slogan-container">
+				<div id="slogan-text" class="slogan-text">Embark on an Adventure Through the Metaverse</div>
+				<p>Property's is here to guide curious explorers through the world of Web3, providing an immersive, inclusive metaverse to meet, collaborate, play, learn &amp; earn.</p>
+				<a class="cta-btn" target="_blank" href="https://propertys-nft.gitbook.io/propertys-whitepaper/">Learn more</a>
+			</div>
+			
+			<div class="promo-image">
+				<img src="/assets/images/banner-img.png" width="600" />
+			</div>
+		</div>
+		
+	</div>
+	
+</section>
+
+
+<!-- Metaverse -->
+
+<!-- Metaverse -->
+<section class="information" id="metaverse">
+	<div class="section-title-container">
+		<div class="section-title">Metaverse</div>
+		<h2>Curated Digital Experiences</h2>
+		<div class="section-description">Fully immerse yourself in a limitless world on Sandbox. With Property's, all of your favorite experiences are in one place.</div>
+	</div>
+	<div class="two-column right-order-0" >
+		<div class="left">
+			<ul class="metaverse-image-toggles">
+				<li><button [ngClass]="{ 'active-green': metaverseImageToShow === 1}" (mouseover)="toggleMetaverseImage(1)">Social &amp; Adventures
+					<span>Meet others and enjoy the metaverse together</span>
+				</button></li>
+				<li><button [ngClass]="{ 'active-yellow': metaverseImageToShow === 2}" (mouseover)="toggleMetaverseImage(2)">Gaming &amp; Content 
+					<span>Play all the games and even create your own</span>
+				</button></li>
+				<li><button [ngClass]="{ 'active-orange': metaverseImageToShow === 3}" (mouseover)="toggleMetaverseImage(3)">
+					Music &amp; Events
+					<span>Relax and have fun at different events across the world</span>
+				</button></li>
+				<li><button [ngClass]="{ 'active': metaverseImageToShow === 4}" (mouseover)="toggleMetaverseImage(4)">Art &amp; Shopping
+					<span>Admire art and purchase your own to fit your unique look</span>
+				</button></li>
+			</ul>			
+		</div>
+
+		
+		<div class="right">
+			<div class="image-container">
+				<img src="/assets/images/metaverse-social.webp" [ngClass]="{ 'show': metaverseImageToShow === 1}" width="400" />
+				<img src="/assets/images/metaverse-gaming.webp" [ngClass]="{ 'show': metaverseImageToShow === 2}" width="400" />
+				<img src="/assets/images/metaverse-music.webp" [ngClass]="{ 'show': metaverseImageToShow === 3}" width="400" />
+				<img src="/assets/images/metaverse-art.webp" [ngClass]="{ 'show': metaverseImageToShow === 4}" width="400" />
+			</div>
+		</div>
+		
+	</div>
+</section>
+
+
+
+<!-- NFT-->
+<div class="full-width-container">
+	<section class="information" id="nft">
+		<div class="section-title-container">
+			<div class="section-title">Our NFT Collection</div>
+			<h2>Collect Properties &amp; Earn $BRIX</h2>
+		</div>
+		<ul class="district-list-selector">
+			<li (mouseover)="selectDistrict(1)"><button class="sandy-secrets" [ngClass]="{ 'active': selectedDistrict === 1}" ></button></li>
+			<li (mouseover)="selectDistrict(2)"><button class="apricot-alley" [ngClass]="{ 'active': selectedDistrict === 2}"></button></li>
+			<li (mouseover)="selectDistrict(3)"><button class="buenas-bananas" [ngClass]="{ 'active': selectedDistrict === 3}" ></button></li>
+			<li (mouseover)="selectDistrict(4)"><button class="basil-borough" [ngClass]="{ 'active': selectedDistrict === 4}"></button></li>
+			<li (mouseover)="selectDistrict(5)"><button class="grapey-gardens" [ngClass]="{ 'active': selectedDistrict === 5}"></button></li>
+			<li (mouseover)="selectDistrict(6)"><button class="starry-skies" [ngClass]="{ 'active': selectedDistrict === 6}" ></button></li>
+			<li (mouseover)="selectDistrict(7)"><button class="elon-estates" [ngClass]="{ 'active': selectedDistrict === 7}"></button></li>
+			<li (mouseover)="selectDistrict(8)"><button class="special" [ngClass]="{ 'active': selectedDistrict === 8}"></button></li>
+		</ul>
+		<!-- District: 1 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 1}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/beige-bay-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/beige-bay-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/beige-bay-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: 2 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 2}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/orange-oasis-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/orange-oasis-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/orange-oasis-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: 3 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 3}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/yellow-yards-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/yellow-yards-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/yellow-yards-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: 4 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 4}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/green-grove-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/green-grove-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/green-grove-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: 5 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 5}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/purple-palms-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/purple-palms-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/purple-palms-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: 6 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 6}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/starry-skies-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/starry-skies-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/starry-skies-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: 7 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 7}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/mars-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/mars-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/mars-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: Special -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 8}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/special-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/special-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/special-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+  

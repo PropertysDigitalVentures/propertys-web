@@ -6,10 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { IndexComponent } from './index.component';
 import { AppHeaderModule } from '../shared/components/app-header/app-header.module';
 import { AppFooterModule } from '../shared/components/app-footer/app-footer.module';
+import { HowCanIHelpModule } from '../shared/components/how-can-i-help/how-can-i-help.module';
+import { PartnershipsModule } from '../shared/components/partnerships/partnerships.module';
 import { MintDialogModule } from '../shared/dialogs/mint-dialog/mint-dialog.module';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
-// import { Carousel3DComponent } from "../shared/components/carousel-3d/carousel-3d.component";
+
 
 @NgModule({
   declarations: [
@@ -20,8 +21,9 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     FontAwesomeModule,
     AppHeaderModule,
     AppFooterModule,
-    IvyCarouselModule,
     MintDialogModule,
+    PartnershipsModule,
+    HowCanIHelpModule,
     MatDialogModule,
     // FormsModule,
     RouterModule.forChild([{

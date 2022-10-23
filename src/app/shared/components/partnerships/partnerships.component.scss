@@ -1,0 +1,77 @@
+@import '../../../../assets/scss/variables';
+@import '../../../../assets/scss/mixins';
+
+:host {
+
+    section {
+        padding: 75px 0 0;
+        width: $wrapper-container-width;
+        margin: 0 auto;
+    }
+
+    .full-width-container {
+        background: $full-width-content-bg;
+        width: 100%;
+    }
+
+    .title {
+        font-family:$font-family-body-bold;
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    section.partnerships {
+        min-height: 400px;
+    }
+
+    img {
+        display: block;
+    }
+
+    
+    .partnerships-container {
+        width: 100%;
+        text-align: center;
+        position: relative;
+        bottom: initial;
+        left: initial;
+        transform: initial;
+
+        &.premium {
+            width: 100%;
+
+            ul {
+                justify-content: initial
+            }
+
+            li {
+                margin-right: 80px;
+            }
+        }
+
+        ul {
+            width: 100%;
+            overflow: auto;
+        }
+    }
+
+    /**
+     *  Partnerships
+     */
+     .partners {
+        margin-top: 60px;
+    }
+    
+
+
+
+    /** ==============================================================
+    *   Media styles
+        ============================================================== */
+    @media only screen and (min-width: 0px) and (max-width: 700px) {
+        section {
+            width: calc(100% - 20px) !important;
+            margin: 60px auto 40px;
+        }
+    }
+}

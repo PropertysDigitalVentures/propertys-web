@@ -3,4 +3,224 @@
 
 :host {
 
+    /**
+     *  Banner area
+     */
+     .banner {
+        width: 100%;
+        height: 620px;
+        padding-top: 170px;
+        margin-top: 0 !important;
+        position: relative;
+        display: flex;
+    }
+
+    .banner-inner {
+        width: $wrapper-container-width;
+        margin: 100px auto 50px;
+        position: relative;
+    }
+
+    .promo-image {
+        position: absolute;
+        right: 0;
+        top: calc(50% - 80px);
+        @include transform(translateY(-50%));
+    }
+
+    .slogan-container {
+        position: absolute;
+        top: calc(50% - 80px);
+        width: 490px;
+        @include transform(translateY(-50%));
+
+        .slogan-text {
+            font-family: $font-family-body-bold;
+            font-size: 40px;
+            line-height:110%;
+            margin-bottom: 30px;
+
+            .highlighted {
+                color: $primary-color;
+                position: relative;
+            }
+
+        }
+
+        .subtext {
+            font-family: $font-family-body-medium;
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        p {
+            margin: 0 0 20px 0;
+        }
+    }
+
+    .full-width-container {
+        background: $full-width-content-bg;
+        width: 100%;
+    }
+
+    /**
+     *  NFT Collection section
+     */
+    .district-list-selector {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        li {
+            width: 100px;
+            height: 100px;
+            position: relative;
+            cursor: pointer;
+
+            button {
+                width: 30px;
+                height: 30px;
+                border-radius: 30px;
+                background: $primary-color;
+                @include transition(.15s ease-in-out);
+                position: absolute;
+                padding:0;
+                top: 50%;
+                left: 50%;
+                @include transform( translateY(-50%) translateX(-50%));
+
+                &.active {
+                    width: 50px;
+                    height: 50px;
+                    position: relative;
+
+                    &:after {
+                        content: '';
+                        width: calc(100% + 20px);
+                        height: calc(100% + 20px);
+                        position: absolute;
+                        border-radius: 50px;
+                        border:2px solid $primary-color;
+                    }
+                }
+
+                &.sandy-secrets {
+                    background: $color-light-orange;
+
+                    &:after {
+                        border-color: $color-light-orange;
+                    }
+                }
+
+                &.apricot-alley {
+                    background: $color-orange;
+
+                    &:after {
+                        border-color: $color-orange;
+                    }
+                }
+
+                &.buenas-bananas {
+                    background: $color-yellow;
+
+                    &:after {
+                        border-color: $color-yellow;
+                    }
+                }
+
+                &.basil-borough {
+                    background: $color-green;
+
+                    &:after {
+                        border-color: $color-green;
+                    }
+                }
+
+                &.grapey-gardens {
+                    background: $primary-color;
+
+                    &:after {
+                        border-color: $primary-color;
+                    }
+                }
+
+                &.starry-skies {
+                    background: $color-blue;
+
+                    &:after {
+                        border-color: $color-blue;
+                    }
+                }
+
+                &.apricot-alley {
+                    background: $color-orange;
+
+                    &:after {
+                        border-color: $color-orange;
+                    }
+                }
+
+                &.special {
+                    background: $color-silver;
+
+                    &:after {
+                        border-color: $color-silver;
+                    }
+                }
+
+                &.elon-estates {
+                    background: $color-red;
+
+                    &:after {
+                        border-color: $color-red;
+                    }
+                }
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    // Columns to show the NFT cards
+    section .columns {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        margin-top: 100px;
+        display: none;
+
+        &.show {
+            display: flex;
+        }
+
+        .column {
+            margin-right: 80px;
+            position: relative;
+            z-index: 1;
+
+            .column-image {
+                position: relative;
+
+                
+            }
+
+            h4 {
+                text-align: center;
+                margin-top: 40px;
+                font-family: $font-family-body;
+            }
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            img {
+                max-width: 250px;
+                box-shadow: 0 0 20px rgb(0 0 0 / 30%);
+                border-radius: 10px;
+            }
+        }
+    }
 }

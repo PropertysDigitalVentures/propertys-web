@@ -18,8 +18,7 @@ export class IndexComponent {
   @HostListener('window:scroll', ['$event']) // for window scroll events
     onScroll(event) {}
 
-  public selectedDistrict = 1;
-  public metaverseImageToShow = 1;
+  
   public accounts = [];
   public houseFrameToShow = 0;
   public networkText = "Ethereum Mainnet";
@@ -29,48 +28,9 @@ export class IndexComponent {
   public countdownHours: any = 0;
   public countdownMins: any = 0;
   public countdownSecs: any = 0;
-  public generalFAQ: any = {
-	  q1: false,
-    q2: false,
-    q3: false,
-    q4: false,
-    q5: false,
-    q6: false,
-    q7: false,
-    q8: false,
-  }
 
   public isMetaMaskInstalled = true;
   public isOnMainnet = true;
-
-  public partnershipLogoImages = [
-    { path: '/assets/images/partners/1.png' },
-    { path: '/assets/images/partners/2.png' },
-    { path: '/assets/images/partners/3.png' },
-    { path: '/assets/images/partners/4.png' },
-    { path: '/assets/images/partners/5.png' },
-    { path: '/assets/images/partners/6.png' },
-    { path: '/assets/images/partners/7.png' },
-    { path: '/assets/images/partners/8.png' },
-    { path: '/assets/images/partners/9.png' },
-    { path: '/assets/images/partners/10.png' },
-    { path: '/assets/images/partners/11.png' },
-    { path: '/assets/images/partners/12.png' },
-    { path: '/assets/images/partners/13.png' },
-    { path: '/assets/images/partners/14.png' },
-    { path: '/assets/images/partners/15.png' },
-    { path: '/assets/images/partners/16.png' },
-    { path: '/assets/images/partners/17.png' },
-    { path: '/assets/images/partners/18.png' },
-    { path: '/assets/images/partners/20.png' },
-    { path: '/assets/images/partners/21.png' }
-  ]
-
-  public carouselAutoplay = true;
-  public carouselLoop = true;
-  public carouselAutoplayInterval = 500;
-  public carouselPauseOnHover = false;
-  public carouselTransitionInterval = 1000;
 
   constructor(
     private _route: ActivatedRoute,
@@ -84,25 +44,25 @@ export class IndexComponent {
   async ngOnInit() {
 
     // Show message test based on the environment
-    switch(environment.chainId) {
-      case 1: 
-        this.networkText = "Ethereum Mainnet";
-      break;
-      case 4:
-        this.networkText = "Rinkeby Network";
-      break;
-      default: 
-        this.networkText = "Ethereum Mainnet";
-      break;
-    }
+    // switch(environment.chainId) {
+    //   case 1: 
+    //     this.networkText = "Ethereum Mainnet";
+    //   break;
+    //   case 4:
+    //     this.networkText = "Rinkeby Network";
+    //   break;
+    //   default: 
+    //     this.networkText = "Ethereum Mainnet";
+    //   break;
+    // }
 
-    // this.animateCards();
+    // // this.animateCards();
 
-    // Initialize the countdown
-    this.countdownTimer = setInterval(() => {
-			this.updateCountdownTimer();
-		}, 1000);
-		this.updateCountdownTimer();
+    // // Initialize the countdown
+    // this.countdownTimer = setInterval(() => {
+		// 	this.updateCountdownTimer();
+		// }, 1000);
+		// this.updateCountdownTimer();
 
     // Determine which element to scroll to
     this._route.fragment.subscribe(fragment => {
@@ -122,43 +82,27 @@ export class IndexComponent {
 			
     }) 
 
-    // Startup: Check metamask and populate accounts and then determine if any unis are in wallet
-    await this.checkMetaMaskInstalled();
+    // // Startup: Check metamask and populate accounts and then determine if any unis are in wallet
+    // await this.checkMetaMaskInstalled();
 
-    // Make sure we're on the right chain
-    await this.checkChain();
+    // // Make sure we're on the right chain
+    // await this.checkChain();
 
 
-    // Handle events when wallet accounts change
-    this.eventMessengerService.subscribe('accountsChanged', async (event) => {
-      let { accounts } = event.data;
-      this.accounts = accounts;
-      await this.checkChain();
-    });
+    // // Handle events when wallet accounts change
+    // this.eventMessengerService.subscribe('accountsChanged', async (event) => {
+    //   let { accounts } = event.data;
+    //   this.accounts = accounts;
+    //   await this.checkChain();
+    // });
 
-    // Handle events when wallet accounts get disconnectd
-    this.eventMessengerService.subscribe('disconnect', async (event: any) => {
-      let { accounts } = event.data;
-      this.accounts = accounts;
-      await this.checkChain();
-    })
+    // // Handle events when wallet accounts get disconnectd
+    // this.eventMessengerService.subscribe('disconnect', async (event: any) => {
+    //   let { accounts } = event.data;
+    //   this.accounts = accounts;
+    //   await this.checkChain();
+    // })
   }
-
-
-  /**
-   * This will replace which image is showing
-   */
-  toggleMetaverseImage(image) {
-    this.metaverseImageToShow = image;
-  }
-
-
-  /**
-   * Select district
-   */
-   selectDistrict(districtId) {
-     this.selectedDistrict = districtId;
-   }
   
 
   /**

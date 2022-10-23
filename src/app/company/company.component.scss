@@ -3,4 +3,218 @@
 
 :host {
 
+    /**
+    *  Team section
+    */
+    .team {
+        width: $wrapper-container-width;
+
+        .team-list {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 0;
+            margin-top: 100px;
+            justify-content: center;
+
+            li {
+                margin-right: 10px;
+                margin-bottom: 60px;
+                padding-right: 9px;
+                border-radius: 3px;
+                width: 350px;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                justify-content: center;
+                z-index: 0;
+
+                .blob-bg {
+                    position: absolute;
+                    z-index: -1;
+                    width: 240px !important;
+                    left: 50%;
+                    top: 50%;
+                    @include transform(translateY(-50%) translateX(-50%));
+
+                    &.rotate-40 {
+                        @include transform(translateY(-50%) translateX(-50%) rotate(40deg));
+                    }
+
+                    &.rotate-80 {
+                        @include transform(translateY(-50%) translateX(-50%) rotate(80deg));
+                    }
+
+                    &.rotate-120 {
+                        @include transform(translateY(-50%) translateX(-50%) rotate(120deg));
+                    }
+
+                    &.rotate-160 {
+                        @include transform(translateY(-50%) translateX(-50%) rotate(160deg));
+                    }
+                }
+
+                &:hover {
+                    z-index: 3;
+                }
+
+                &>a, .team-member {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 45px 15px 25px;
+                    justify-content: center;
+                    color: $primary-font-color;
+                    position: relative;
+                    width: 100%;
+                    z-index:2;
+                    margin: 0 auto;
+                    box-sizing: border-box;
+                    border-radius: 20px;
+
+                    .team-member-description {
+                        width: calc(100% - 20px);
+                    }
+                }
+
+                &:after {
+                    width: 100%;
+                    position: absolute;
+                    content: '';
+                    height: 380px;
+                    opacity:0;
+                    top: 0;
+                    left: 50%;
+                    z-index:2;
+                    z-index: 0;
+                    border-radius: 20px;
+                    background: rgba(255, 255, 255, .5);
+                    box-shadow: 0 0 25px rgba(0, 0, 0, .2);
+                    backdrop-filter: blur(5px);
+                    @include transform(translateX(-50%));
+                    @include transition(.3s ease-in-out);
+                }
+
+                &:hover {
+                    
+                    &>a, .team-member {
+                        z-index: 3;
+                    }
+
+                    &:hover {
+                        .team-member-description {
+                            opacity: 1;
+                        }
+                    }
+
+                    .profile-link {
+                        opacity: 1;
+                    }
+
+                    &:after {
+                        opacity: 1;
+                    }
+
+
+                    h3 {
+                        font-size: 20px;
+                    }
+
+                    .image-profile-block img {
+                        @include transform(scale(1.05));
+                    }
+                }
+
+                h3 {
+                    font-size:19px;
+                    display: flex;
+                    align-items: center;
+                    font-family: $font-family-body-medium;
+                    text-align: center;
+                    justify-content: center;
+                    height: 30px;
+                    @include transition(.3s ease-in-out);
+                }
+
+                .profile-link {
+                    font-size: 16px;
+                    font-weight: 900;
+                    padding: 3px;
+                    position: absolute;
+                    top: 20px;
+                    right: 10px;
+                    width: 20px;
+                    opacity: 0;
+                    height: 20px;
+                    border-radius: 4px;
+                    display: flex;
+                    z-index: 2;
+                    align-items: center;
+                    justify-content: center;
+                    color: $primary-color;
+                    transition: .3s ease-in-out;
+
+                    i {
+                        @include transition(.3s ease-in-out);
+                        font-size: 26px;
+                    }
+                }
+
+                .image-profile-block {
+                    position: relative;
+                    height: 100%;
+                    min-width: 150px;
+                    width: 150px;
+                    height: 150px;
+                    margin: 0 auto 20px auto;
+
+                    &.image-crispy, .image-crispy {
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .image-container {
+                        height:150px;
+                        width: 150px;
+                        border-radius: 4px;
+                    }
+
+                    img {
+                        border-radius: 100px;
+                        height: 100%;
+                        object-fit: contain;
+                        @include transition(.3s ease-in-out);
+                    }
+                }
+
+                .title {
+                    font-size: 16px;
+                    text-align: center;
+                    font-family: $font-family-body;
+                    margin-bottom: 10px;
+                    line-height: 160%;
+                    height: 30px;
+                    opacity:.7;
+                    @include transition(.3s ease-in-out);
+                }
+
+                .team-member-description {
+                    position: absolute;
+                    top: 270px;
+                    width: 100%;
+                    opacity: 0;
+                    text-align: center;
+                    @include transition(.3s ease-in-out);
+                }
+
+                
+
+                .description {
+                    font-family: $font-family-body;
+                    line-height: 140%;
+                    font-weight: 100;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
 }
