@@ -18,7 +18,10 @@ export class IndexComponent {
   @HostListener('window:scroll', ['$event']) // for window scroll events
     onScroll(event) {}
 
-  
+  public isReadMoreSections = {
+    'about-us': true
+  }
+
   public accounts = [];
   public houseFrameToShow = 0;
   public networkText = "Ethereum Mainnet";
@@ -154,9 +157,15 @@ export class IndexComponent {
 
   ngOnDestroy() {
     clearInterval(this.countdownTimer);
-}
+  }
 
 
+  /**
+   * Toggle read more/less section
+   */
+  toggleReadMore(section) {
+    this.isReadMoreSections[section] = !this.isReadMoreSections[section];
+  }
 
   /**
 	 * Simple countdown timer function. End date is set for private sale

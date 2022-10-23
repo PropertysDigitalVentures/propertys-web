@@ -4,7 +4,7 @@
 :host {
 
     section {
-        padding: 75px 0;
+        padding: 135px 0;
         width: $wrapper-container-width;
         margin: 0 auto;
 
@@ -43,74 +43,127 @@
     
     .full-width-container {
         background: $full-width-content-bg;
-        width: 100%;
-    }
-    
+        width: 100% !important;
 
-    section.work-with-us {
-        position: relative;
-        min-height: 450px;
-        margin-bottom: 50px;
-    
-    
-        .signup-for-newsletter {
-            height: 300px;
-            font-family: $font-family-body;
-    
-            h3 {
+        &.newsletter {
+            padding: 50px 0 0 0;
+        }
+    }
+
+
+    /**
+     *  Getting started
+     */
+    .get-started {
+        padding-top: 80px;
+
+        .columns {
+            .column {
                 text-align: center;
-                margin-bottom: 20px;
-            }
-    
-            #mc_embed_signup input.email {
-                font-family: $font-family-body;
-            }
-    
-            #mc_embed_signup .button {
-                background: $primary-color;
-                color: #FFF;
-                font-family: $font-family-body-bold;
-            }
-        }
-    }
 
-    .explore-partnerships-btn {
-        display: block;
-        padding: 20px;
-        border-radius: 10px;
-        width: 400px;
-        display: flex;
-        align-items: center;
-        margin: 70px auto;
-        font-family: $font-family-body-bold;
-        background: $primary-color;
-        color: #FFF;
+                img {
+                    margin-bottom: 20px;
+                }
 
-        i {
-            margin-left: auto;
-            margin-right: 5px;
-            @include transition(.15s ease-in-out);
-        }
+                p {
+                    margin-bottom: 15px;
+                }
 
-        &:hover {
-            i {
-                margin-right: 0;
+                a {
+                    display: block;
+                    margin: 0 auto;
+                }
             }
         }
     }
 
 
-    .subscribe-btn {
-        display: block;
-        padding: 20px;
-        border-radius: 10px;
-        width: 150px;
-        align-items: center;
-        margin: 30px auto;
-        font-family: $font-family-body-bold;
-        background: $primary-color;
-        color: #FFF;
-        text-align: center;
+    /**
+     *  About
+     */
+    .about {
+        padding-bottom: 0;
+
+        .two-column {
+            align-items: flex-start;
+        }
+
+        p span {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .right {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+
+            img {
+                margin-top: 10px;
+                border-radius: 4px;
+            }
+        }
+    }
+
+
+    /**
+     *  Grow with us
+     */
+    
+
+    section.grow-with-us {
+
+        .title {
+            font-family:$font-family-body-bold;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+    
+        .columns {
+            display: flex;
+            margin-top: 50px;
+            align-items: center;
+            justify-content: center;
+    
+            .column:first-child {
+                margin-left: 80px;
+                min-width: 510px;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+
+    /**
+     *  Newsletter
+     */
+    .newsletter {
+        
+        .columns {
+            display: flex;
+            margin-top: 0;
+            align-items: center;
+
+            .column {
+
+                &:first-child {
+                    img {
+                        @include transform(scaleX(-1));
+                    }
+                }
+
+                &:last-child {
+                    width: 600px;
+                }
+
+                img {
+                    display: block;
+                }
+            }
+        }
     }
 
     section .columns {
@@ -144,11 +197,6 @@
                 margin-right: 0;
             }
 
-            img {
-                max-width: 250px;
-                box-shadow: 0 0 20px rgb(0 0 0 / 30%);
-                border-radius: 10px;
-            }
         }
     }
 
@@ -224,6 +272,11 @@
         text-align: center;
         font-size: 22px;
     }
+
+
+    /**
+     *  Columns
+     */
 
 
 
@@ -447,10 +500,6 @@
         width: 190px;
     }
 
-    .explore-partnerships-btn {
-        width: calc(100% - 80px);
-    }
-
     .two-column {
         flex-direction: column;
 
@@ -605,12 +654,45 @@
             width: calc(100% - 40px);
         }
 
+        .newsletter .columns .column:last-child {
+            width: calc(100% - 30px);
+        }
+
+        .newsletter .columns .column:first-child {
+            margin-bottom: 20px;
+
+            img {
+                margin: 40px auto 0;
+            }
+        }
+
          section {
-            padding-bottom: 0;
+            padding-bottom: 0px !important;
+            padding-top: 0px !important;
             margin: 60px auto 40px !important;
 
             &.information {
                 margin-top: 0 !important;
+            }
+
+            &.get-started {
+                padding: 50px 0;
+            }
+
+            &.grow-with-us {
+
+                .columns .column:first-child {
+                    min-width: 100%;
+                    margin-left: 0;
+                }
+            }
+        }
+
+        .newsletter {
+            .columns {
+                .column {
+                    width: 100%;
+                }
             }
         }
 
@@ -619,9 +701,32 @@
             
             .column {
                 margin: 0 auto 90px;
+                text-align: center;
+                width: 100%;
 
                 &:last-child {
                     margin-right: auto;
+                }
+            }
+        }
+
+
+        /**
+         *  About
+         */
+        .about {
+            .right {
+                img {
+                    width: 100%;
+                }
+            }
+        }
+
+        .newsletter {
+            .columns {
+                
+                .column {
+                    width: 100%;
                 }
             }
         }
@@ -642,6 +747,7 @@
 
         .banner-inner {
             width: calc(100% - 20px);
+            margin-bottom: 0;
         }
 
         .main-area {
@@ -664,9 +770,8 @@
 
             .slogan-container {
                 order: 1;
-                margin-bottom: 100px;
                 width: calc(100% - 30px);
-                margin: 0 auto 100px;
+                margin: 0 auto 0px;
             }
         }
 
@@ -683,6 +788,7 @@
             width: 50%;
         }
 
+        
         .team {
             .team-list {
                 margin-top: 40px;
@@ -742,23 +848,8 @@
             }
         }
 
-
-        /**
-         *  FAQ
-         */
-        .faq {
-            h4 {
-                font-size: 20px;
-            }
-
-            ul.faq-section {
-                li {
-                    p {
-                        margin-left: 0;
-                    }
-                }
-            }
-        }
     }
+
+
 
 }

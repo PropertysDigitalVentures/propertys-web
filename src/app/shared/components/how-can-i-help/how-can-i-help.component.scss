@@ -4,8 +4,8 @@
 :host {
 
     section {
-        padding: 75px 0 0;
-        width: 800px;
+        padding: 1px 0 0;
+        width: $wrapper-container-width;
         margin: 0 auto;
     }
 
@@ -44,6 +44,27 @@
         section {
             width: calc(100% - 20px) !important;
             margin: 60px auto 40px;
+            padding-bottom: 40px;
+        }
+
+        .columns {
+            flex-direction: column;
+            position: relative;
+
+            .column {
+                &:last-child {
+                    position: absolute;
+                    opacity: .2;
+                    top: 0;
+
+                    img {
+                        width: 200px;
+                        position: absolute;
+                        top: -50px;
+                        z-index: -1;
+                    }
+                }
+            }
         }
     }
 }

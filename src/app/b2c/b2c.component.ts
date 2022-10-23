@@ -13,21 +13,34 @@ export class B2CComponent {
 
   public selectedDistrict = 1;
   public metaverseImageToShow = 1;
+  public isReadMoreSections = {
+    'social-hub': true,
+    'explorations': true
+  }
   
   constructor(
     private _route: ActivatedRoute,
   ) {}
 
-   /**
+
+  /**
    * Select district
    */
-    selectDistrict(districtId) {
-      this.selectedDistrict = districtId;
-    }
+  selectDistrict(districtId) {
+    this.selectedDistrict = districtId;
+  }
+
+
+  /**
+   * Toggle read more/less section
+   */
+   toggleReadMore(section) {
+    this.isReadMoreSections[section] = !this.isReadMoreSections[section];
+  }
 
 
 
-  async ngOnInit() {
+  ngOnInit() {
     // Determine which element to scroll to
     this._route.fragment.subscribe(fragment => {
 			const element = document.querySelector(`#${fragment}`)

@@ -7,6 +7,8 @@ import { B2CComponent } from './b2c.component';
 import { AppHeaderModule } from '../shared/components/app-header/app-header.module';
 import { AppFooterModule } from '../shared/components/app-footer/app-footer.module';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
+import { HowCanIHelpModule } from '../shared/components/how-can-i-help/how-can-i-help.module';
+import { PartnershipsModule } from '../shared/components/partnerships/partnerships.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
     AppHeaderModule,
     AppFooterModule,
     IvyCarouselModule,
-    // FormsModule,
+    HowCanIHelpModule,
+    PartnershipsModule,
     RouterModule.forChild([{
       path: '',
       component: B2CComponent

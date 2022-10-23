@@ -217,4 +217,64 @@
             }
         }
     }
+
+
+    /** ==============================================================
+ *  Media styles
+    ============================================================== */
+    @media only screen and (min-width: 0px) and (max-width: 700px) {
+        
+        .team {
+            .team-list {
+                margin-top: 40px;
+                margin-bottom: 0;
+               
+
+                li {
+                    flex-direction: column;
+                    padding: 0;
+
+                    a {
+                        flex-direction: column;
+                    }
+    
+                    .image-profile-block {
+                        min-width: 150px;
+                        width: 150px;
+                        height: 150px;
+                        margin: 0 auto 15px auto;
+        
+                        img {
+                            width: 100% !important;
+                        }
+                    }
+        
+                    .team-member-description {
+                        
+                        h3 {
+                            text-align: center;
+                            justify-content: center;
+                            margin-bottom: 7px;
+                        }
+        
+                        .title {
+                            text-align: center;
+                        }
+        
+                        p {
+                            text-align: center;
+                        }
+                    }
+    
+                    img {
+                        width: calc(100% - 50px) !important;
+                        display: block;
+                        margin: 0 auto 20px auto;
+                    }
+                }
+            }
+        }
+
+
+    }
 }

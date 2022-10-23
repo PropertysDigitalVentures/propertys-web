@@ -3,6 +3,16 @@
 
 :host {
 
+    section {
+        padding: 135px 0;
+        width: $wrapper-container-width;
+        margin: 0 auto;
+
+        &.banner {
+            padding-bottom: 0;
+        }
+    }
+
     /**
      *  Banner area
      */
@@ -63,6 +73,115 @@
         width: 100%;
     }
 
+
+    /**
+     *  Versatile
+     */
+    .versatile {
+        padding-top: 60px !important;
+        padding-bottom: 0 !important;
+
+        img {
+            display: block;
+        }
+
+        .logos {
+            display: flex;
+            margin-top: 100px;
+            align-items: center;
+
+            li {
+                margin-right: 25px;
+            }
+        }
+    }
+
+    .section-description {
+        width: 70%;
+        margin: 30px auto;
+    }
+
+    .section-title-container {
+        margin-bottom: 60px;
+    }
+
+    .metaverse {
+        .metaverse-bulletpoints {
+            list-style-type:none;
+            display: flex;
+            margin-top: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            li {
+                width: 400px;
+                display: flex;
+                margin-right: 50px;
+                align-items: center;
+                margin-bottom: 50px;
+
+                img {
+                    margin-right: 40px;
+                    width:80px;
+                }
+                
+            }
+        }
+    }
+    
+
+
+    /**
+     *  Metaverse section
+     */
+     .metaverse-image-toggles {
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        button {
+            padding: 20px 0;
+            background: none;
+            color: $primary-font-color;
+            font-size: 24px;
+            justify-content: flex-start;
+            flex-direction: column;
+            text-align:left;
+            align-items: flex-start;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid rgba(0, 0, 0, 0);
+            width: 100%;
+
+            &.active {
+                border: 2px solid $primary-color;
+                color: $primary-color;
+            }
+
+            &.active-green {
+                border: 2px solid $color-green;
+                color: $color-green;
+            }
+
+            &.active-orange {
+                border: 2px solid $color-orange;
+                color: $color-orange;
+            }
+
+            &.active-yellow {
+                border: 2px solid $color-dark-blue;
+                color: $color-dark-blue;
+            }
+
+            span {
+                font-size: 18px;
+                font-family: $font-family-body;
+            }
+
+        }
+    }
+
     /**
      *  NFT Collection section
      */
@@ -82,12 +201,12 @@
                 height: 30px;
                 border-radius: 30px;
                 background: $primary-color;
-                @include transition(.15s ease-in-out);
                 position: absolute;
                 padding:0;
                 top: 50%;
                 left: 50%;
                 @include transform( translateY(-50%) translateX(-50%));
+                @include transition(.15s ease-in-out);
 
                 &.active {
                     width: 50px;
@@ -101,6 +220,7 @@
                         position: absolute;
                         border-radius: 50px;
                         border:2px solid $primary-color;
+                        @include transform( translateY(-50%) translateX(-50%));
                     }
                 }
 
@@ -183,44 +303,70 @@
         }
     }
 
-    // Columns to show the NFT cards
-    section .columns {
+    /**
+     * 
+     */
+     .columns {
         display: flex;
-        align-items: flex-start;
+        align-items: center;
         justify-content: center;
-        margin-top: 100px;
-        display: none;
 
-        &.show {
-            display: flex;
-        }
+
 
         .column {
-            margin-right: 80px;
-            position: relative;
-            z-index: 1;
-
-            .column-image {
-                position: relative;
-
-                
-            }
-
-            h4 {
-                text-align: center;
-                margin-top: 40px;
-                font-family: $font-family-body;
-            }
-
-            &:last-child {
-                margin-right: 0;
-            }
-
-            img {
-                max-width: 250px;
-                box-shadow: 0 0 20px rgb(0 0 0 / 30%);
-                border-radius: 10px;
+            &:first-child {
+                width: 600px;
+                margin-right: 50px;
             }
         }
     }
+
+
+    /**
+     *  NFT Section
+     */
+    section.nft {
+        // Columns to show the NFT cards
+        .cards {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            margin-top: 100px;
+            display: none;
+
+            &.show {
+                display: flex;
+            }
+
+            .card {
+                margin-right: 80px;
+                position: relative;
+                z-index: 1;
+
+                .card-image {
+                    position: relative;
+
+                    
+                }
+
+                h4 {
+                    text-align: center;
+                    margin-top: 40px;
+                    font-family: $font-family-body;
+                }
+
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                img {
+                    max-width: 250px;
+                    box-shadow: 0 0 20px rgb(0 0 0 / 30%);
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+
+    
 }

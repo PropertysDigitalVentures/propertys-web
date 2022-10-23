@@ -18,14 +18,51 @@
 </section>
 
 
-<!-- Metaverse -->
 
 <!-- Metaverse -->
-<section class="information" id="metaverse">
+<section class="metaverse" id="metaverse">
 	<div class="section-title-container">
-		<div class="section-title">Metaverse</div>
-		<h2>Curated Digital Experiences</h2>
-		<div class="section-description">Fully immerse yourself in a limitless world on Sandbox. With Property's, all of your favorite experiences are in one place.</div>
+		<div class="section-title">Experience a <span class="primary-color-emphasis">Multi-Metaverse</span></div>
+		<h2>See What Our World Has to Offer</h2>
+		<div class="section-description">Our metaverse is an all-encompassing ecosystem made up of several unique digital realms, each designed to entertain and cater to explorers from all walks of life. No matter who you are, there is truly something for everyone.</div>
+	</div>
+
+	<div class="metaverse-bulletpoints">
+		<li>
+			<div class="icon-block"><img src="/assets/images/icons/community.png" width="50" /></div>
+			<div class="bulletpoint-block">
+				<h4>Social Butterflies</h4>
+				<p>Meet & make connections with intriguing strangers, catch up with friends, or simply enjoy time alone shopping, admiring art, & even attending live events.</p>
+			</div>
+		</li>
+		<li>
+			<div class="icon-block"><img src="/assets/images/icons/community.png" width="50" /></div>
+			<div class="bulletpoint-block">
+				<h4>Gamers</h4>
+				<p>Get lost in dynamic gameplay, battle in tournaments with players from across the globe, & even let your creative juices flow by building your very own game.</p>
+			</div>
+		</li>
+		<li>
+			<div class="icon-block"><img src="/assets/images/icons/community.png" width="50" /></div>
+			<div class="bulletpoint-block">
+				<h4>Artists &amp; Creators</h4>
+				<p>Create, sell, & display your work in our metaverse. This one is for the creatives, the power is in your hands.</p>
+			</div>
+		</li>
+		<li>
+			<div class="icon-block"><img src="/assets/images/icons/community.png" width="50" /></div>
+			<div class="bulletpoint-block">
+				<h4>Brands</h4>
+				<p>Advertise & merge your brand with the metaverse - a global melting pot, where thousands from all over the world will gather to meet in one place.</p>
+			</div>
+		</li>
+		<li>
+			<div class="icon-block"><img src="/assets/images/icons/community.png" width="50" /></div>
+			<div class="bulletpoint-block">
+				<h4>VX Builders</h4>
+				<p>Express yourself in our Voxel Zones, designated for VX artists to showcase and sell their artwork.</p>
+			</div>
+		</li>
 	</div>
 	<div class="two-column right-order-0" >
 		<div class="left">
@@ -60,175 +97,285 @@
 </section>
 
 
+<!-- Social hub -->
+<section id="social-hub" class="social-hub">
+	<div class="section-title-container">
+		<div class="section-title">The Sandbox: Property's Social Hub</div>
+		<h2>A Dynamic New Way to Socialize</h2>
+	</div>
+	<div class="two-column right-order-0" >
+		<div class="left">
+			<p>
+				The Social Hub is one of the main digital realms in our ecosystem. This is an entertainment space where creators, gamers, social butterflies, and even curious spectators can cultivate new connections, experiences, and opportunities, or simply just hang out.
+				<br/><br/>
+				The Social Hub is also home to over 25 clubhouses, from the Kaiju Kingz clubhouse, to the Lazy Lions clubhouse. 
+				<span [class]="{'limit-text-height': isReadMoreSections['social-hub']}">These clubhouses give each of our partner Web3 communities their own unique hangout, while also giving them the liberty to visit other clubhouses.
+					<br/><br/>
+					Built in conjunction with LandVault, the Social Hub is the perfect place to “meet your neighbors'' and network with interesting communities, including your own. It also offers an array of entertainment, from arcades, to art exhibitions, and so much more.</span>
+				<button class="read-more-text" (click)="toggleReadMore('social-hub')">Read {{ isReadMoreSections['social-hub'] ? 'More' : 'Less'}}</button>
+			</p>		
+		</div>
+		<div class="right">
+			<img src="/assets/images/metaverse-social.webp" width="500" />
+		</div>
+	</div>
+</section>
+
+
+<!-- Our explorations -->
+<section id="explorations" class="explorations">
+	<div class="section-title-container">
+		<div class="section-title">Our Explorations</div>
+		<h2>Thriving for expansion &amp; growth</h2>
+	</div>
+	<div class="two-column right-order-0" >
+		<div class="left">
+			<img src="/assets/images/metaverse-social.webp" width="500" />
+		</div>
+		<div class="right">
+			<p>
+				In order to fulfill our vision of building a multi-metaverse, we’re constantly exploring platforms to diversify into. One of our latest ventures is 3D metaverse OnCyber, a platform that allows architects to build their own 3D world and experiences.
+				<br/><br/>
+				We’re in the process of building curated, collectible pods on OnCyber for community members to be able to own, joining the likes of architects such as RTFTK and Arqui9.
+				<span [class]="{'limit-text-height': isReadMoreSections['explorations']}">We're also building a shared community space on OnCyber. Here, we’ll showcase and promote work from talented artists, creators and builders in and outside our community, as well as display Property’s’ very own special collectibles, which will be available to purchase or bid on via OpenSea.</span>
+				<button class="read-more-text" (click)="toggleReadMore('explorations')">Read {{ isReadMoreSections['explorations'] ? 'More' : 'Less'}}</button>
+			</p>		
+		</div>
+	</div>
+</section>
+
+
+<!-- Newsletter -->
+<section class="newsletter full-width-container" id="subscribe">
+	<div class="columns">
+		<div class="column">
+			<h2>Sign Up & <span class="primary-color-emphasis">Earn 100 in Free $BRIX</span></h2>
+			<p>Our first 1000 newsletter subs will earn 100 $BRIX, as well as access to whitelist opportunities & giveaways.</p>
+			<a class="cta-btn" target="_blank" href="https://bit.ly/newsletter-optin-homepage">Subscribe</a>
+		</div>
+		<div class="column">
+			<img src="/assets/images/brix-image.webp" width="300" />
+		</div>
+	</div>
+</section>
+
+
 
 <!-- NFT-->
-<div class="full-width-container">
-	<section class="information" id="nft">
-		<div class="section-title-container">
-			<div class="section-title">Our NFT Collection</div>
-			<h2>Collect Properties &amp; Earn $BRIX</h2>
-		</div>
-		<ul class="district-list-selector">
-			<li (mouseover)="selectDistrict(1)"><button class="sandy-secrets" [ngClass]="{ 'active': selectedDistrict === 1}" ></button></li>
-			<li (mouseover)="selectDistrict(2)"><button class="apricot-alley" [ngClass]="{ 'active': selectedDistrict === 2}"></button></li>
-			<li (mouseover)="selectDistrict(3)"><button class="buenas-bananas" [ngClass]="{ 'active': selectedDistrict === 3}" ></button></li>
-			<li (mouseover)="selectDistrict(4)"><button class="basil-borough" [ngClass]="{ 'active': selectedDistrict === 4}"></button></li>
-			<li (mouseover)="selectDistrict(5)"><button class="grapey-gardens" [ngClass]="{ 'active': selectedDistrict === 5}"></button></li>
-			<li (mouseover)="selectDistrict(6)"><button class="starry-skies" [ngClass]="{ 'active': selectedDistrict === 6}" ></button></li>
-			<li (mouseover)="selectDistrict(7)"><button class="elon-estates" [ngClass]="{ 'active': selectedDistrict === 7}"></button></li>
-			<li (mouseover)="selectDistrict(8)"><button class="special" [ngClass]="{ 'active': selectedDistrict === 8}"></button></li>
-		</ul>
-		<!-- District: 1 -->
-		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 1}">
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/beige-bay-1.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/beige-bay-2.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/beige-bay-3.webp" width="250" />
-				</div>
+<section class="nft ull-width-container" id="nft">
+	<div class="section-title-container">
+		<div class="section-title">Our NFT Collection</div>
+		<h2>Collect Properties &amp; Earn $BRIX</h2>
+	</div>
+	<ul class="district-list-selector">
+		<li (mouseover)="selectDistrict(1)"><button class="sandy-secrets" [ngClass]="{ 'active': selectedDistrict === 1}" ></button></li>
+		<li (mouseover)="selectDistrict(2)"><button class="apricot-alley" [ngClass]="{ 'active': selectedDistrict === 2}"></button></li>
+		<li (mouseover)="selectDistrict(3)"><button class="buenas-bananas" [ngClass]="{ 'active': selectedDistrict === 3}" ></button></li>
+		<li (mouseover)="selectDistrict(4)"><button class="basil-borough" [ngClass]="{ 'active': selectedDistrict === 4}"></button></li>
+		<li (mouseover)="selectDistrict(5)"><button class="grapey-gardens" [ngClass]="{ 'active': selectedDistrict === 5}"></button></li>
+		<li (mouseover)="selectDistrict(6)"><button class="starry-skies" [ngClass]="{ 'active': selectedDistrict === 6}" ></button></li>
+		<li (mouseover)="selectDistrict(7)"><button class="elon-estates" [ngClass]="{ 'active': selectedDistrict === 7}"></button></li>
+		<li (mouseover)="selectDistrict(8)"><button class="special" [ngClass]="{ 'active': selectedDistrict === 8}"></button></li>
+	</ul>
+	<!-- District: 1 -->
+	<div class="cards" [ngClass]="{ 'show': selectedDistrict === 1}">
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/beige-bay-1.webp" width="250" />
 			</div>
 		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/beige-bay-2.webp" width="250" />
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/beige-bay-3.webp" width="250" />
+			</div>
+		</div>
+	</div>
 
-		<!-- District: 2 -->
-		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 2}">
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/orange-oasis-1.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/orange-oasis-2.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/orange-oasis-3.webp" width="250" />
-				</div>
+	<!-- District: 2 -->
+	<div class="cards" [ngClass]="{ 'show': selectedDistrict === 2}">
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/orange-oasis-1.webp" width="250" />
 			</div>
 		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/orange-oasis-2.webp" width="250" />
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/orange-oasis-3.webp" width="250" />
+			</div>
+		</div>
+	</div>
 
-		<!-- District: 3 -->
-		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 3}">
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/yellow-yards-1.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/yellow-yards-2.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/yellow-yards-3.webp" width="250" />
-				</div>
+	<!-- District: 3 -->
+	<div class="cards" [ngClass]="{ 'show': selectedDistrict === 3}">
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/yellow-yards-1.webp" width="250" />
 			</div>
 		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/yellow-yards-2.webp" width="250" />
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/yellow-yards-3.webp" width="250" />
+			</div>
+		</div>
+	</div>
 
-		<!-- District: 4 -->
-		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 4}">
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/green-grove-1.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/green-grove-2.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/green-grove-3.webp" width="250" />
-				</div>
+	<!-- District: 4 -->
+	<div class="cards" [ngClass]="{ 'show': selectedDistrict === 4}">
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/green-grove-1.webp" width="250" />
 			</div>
 		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/green-grove-2.webp" width="250" />
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/green-grove-3.webp" width="250" />
+			</div>
+		</div>
+	</div>
 
-		<!-- District: 5 -->
-		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 5}">
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/purple-palms-1.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/purple-palms-2.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/purple-palms-3.webp" width="250" />
-				</div>
+	<!-- District: 5 -->
+	<div class="cards" [ngClass]="{ 'show': selectedDistrict === 5}">
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/purple-palms-1.webp" width="250" />
 			</div>
 		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/purple-palms-2.webp" width="250" />
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/purple-palms-3.webp" width="250" />
+			</div>
+		</div>
+	</div>
 
-		<!-- District: 6 -->
-		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 6}">
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/starry-skies-1.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/starry-skies-2.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/starry-skies-3.webp" width="250" />
-				</div>
+	<!-- District: 6 -->
+	<div class="cards" [ngClass]="{ 'show': selectedDistrict === 6}">
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/starry-skies-1.webp" width="250" />
 			</div>
 		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/starry-skies-2.webp" width="250" />
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/starry-skies-3.webp" width="250" />
+			</div>
+		</div>
+	</div>
 
-		<!-- District: 7 -->
-		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 7}">
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/mars-1.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/mars-2.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/mars-3.webp" width="250" />
-				</div>
+	<!-- District: 7 -->
+	<div class="cards" [ngClass]="{ 'show': selectedDistrict === 7}">
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/mars-1.webp" width="250" />
 			</div>
 		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/mars-2.webp" width="250" />
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/mars-3.webp" width="250" />
+			</div>
+		</div>
+	</div>
 
-		<!-- District: Special -->
-		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 8}">
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/special-1.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/special-2.webp" width="250" />
-				</div>
-			</div>
-			<div class="column">
-				<div class="column-image">
-					<img src="/assets/images/cards/special-3.webp" width="250" />
-				</div>
+	<!-- District: Special -->
+	<div class="cards" [ngClass]="{ 'show': selectedDistrict === 8}">
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/special-1.webp" width="250" />
 			</div>
 		</div>
-	</section>
-</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/special-2.webp" width="250" />
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-image">
+				<img src="/assets/images/cards/special-3.webp" width="250" />
+			</div>
+		</div>
+	</div>
+	<p>
+		Property’s is an NFT collection consisting of 6,000 vivid and unique virtual properties that are an ode to historical and modern architecture. This collection serves as a unique collecting game, where holders collect properties that yield our utility token $BRIX, giving them creative control over the Property’s ecosystem.
+	</p>
+	<div class="columns">
+		<div class="column">
+			<div class="title">$BRIX Enables You To:</div>
+			<ul>
+				<li>Enjoy the digital realms in our metaverse</li>
+				<li>Mint exclusive future collections</li>
+				<li>Make purchases in our marketplace</li>
+				<li>Receive monthly $BRIX airdrops</li>
+				<li>Add upgrades to your properties</li>
+				<li>And much more to come!</li>
+			</ul>
+		</div>
+		<div class="column">
+			<img src="/assets/images/brix-tilted.webp" width="400" />
+		</div>
+	</div>
+	<div>Learn more about how you can optimize your properties & Brix income.</div>
+	<button class="cta-btn">Learn more</button>
+</section>
+
+
+<!-- Versatility -->
+<section class="versatile full-width-container" id="versatile">
+	<div class="columns">
+		<div class="column">
+			<h2>Conveniently <span class="primary-color-emphasis">Versatile</span></h2>
+			<p>We build on top of layer 2 blockchain-based metaverse platforms.</p>
+			
+			<ul class="logos">
+				<li><img src="/assets/images/the-sandbox-logo.png" width="150" /></li>
+				<li><img src="/assets/images/decentraland-logo.png" width="150" /></li>
+				<li><img src="/assets/images/nft-worlds-logo.png" width="150" /></li>
+			</ul>
+		</div>
+		<div class="column">
+			<img src="/assets/images/peter-property-3d.webp" width="200" />
+		</div>
+	</div>
+</section>
   
+<!-- Partnerships -->
+<app-partnerships></app-partnerships>
+
+<!-- How can I help? -->
+<app-how-can-i-help id="help"></app-how-can-i-help>
+
+<!-- Footer -->
+<propertys-footer></propertys-footer>
