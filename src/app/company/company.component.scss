@@ -3,6 +3,93 @@
 
 :host {
 
+    section {
+        padding: 135px 0;
+        width: $wrapper-container-width;
+        margin: 0 auto;
+
+        &.banner {
+            padding-bottom: 0;
+        }
+    }
+
+    .section-title-container {
+        margin-bottom: 80px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    /**
+     *  Banner area
+     */
+     .banner {
+        width: 100%;
+        height: 620px;
+        padding-top: 170px;
+        margin-top: 0 !important;
+        position: relative;
+        display: flex;
+    }
+
+    .banner-inner {
+        width: $wrapper-container-width;
+        margin: 100px auto 50px;
+        position: relative;
+    }
+
+    .promo-image {
+        position: absolute;
+        right: 0;
+        top: calc(50% - 80px);
+        @include transform(translateY(-50%));
+    }
+
+    .slogan-container {
+        position: absolute;
+        top: calc(50% - 80px);
+        width: 530px;
+        @include transform(translateY(-50%));
+
+        .slogan-text {
+            font-family: $font-family-body-bold;
+            font-size: 40px;
+            line-height:110%;
+            margin-bottom: 30px;
+            display: flex;
+
+            p {
+                font-size: 18px;
+                line-height: 150%;
+                font-family: $font-family-body;
+            }
+
+            .highlighted {
+                color: $primary-color;
+                position: relative;
+            }
+
+            .icon {
+                width: 100px;
+                display: block;
+                margin-right: 10px;
+            }
+
+        }
+
+        .cta-btn {
+            margin-top: 20px;
+        }
+
+    }
+
+    .full-width-container {
+        background: $full-width-content-bg;
+        width: 100%;
+    }
+    
+
     /**
     *  Team section
     */
@@ -218,13 +305,125 @@
         }
     }
 
+    /**
+     *  Grow with us
+     */
+    .careers {
+        .title {
+            font-family:$font-family-body-bold;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+    
+        .columns {
+            display: flex;
+            margin-top: 50px;
+            align-items: center;
+            justify-content: center;
+    
+            .column:first-child {
+                margin-right: 80px;
+                margin-left: 80px;
+                min-width: 510px;
+
+                img {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+
+    /**
+     *  Philosophy
+     */
+    .philosophy {
+        p {
+            text-align: center;
+            width: 800px;
+            margin: 0 auto 30px;
+        }
+    }
+
 
     /** ==============================================================
- *  Media styles
+    *  Media styles
     ============================================================== */
     @media only screen and (min-width: 0px) and (max-width: 700px) {
+
+        section {
+            width: calc(100% - 40px);
+            padding: 50px 0;
+        }
+
+        .section-title-container {
+            margin-bottom: 40px;
+        }
+
+        /**
+        *  Banner
+        */
+        .banner {
+            margin-top: 0;
+            padding-top: 0;
+            height: initial;
+        }
+
+        .banner-inner {
+            width: calc(100% - 20px);
+            margin-bottom: 0;
+        }
+
+        .main-area {
+            display: flex;
+            flex-direction: column;
+
+            .promo-image {
+                order: 0;
+                width: 100%;
+                margin-bottom: 40px;
+                right: 0;
+
+                img {
+                    width: 80%;
+                    margin: 0 auto 30px;
+                    display: block;
+                    text-align: center;
+                }
+            }
+
+            .slogan-container {
+                order: 1;
+                width: calc(100% - 30px);
+                margin: 0 auto 0px;
+                text-align: center;
+
+                .slogan-text {
+                    font-size: 34px;
+                    min-height: 75px;
+
+                    .icon {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+
+        .slogan-container, .promo-image {
+            position: relative;
+            top: initial;
+            left: initial;
+            transform: none;
+        }
         
+
+        /**
+         *  Team Section
+         */
         .team {
+            width: calc(100% - 40px);
+
             .team-list {
                 margin-top: 40px;
                 margin-bottom: 0;
@@ -233,6 +432,7 @@
                 li {
                     flex-direction: column;
                     padding: 0;
+                    margin-right: 0;
 
                     a {
                         flex-direction: column;
@@ -270,6 +470,36 @@
                         width: calc(100% - 50px) !important;
                         display: block;
                         margin: 0 auto 20px auto;
+                    }
+                }
+            }
+        }
+
+
+        /**
+         *  Philosophy
+         */
+        .philosophy {
+            p {
+                width: 100%;
+            }
+        }
+
+
+        /**
+         *  Creers
+         */
+        .careers {
+            .columns {
+                flex-direction: column;
+
+                .column {
+                    margin-left: 0;
+                    text-align: center;
+
+                    &:first-child {
+                        margin: 0;
+                        min-width: 100%;
                     }
                 }
             }

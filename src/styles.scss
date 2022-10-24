@@ -54,14 +54,13 @@ input {
 }
 
 .cta-btn {
-    display: block;
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 4px;
-    width: 150px;
     justify-content: center;
     align-items: center;
     margin: 0;
-    display: flex;
+    font-size: 20px;
+    display: inline-flex;
     font-family: $font-family-body-bold;
     background: $primary-color;
     color: #FFF;

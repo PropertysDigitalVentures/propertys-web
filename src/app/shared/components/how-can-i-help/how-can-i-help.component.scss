@@ -51,16 +51,23 @@
             flex-direction: column;
             position: relative;
 
+            .cta-btn {
+                margin: 0;
+            }
+
             .column {
                 &:last-child {
                     position: absolute;
                     opacity: .2;
                     top: 0;
+                    width: 100%;
+                    margin-left: 0;
 
                     img {
-                        width: 200px;
+                        width: 190px;
                         position: absolute;
-                        top: -50px;
+                        top: -36px;
+                        right: 0;
                         z-index: -1;
                     }
                 }

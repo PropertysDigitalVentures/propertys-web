@@ -73,5 +73,9 @@
             width: calc(100% - 20px) !important;
             margin: 60px auto 40px;
         }
+
+        section.partnerships {
+            min-height: initial;
+        }
     }
 }

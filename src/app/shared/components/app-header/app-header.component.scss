@@ -90,7 +90,7 @@
                 font-family: $font-family-heading;
                 font-size: 30px;
                 position: absolute;
-                top: 16px;
+                top: 12px;
                 left: 50%;
                 @include transform(translateX(-50%));
             }
@@ -136,16 +136,17 @@
 
                 &.opensea path {
                     fill: $primary-color;
+                    @include transition(.15s ease-in-out);
                 }
 
                 &.opensea:hover {
                     path {
-                        fill: $primary-bg-color;
+                        fill: $primary-color-light;
                     }
                 }
 
                 &:hover {
-                    color: $primary-bg-color;
+                    color: $primary-color-light;
                 }
             }
         }
@@ -155,9 +156,9 @@
             align-items: center;
 
             li {
-                min-width: 110px;
                 position: relative;
                 cursor: pointer;
+                margin-right: 30px;
 
                 &:hover a {
                     color: $primary-color;

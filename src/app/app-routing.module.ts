@@ -11,11 +11,11 @@ const routes: Routes = [
     loadChildren: () => import('./terms/terms.module').then(m => m.TermsModule)
   },
   {
-    path: 'b2c',
+    path: 'community',
     loadChildren: () => import('./b2c/b2c.module').then(m => m.B2CModule)
   },
   {
-    path: 'b2b',
+    path: 'business',
     loadChildren: () => import('./b2b/b2b.module').then(m => m.B2BModule)
   },
   {

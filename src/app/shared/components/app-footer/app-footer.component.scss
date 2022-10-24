@@ -75,6 +75,10 @@
             a {
                 width: 30px;
                 height: 30px;
+
+                &:hover {
+                    color: $primary-color-light;
+                }
             }
 
             &:last-child {
@@ -91,8 +95,10 @@
 
                 path {
                     fill: $primary-color;
+                    @include transition(.15s ease-in-out);
                 }
             }
+            
 
             &.opensea:hover {
                 path {
