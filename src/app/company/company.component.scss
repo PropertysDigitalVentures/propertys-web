@@ -339,16 +339,24 @@
      */
     .news {
         .news-list {
-            width: 500px;
+            width: 800px;
             margin: 0 auto;
 
-            li {
+            &>li {
                 margin-bottom: 60px;
                 padding-bottom: 30px;
                 position: relative;
 
+                .date {
+                    font-size: 14px;
+                    opacity: .5;
+                }
+
                 h4 {
                     @include transition(.15s ease-in-out);
+                    display: flex;
+
+                    
                 }
 
                 &:after {
@@ -383,7 +391,7 @@
 
                     img {
                         object-fit: cover;
-                        width: 80px;
+                        width: 260px;
                         border-radius: 4px;
                         margin-right: 40px;
                     }
@@ -391,6 +399,22 @@
                     p {
                         margin: 0;
                     }
+                }
+            }
+
+            ul.categories {
+                display: flex;
+                align-items: center;
+                margin-top: 15px;
+                flex-wrap: wrap;
+
+                li {
+                    border-radius: 20px;
+                    background: rgba(0, 0, 0, .05);
+                    padding: 5px 15px;
+                    font-size: 16px;
+                    margin-right: 10px;
+                    margin-bottom: 10px;
                 }
             }
         }

@@ -262,11 +262,17 @@
 	<div class="no-results" *ngIf="mediumPosts.length == 0">No news to share right now.</div>
 	<ul class="news-list" *ngIf="mediumPosts.length > 0">
 		<li *ngFor="let post of mediumPosts">
-			<a target="_blank" [href]="post['url']">
-				<img src="{{post['imageUrl']}}" width="70" />
+			<a target="_blank" [href]="post['link']">
+				<img src="{{post['thumbnail']}}" width="70" />
 				<div class="body">
-					<h4>{{post['name']}}</h4>
-					<p>{{post['description']}}</p>
+					<div class="date">{{post['pubDate'] | date: 'MMM d, y'}}</div>
+					<h4>{{post['title']}} </h4>
+					<ul class="categories">
+						<li *ngFor="let category of post['categories']">
+							{{category.replace('-', ' ')}}
+						</li>
+					</ul>
+					<!-- <p>{{post['description']}}</p> -->
 				</div>
 			</a>
 		</li>
