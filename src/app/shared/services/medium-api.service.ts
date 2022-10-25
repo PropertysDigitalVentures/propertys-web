@@ -18,6 +18,10 @@ export class MediumApiService {
     async getMediumPosts() {
         let result = await this.http.get(`${environment.netlifyFnServer}get-medium-posts`).toPromise();
         console.log('result', result);
-        return result.data.splice(0, 4) || [];
+        if(result.data) {
+            return result.data.splice(0, 4);
+        } else {
+            return [];
+        }
     }
 }
