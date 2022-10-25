@@ -447,6 +447,8 @@
         *  News
         */
         .news {
+            padding-bottom: 0;
+
             .news-list {
                 width: 800px;
                 margin: 0 auto;
@@ -457,7 +459,6 @@
 
                     &:last-child {
                         margin-bottom: 0;
-                        padding-bottom: 0;
                     }
 
                     a {
@@ -467,7 +468,6 @@
                         img {
                             margin-bottom: 20px;
                             margin-right: 0;
-                            width: 100%;
                         }
                     }
                 }
