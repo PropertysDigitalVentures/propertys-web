@@ -12,6 +12,8 @@ declare let twq;
 
 
 export class AppComponent {
+  public menuToggled = false;
+
   constructor(public router: Router) {
 
     this.router.events.subscribe(event => {
@@ -21,5 +23,14 @@ export class AppComponent {
         twq('track','PageView');
       }
     });
+  }
+
+
+  
+  /**
+   * Toggle the menu content
+   */
+   toggleContentHidden(value) {
+    this.menuToggled = value
   }
 }

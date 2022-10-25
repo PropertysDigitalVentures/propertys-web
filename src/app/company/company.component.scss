@@ -335,6 +335,69 @@
 
 
     /**
+     *  News
+     */
+    .news {
+        .news-list {
+            width: 500px;
+            margin: 0 auto;
+
+            li {
+                margin-bottom: 60px;
+                padding-bottom: 30px;
+                position: relative;
+
+                h4 {
+                    @include transition(.15s ease-in-out);
+                }
+
+                &:after {
+                    content: '';
+                    height: 1px;
+                    width: 200px;
+                    background: #AAA;
+                    opacity: .5;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    @include transform(translateX(-50%));
+                }
+
+                a {
+                    display: flex;
+                    text-align: left;
+                    align-items: center;
+                    color: $primary-font-color;
+
+                    &:hover {
+                        h4 {
+                            color: $primary-color-light;
+                        }
+                    }
+
+                    .body {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                    }
+
+                    img {
+                        object-fit: cover;
+                        width: 80px;
+                        border-radius: 4px;
+                        margin-right: 40px;
+                    }
+
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+
+
+    /**
      *  Philosophy
      */
     .philosophy {
@@ -481,6 +544,16 @@
          */
         .philosophy {
             p {
+                width: 100%;
+            }
+        }
+
+
+        /**
+         *  News list
+         */
+        .news {
+            .news-list {
                 width: 100%;
             }
         }

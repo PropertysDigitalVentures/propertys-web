@@ -1,3 +1,5 @@
+[dev]
+  targetPort = 1337
 [[headers]]
   for = "/*"
   [headers.values]

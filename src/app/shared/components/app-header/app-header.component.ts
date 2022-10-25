@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
+import { Component, OnDestroy, OnInit, HostListener, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { SmartContractCoreService } from '../../services/smart-contract-core.service';
 import { EventMessengerService } from '../../services/event-messenger.service';
@@ -10,6 +10,7 @@ import { EventMessengerService } from '../../services/event-messenger.service';
     styleUrls: ['./app-header.component.scss']
 })
 export class AppHeaderComponent implements OnInit, OnDestroy {
+    @Output() toggleMenu = new EventEmitter<boolean>();
     showNavMobile: any = false;
     public accounts: any = [];
     public address: any = '';
@@ -61,7 +62,7 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
      *   Show/Hide mobile nav
      */
     toggleMobileNav(toggle?) {
-
+      
       // Make sure this is false
       if(toggle !== undefined) {
         if(!toggle) {
@@ -70,6 +71,8 @@ export class AppHeaderComponent implements OnInit, OnDestroy {
       } else {
         this.showNavMobile = !this.showNavMobile;
       }
+
+      this.toggleMenu.emit(this.showNavMobile);
     }
 
 

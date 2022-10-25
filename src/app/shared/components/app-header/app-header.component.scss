@@ -437,7 +437,9 @@
 
                     &.header-inner-active {
                         display: block;
-                        margin-top:40px;
+                        margin-top: 20px;
+                        height: calc(100% - 60px);
+                        overflow: auto;
 
                         svg {
                             fill: $primary-font-color;
@@ -465,11 +467,18 @@
                         justify-content: center;
                         margin-left: auto;
 
+                        &> li > a {
+                            margin-bottom: 20px;
+                            font-family: $font-family-body-bold;
+                        }
+
                         li {
                             margin-bottom: 15px;
                             margin-left: 0;
                             text-align: center;
                             display: flex;
+                            flex-direction: column;
+                            margin-right: 0;
                             justify-content: center;
 
                             a {

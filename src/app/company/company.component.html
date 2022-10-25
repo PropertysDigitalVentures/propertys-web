@@ -1,5 +1,4 @@
 <section class="banner">
-	<propertys-header></propertys-header>
 	<div class="banner-inner">
 		<div class="main-area">
 			<div class="slogan-container">
@@ -254,18 +253,23 @@
 	</div>
 </section>
 
-
+<!-- News -->
 <section class="news" id="news">
 	<div class="section-title-container">
 		<div class="section-title">Our Blog</div>
 		<h2>Learn More About Property's</h2>
-		<ul class="news-list">
-			<li>
-				<h4></h4>
-				<p></p>
-			</li>
-		</ul>
 	</div>
+	<ul class="news-list">
+		<li *ngFor="let post of mediumPosts">
+			<a target="_blank" [href]="post['url']">
+				<img src="{{post['imageUrl']}}" width="70" />
+				<div class="body">
+					<h4>{{post['name']}}</h4>
+					<p>{{post['description']}}</p>
+				</div>
+			</a>
+		</li>
+	</ul>
 </section>
 
 
@@ -293,6 +297,3 @@
 
 <!-- How can I help -->
 <app-how-can-i-help id="contact"></app-how-can-i-help>
-
-<!-- Footer -->
-<propertys-footer></propertys-footer>

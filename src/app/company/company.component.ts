@@ -1,6 +1,7 @@
 // @ts-nocheck
 import { Component, HostListener} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { MediumApiService } from '../shared/services/medium-api.service';
 
 @Component({
   selector: 'app-company',
@@ -11,8 +12,11 @@ export class CompanyComponent {
   @HostListener('window:scroll', ['$event']) // for window scroll events
   onScroll(event) {}
 
+  public mediumPosts = [];
+
   constructor(
     private _route: ActivatedRoute,  
+    private mediumApiService: MediumApiService
   ) {}
 
 
@@ -35,6 +39,9 @@ export class CompanyComponent {
       }, 0);
 			
     }) 
+
+    // Posts from Medium API
+    this.mediumPosts = await this.mediumApiService.getMediumPosts();
   }
 
 }

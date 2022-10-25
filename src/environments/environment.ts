@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   chainId: 1,
-  netlifyFnServer: 'https://propertys.xyz/.netlify/functions/',
+  netlifyFnServer: 'http://localhost:8888/.netlify/functions/',
+  // netlifyFnServer: 'https://propertys.xyz/.netlify/functions/',
   apiUrl: 'https://lit-island-00614.herokuapp.com/api/v1',
   moralisAppId: "dGameje8mQgxmoSUgOoaUgcuIFhNzVMlWrIJjSke",
   moralisServerUrl: "https://8oqk6qzhmmsf.usemoralis.com:2053/server",
