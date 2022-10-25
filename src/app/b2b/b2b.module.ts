@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { B2BComponent } from './b2b.component';
+import { AppFooterModule } from '../shared/components/app-footer/app-footer.module';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,7 @@ import { B2BComponent } from './b2b.component';
   imports: [
     CommonModule,
     FontAwesomeModule,
+    AppFooterModule,
     RouterModule.forChild([{
       path: '',
       component: B2BComponent

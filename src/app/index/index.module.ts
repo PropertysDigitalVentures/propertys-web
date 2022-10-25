@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { IndexComponent } from './index.component';
+import { AppFooterModule } from '../shared/components/app-footer/app-footer.module';
 import { HowCanIHelpModule } from '../shared/components/how-can-i-help/how-can-i-help.module';
 import { PartnershipsModule } from '../shared/components/partnerships/partnerships.module';
 import { MintDialogModule } from '../shared/dialogs/mint-dialog/mint-dialog.module';
@@ -17,6 +18,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
   imports: [
     CommonModule,
     FontAwesomeModule,
+    AppFooterModule,
     MintDialogModule,
     PartnershipsModule,
     HowCanIHelpModule,

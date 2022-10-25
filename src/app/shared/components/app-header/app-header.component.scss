@@ -382,10 +382,6 @@
     
     
     @media only screen and (min-width: 0px) and (max-width: 900px) {
-        
-        header.sticky .social-links li a svg path {
-            fill: $primary-font-color;
-        }
 
         .show-mobile-logo {
             display: none !important;
@@ -453,9 +449,14 @@
                         justify-content: center;
                         flex-direction: row;
                         margin-left: 0;
+                        margin-top: 15px;
 
                         li {
                             margin-bottom: 20px;
+
+                            svg path {
+                                fill: $primary-font-color;
+                            }
                         }
                     }
 
@@ -482,7 +483,7 @@
                             justify-content: center;
 
                             a {
-                                &:hover {
+                                &:hover, &.active {
                                     color: $primary-color !important;
                                 }
 

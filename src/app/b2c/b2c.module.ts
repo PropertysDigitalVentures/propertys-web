@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { B2CComponent } from './b2c.component';
+import { AppFooterModule } from '../shared/components/app-footer/app-footer.module';
 import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { HowCanIHelpModule } from '../shared/components/how-can-i-help/how-can-i-help.module';
 import { PartnershipsModule } from '../shared/components/partnerships/partnerships.module';
@@ -15,6 +16,7 @@ import { PartnershipsModule } from '../shared/components/partnerships/partnershi
   imports: [
     CommonModule,
     FontAwesomeModule,
+    AppFooterModule,
     IvyCarouselModule,
     HowCanIHelpModule,
     PartnershipsModule,

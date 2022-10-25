@@ -18,7 +18,7 @@
                     <img src="/assets/images/logo-condensed.png" width="60" alt="Property's" />
                 </a>
             </li>
-            <li><a [routerLink]="['/']" (click)="toggleMobileNav(false)">Home<i class="fas fa-chevron-down"></i></a>
+            <li><a (click)="toggleMobileNav(false)" [routerLink]="['/']" (click)="toggleMobileNav(false)">Home<i class="fas fa-chevron-down"></i></a>
                 <div class="dropdown-container">
                     <ul class="dropdown-menu">
                         <li><a [routerLink]="['/']" (click)="toggleMobileNav(false)" fragment="get-started" href="#">Get Started</a></li>
@@ -30,7 +30,7 @@
                 </div>
             </li>
             
-            <li><a  [routerLink]="['/community']">Community <i class="fas fa-chevron-down"></i></a>
+            <li><a (click)="toggleMobileNav(false)" [routerLinkActive]="'active'" [routerLink]="['/community']">Community <i class="fas fa-chevron-down"></i></a>
                 <div class="dropdown-container">
                     <ul class="dropdown-menu">
                         <li><a [routerLink]="['/community']" (click)="toggleMobileNav(false)" fragment="metaverse" href="#">Metaverse</a></li>
@@ -41,7 +41,7 @@
                     </ul>
                 </div>
             </li>
-            <li><a [routerLink]="['/business']">Business <i class="fas fa-chevron-down"></i></a>
+            <li><a (click)="toggleMobileNav(false)" [routerLinkActive]="'active'" [routerLink]="['/business']">Business <i class="fas fa-chevron-down"></i></a>
                 <div class="dropdown-container">
                     <ul class="dropdown-menu">
                         <li><a [routerLink]="['/business']" (click)="toggleMobileNav(false)" fragment="services" href="#">Services</a></li>
@@ -51,7 +51,7 @@
                     </ul>
                 </div>
             </li>
-            <li><a [routerLink]="['/company']">Company &amp; Careers <i class="fas fa-chevron-down"></i></a>
+            <li><a (click)="toggleMobileNav(false)" [routerLinkActive]="'active'" [routerLink]="['/company']">Company &amp; Careers <i class="fas fa-chevron-down"></i></a>
                 <div class="dropdown-container">
                     <ul class="dropdown-menu">
                         <li><a [routerLink]="['/company']" (click)="toggleMobileNav(false)" fragment="team" href="#">Team</a></li>
