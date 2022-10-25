@@ -259,7 +259,8 @@
 		<div class="section-title">Our Blog</div>
 		<h2>Learn More About Property's</h2>
 	</div>
-	<ul class="news-list">
+	<div class="no-results" *ngIf="mediumPosts.length == 0">No news to share right now.</div>
+	<ul class="news-list" *ngIf="mediumPosts.length > 0">
 		<li *ngFor="let post of mediumPosts">
 			<a target="_blank" [href]="post['url']">
 				<img src="{{post['imageUrl']}}" width="70" />

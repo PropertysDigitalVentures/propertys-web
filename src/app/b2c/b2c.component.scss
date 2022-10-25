@@ -73,6 +73,23 @@
         width: 100%;
     }
 
+    /**
+    *  Social hub
+    */
+    .social-hub {
+        .two-column {
+
+            .left {
+                width: initial;
+            }
+            
+            img {
+                display: block;
+                margin: 0 auto;
+            }
+        }
+    }
+
 
     /**
      *  Versatile
@@ -580,6 +597,8 @@
                 }
             }
         }
+
+
 
 
         /**

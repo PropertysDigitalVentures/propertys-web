@@ -27,6 +27,10 @@ input {
     font-family: $font-family-body;
 }
 
+.no-results {
+    text-align: center;
+}
+
 .carousel {
     height: 140px !important;
     z-index: 2 !important;
