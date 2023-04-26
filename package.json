@@ -29,6 +29,7 @@
     "angular-google-tag-manager": "^1.4.4",
     "angular-responsive-carousel": "^2.1.2",
     "axios": "^0.24.0",
+    "bottleneck": "^2.19.5",
     "crypto-js": "^4.1.1",
     "date-fns": "^2.23.0",
     "ethers": "^5.4.7",

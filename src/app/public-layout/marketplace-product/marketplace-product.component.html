@@ -1,0 +1,102 @@
+<propertys-header></propertys-header>
+	<div class="wrapper">
+		<div class="top">
+			<h1>Productpage</h1>
+
+		</div>
+
+		<div *ngFor="let item of items">
+
+		<!-- Product Information -->
+			<div class="product-container">
+
+				<div class="product-info newProduct box">
+					<div class="">
+						<img class="image" src="{{item['image']}}" width="300" />
+						<div class="properties">
+							<div class="title"><i class="fas fa-list"></i>Description & Information</div>
+		
+							<p class="text">{{item["description"]}}</p>
+		
+							<div class="token-data-container">
+								<ul>
+									<li class="descitem">
+										<div class="type">Token ID</div>
+										<div class="data">{{item["tokenId"]}}</div>
+									</li>
+									<li class="descitem">
+										<div class="type">Contract Address</div>
+										<a href="{{item['etherurl']}}" target="_blank" class="data">{{item["contPrint"]}} <i class="fas fa-arrow-up-right-from-square"></i></a>
+									</li>
+									<li class="descitem">
+										<div class="type">Token Standard</div>
+										<div class="data">ERC-1155</div>
+									</li>
+									<li class="descitem">
+										<div class="type">Blockchain</div>
+										<div class="data">Polygon</div>
+									</li>
+								</ul>
+							</div>
+							
+						</div>
+					</div>
+					<div class="buyCont">
+						<h2 class="product-name">{{item["name"]}}</h2>
+
+						<div class="price-container">
+							<ul class="prices-list">
+								<li id="brix" class="">{{item["priceBrix"]}} BRIX</li>
+								<li id="usd" class="hidden">{{item["priceUsd"]}} USDC</li>
+								<li id="eth"  class="hidden">{{item["priceEth"]}} WETH</li>
+								<li id="matic" class="hidden">{{item["priceMatic"]}} Matic</li>
+							</ul>
+							<div class="">
+								<ul class="iconbox">
+									<button id="brixicon" (click)="switchCurrency(1)" class="iconBtn" ><img src="/assets/images/brixicon.png" class="icon" /></button>
+									<button id="maticicon" (click)="switchCurrency(2)" class="iconBtn darken" ><img src="/assets/images/maticicon.png" class="icon" /></button>
+									<button id="ethicon" (click)="switchCurrency(3)" class="iconBtn darken" ><img src="/assets/images/ethicon.png" class="icon"  /></button>
+									<button id="usdicon" (click)="switchCurrency(4)" class="iconBtn darken" ><img src="/assets/images/usdcicon.png" class="icon"  /></button>
+								</ul>
+							</div>
+							
+						</div>
+						<div class="amountBox">
+							<input id="amount" type="number" class="inputer" value={{amount}} (change)="switchAmount()"/>
+						</div>
+						<div class="actions-container">
+							<p class="">To Pay: <span class="" id="topay">{{item["selectedPrice"]}}</span></p>
+							<button id="buyBtn" type="button" class="primary buy" (click)="buy()">Buy Now</button>
+							<button id="approveBtn" type="button" class="primary buy" (click)="approve()">Approve</button>
+						</div>
+						<div class="second">
+							<h3 class="subtitle">Compatible with</h3>
+							<div class="">
+								<div *ngIf="disOncyber ; then oncyberblock"></div>
+								<ng-template #oncyberblock>
+									<img title="OnCyber" id="oncybericon" class="mvicon " src="/assets/images/oncybericon.png" />
+								</ng-template>
+								<div *ngIf="disSandbox ; then sandboxblock"></div>
+								<ng-template #sandboxblock>
+									<img title="SandBox" id="sandboxicon" class="mvicon " src="/assets/images/sandboxicon.jpeg" />
+								</ng-template>
+								
+							</div>						
+						</div>
+					</div>
+				</div>
+
+				
+			
+			</div>
+
+		<!-- Further information & stats about product -->
+			<div class="stats-container">
+				
+				
+
+				
+			</div>
+		</div>
+	</div>
+<propertys-footer></propertys-footer>

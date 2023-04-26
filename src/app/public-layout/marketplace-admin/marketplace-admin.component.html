@@ -1,0 +1,91 @@
+<propertys-header></propertys-header>
+	<div class="wrapper">
+		<!-- Product Information -->
+		<div class="product-container">
+
+			<div class="product-info">
+				<h2 class="product-name">Toggle admin address - all admins</h2>
+				<input id="inputAdmin" type="text" (change)="checkAddress()"/><span class="hidden" id="notvalid">No valid EVM address</span>
+				<div class="actions-container">
+					<button id="addbtn" type="button" class="primary buy" (click)="toggleAdmin()">Add Admin</button>
+				</div>
+			</div>		
+		</div>
+		<div class="product-container">
+
+			<div class="product-info">
+				<h2 class="product-name">Udpate receiver - Only for owner!</h2>
+				<input id="inputReceiver" type="text" (change)="checkAddress2()"/><span class="hidden" id="notvalid2">No valid EVM address</span>
+				<div class="actions-container">
+					<button id="addbtn2" type="button" class="primary buy" (click)="updReceiver()">Change receiver</button>
+				</div>
+			</div>		
+		</div>
+		<div class="product-container">
+			<div class="product-info">
+				<h2 class="product-name">Connected currency contracts - Only for owner!</h2>
+				<table class="productTable">
+					<thead>
+						<th>Name</th>
+						<th>Contract Address</th>
+						<th></th>
+					</thead>
+					<tbody >
+						<tr>
+							<td class="">BRIX</td>
+							<td class=""><input id="brix" type="text"></td>
+							<td class=""><button class="savebtn" (click)="updBRIX()">Save</button></td>
+						</tr>
+						<tr>
+							<td class="">USDC</td>
+							<td class=""><input id="usdc" type="text"></td>
+							<td class=""><button class="savebtn" (click)="updUSDC()">Save</button></td>
+						</tr>
+						<tr>
+							<td class="">WETH</td>
+							<td class=""><input id="weth" type="text"></td>
+							<td class=""><button class="savebtn" (click)="updWETH()">Save</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="product-container">
+			<div class="">
+				<h2 class="product-name">Currency pairs - Only for owner!</h2>
+				<table class="productTable">
+					<thead>
+						<th>Name</th>
+						<th>Contract Address</th>
+						<th></th>
+					</thead>
+					<tbody >
+						<tr>
+							<td class="">UDS / ETH</td>
+							<td class=""><input id="usdeth" type="text"></td>
+							<td class=""><button class="savebtn" (click)="updUSDETH()">Save</button></td>
+						</tr>
+						<tr>
+							<td class="">UDS / MATIC</td>
+							<td class=""><input id="usdmatic" type="text"></td>
+							<td class=""><button class="savebtn" (click)="updUSDMATIC()">Save</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="product-container">
+			<div class="">
+				<h2 class="product-name">Withdrawals - Only for owner!</h2>
+				<p>Withdraw matic from marketplace</p>
+				<button id="withdrawBtn" type="button" class="primary buy" (click)="withdraw()">withdraw</button>
+				<p>Withdraw ERC20 token from marketplace</p>
+				<input id="inputAdmin" type="text" /><span class="hidden" id="notvalid" placeholder="Enter ERC20 address"></span>
+				<div class="actions-container">
+					<button id="withdrawERC20Btn" type="button" class="primary buy" (click)="withdrawERC20()">withdraw ERC20</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+<propertys-footer></propertys-footer>

@@ -1,0 +1,608 @@
+<section class="banner">
+	<propertys-header></propertys-header>
+	<div class="banner-inner">
+		<div class="main-area">
+			<div class="slogan-container">
+				<div id="slogan-text" class="slogan-text">A metaverse home for <span class="highlighted typewrite" data-period="2000" data-type='[ "artists.", "creators.", "gamers.", "brands."]'>
+					<span class="wrap"></span>
+				</span></div>
+				<div class="subtext">Community-centered experiences. <br/> Immersive worlds.</div>
+				<p>6,000 NFT homes waiting for new owners.<br/>
+					It’s our world, let’s make it personal. </p>
+				<!-- <div class="cta-container">
+					<button type="button" (click)="openMintDialog($event)" [disabled]="(!isMetaMaskInstalled || accounts.length == 0) || !isOnMainnet" class="scale-hover"> Mint Now</button>
+					<div class="warning" *ngIf="!isMetaMaskInstalled || accounts.length == 0"><i class="fas fa-exclamation-circle"></i> <span class="warning-msg">Metamask must be connected for purchase</span></div>
+					<div class="warning" *ngIf="isMetaMaskInstalled && !isOnMainnet"><i class="fas fa-exclamation-circle"></i> <span class="warning-msg">You must be on the {{networkText}} to mint Propertys</span></div>
+				</div> -->
+				<div class="countdown-container">
+				<!-- <div class="timeleft count-down">
+					<div>{{countdownDays}}
+						<div class="label">Days</div>
+					</div>
+					<div *ngIf="countdownHours > 0">{{countdownHours}}
+						<div class="label">hour</div>
+					</div>
+					<div>{{countdownMins}}
+						<div class="label">mins</div>
+					</div>
+					<div>{{countdownSecs}}
+						<div class="label">secs</div>
+					</div>
+				</div> -->
+				<a target="_blank" href="https://opensea.io/collection/propertysofficial" class="countdown-sale-text">
+					<svg width="90" height="90" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M45 0C20.151 0 0 20.151 0 45C0 69.849 20.151 90 45 90C69.849 90 90 69.849 90 45C90 20.151 69.858 0 45 0ZM22.203 46.512L22.392 46.206L34.101 27.891C34.272 27.63 34.677 27.657 34.803 27.945C36.756 32.328 38.448 37.782 37.656 41.175C37.323 42.57 36.396 44.46 35.352 46.206C35.217 46.458 35.073 46.71 34.911 46.953C34.839 47.061 34.713 47.124 34.578 47.124H22.545C22.221 47.124 22.032 46.773 22.203 46.512ZM74.376 52.812C74.376 52.983 74.277 53.127 74.133 53.19C73.224 53.577 70.119 55.008 68.832 56.799C65.538 61.38 63.027 67.932 57.402 67.932H33.948C25.632 67.932 18.9 61.173 18.9 52.83V52.56C18.9 52.344 19.08 52.164 19.305 52.164H32.373C32.634 52.164 32.823 52.398 32.805 52.659C32.706 53.505 32.868 54.378 33.273 55.17C34.047 56.745 35.658 57.726 37.395 57.726H43.866V52.677H37.467C37.143 52.677 36.945 52.299 37.134 52.029C37.206 51.921 37.278 51.813 37.368 51.687C37.971 50.823 38.835 49.491 39.699 47.97C40.284 46.944 40.851 45.846 41.31 44.748C41.4 44.55 41.472 44.343 41.553 44.145C41.679 43.794 41.805 43.461 41.895 43.137C41.985 42.858 42.066 42.57 42.138 42.3C42.354 41.364 42.444 40.374 42.444 39.348C42.444 38.943 42.426 38.52 42.39 38.124C42.372 37.683 42.318 37.242 42.264 36.801C42.228 36.414 42.156 36.027 42.084 35.631C41.985 35.046 41.859 34.461 41.715 33.876L41.661 33.651C41.553 33.246 41.454 32.868 41.328 32.463C40.959 31.203 40.545 29.97 40.095 28.818C39.933 28.359 39.753 27.918 39.564 27.486C39.294 26.82 39.015 26.217 38.763 25.65C38.628 25.389 38.52 25.155 38.412 24.912C38.286 24.642 38.16 24.372 38.025 24.111C37.935 23.913 37.827 23.724 37.755 23.544L36.963 22.086C36.855 21.888 37.035 21.645 37.251 21.708L42.201 23.049H42.219C42.228 23.049 42.228 23.049 42.237 23.049L42.885 23.238L43.605 23.436L43.866 23.508V20.574C43.866 19.152 45 18 46.413 18C47.115 18 47.754 18.288 48.204 18.756C48.663 19.224 48.951 19.863 48.951 20.574V24.939L49.482 25.083C49.518 25.101 49.563 25.119 49.599 25.146C49.725 25.236 49.914 25.38 50.148 25.56C50.337 25.704 50.535 25.884 50.769 26.073C51.246 26.46 51.822 26.955 52.443 27.522C52.605 27.666 52.767 27.81 52.92 27.963C53.721 28.71 54.621 29.583 55.485 30.555C55.728 30.834 55.962 31.104 56.205 31.401C56.439 31.698 56.7 31.986 56.916 32.274C57.213 32.661 57.519 33.066 57.798 33.489C57.924 33.687 58.077 33.894 58.194 34.092C58.554 34.623 58.86 35.172 59.157 35.721C59.283 35.973 59.409 36.252 59.517 36.522C59.85 37.26 60.111 38.007 60.273 38.763C60.327 38.925 60.363 39.096 60.381 39.258V39.294C60.435 39.51 60.453 39.744 60.471 39.987C60.543 40.752 60.507 41.526 60.345 42.3C60.273 42.624 60.183 42.93 60.075 43.263C59.958 43.578 59.85 43.902 59.706 44.217C59.427 44.856 59.103 45.504 58.716 46.098C58.59 46.323 58.437 46.557 58.293 46.782C58.131 47.016 57.96 47.241 57.816 47.457C57.609 47.736 57.393 48.024 57.168 48.285C56.97 48.555 56.772 48.825 56.547 49.068C56.241 49.437 55.944 49.779 55.629 50.112C55.449 50.328 55.251 50.553 55.044 50.751C54.846 50.976 54.639 51.174 54.459 51.354C54.144 51.669 53.892 51.903 53.676 52.11L53.163 52.569C53.091 52.641 52.992 52.677 52.893 52.677H48.951V57.726H53.91C55.017 57.726 56.07 57.339 56.925 56.61C57.213 56.358 58.482 55.26 59.985 53.604C60.039 53.541 60.102 53.505 60.174 53.487L73.863 49.527C74.124 49.455 74.376 49.644 74.376 49.914V52.812V52.812Z" fill="#1c063f"/>
+					</svg> 
+					<div>
+					Sold Out! Sale is over. <br/>View On OpenSea
+						</div>
+				</a>
+				<a class="banner-link" target="_blank" href="https://propertys-nft.gitbook.io/propertys-whitepaper/"><i class="fas fa-file-alt"></i>Read the Whitepaper</a>
+				</div>
+			</div>
+			
+			<div class="promo-image">
+				<img src="/assets/images/banner-img.png" width="600" />
+			</div>
+		</div>
+		<div class="partnerships-container premium">
+			<div class="partner-text">Premium Partnerships</div>
+			<ul class="partners">
+				<li>
+					<img src="/assets/images/partners/premium-partner-landvault.png" width="250" />
+				</li>
+				<li>
+					<img src="/assets/images/partners/premium-partner-exclusible.png" width="250" />
+				</li>
+				<li>
+					<img src="/assets/images/partners/premium-partner-metamundo.png" width="250" />
+				</li>
+			</ul>
+		</div>
+	</div>
+	
+</section>
+
+<!-- What is Propertys-->
+<div class="full-width-container">
+	<section class="information" id="story">
+		<div class="section-title-container">
+			<div class="section-title">About</div>
+			<h2>Bring the Metaverse to life with NFTs</h2>
+			<div class="section-description">6,000 NFTs that give you creative control over Property's world. <br>
+			Own assets that make your world more colorful and fun.</div>
+		</div>
+		<ul class="district-list-selector">
+			<li (mouseover)="selectDistrict(1)"><button class="sandy-secrets" [ngClass]="{ 'active': selectedDistrict === 1}" ></button></li>
+			<li (mouseover)="selectDistrict(2)"><button class="apricot-alley" [ngClass]="{ 'active': selectedDistrict === 2}"></button></li>
+			<li (mouseover)="selectDistrict(3)"><button class="buenas-bananas" [ngClass]="{ 'active': selectedDistrict === 3}" ></button></li>
+			<li (mouseover)="selectDistrict(4)"><button class="basil-borough" [ngClass]="{ 'active': selectedDistrict === 4}"></button></li>
+			<li (mouseover)="selectDistrict(5)"><button class="grapey-gardens" [ngClass]="{ 'active': selectedDistrict === 5}"></button></li>
+			<li (mouseover)="selectDistrict(6)"><button class="starry-skies" [ngClass]="{ 'active': selectedDistrict === 6}" ></button></li>
+			<li (mouseover)="selectDistrict(7)"><button class="elon-estates" [ngClass]="{ 'active': selectedDistrict === 7}"></button></li>
+			<li (mouseover)="selectDistrict(8)"><button class="special" [ngClass]="{ 'active': selectedDistrict === 8}"></button></li>
+		</ul>
+		<!-- District: 1 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 1}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/beige-bay-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/beige-bay-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/beige-bay-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: 2 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 2}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/orange-oasis-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/orange-oasis-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/orange-oasis-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: 3 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 3}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/yellow-yards-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/yellow-yards-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/yellow-yards-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: 4 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 4}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/green-grove-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/green-grove-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/green-grove-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: 5 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 5}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/purple-palms-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/purple-palms-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/purple-palms-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: 6 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 6}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/starry-skies-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/starry-skies-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/starry-skies-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: 7 -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 7}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/mars-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/mars-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/mars-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+
+		<!-- District: Special -->
+		<div class="columns" [ngClass]="{ 'show': selectedDistrict === 8}">
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/special-1.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/special-2.webp" width="250" />
+				</div>
+			</div>
+			<div class="column">
+				<div class="column-image">
+					<img src="/assets/images/cards/special-3.webp" width="250" />
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+  
+
+
+<!-- Metaverse -->
+<section class="information" id="metaverse">
+	<div class="section-title-container">
+		<div class="section-title">Metaverse</div>
+		<h2>Curated Digital Experiences</h2>
+		<div class="section-description">Fully immerse yourself in a limitless world on Sandbox. With Property's, all of your favorite experiences are in one place.</div>
+	</div>
+	<div class="two-column right-order-0" >
+		<div class="left">
+			<ul class="metaverse-image-toggles">
+				<li><button [ngClass]="{ 'active-green': metaverseImageToShow === 1}" (mouseover)="toggleMetaverseImage(1)">Social &amp; Adventures
+					<span>Meet others and enjoy the metaverse together</span>
+				</button></li>
+				<li><button [ngClass]="{ 'active-yellow': metaverseImageToShow === 2}" (mouseover)="toggleMetaverseImage(2)">Gaming &amp; Content 
+					<span>Play all the games and even create your own</span>
+				</button></li>
+				<li><button [ngClass]="{ 'active-orange': metaverseImageToShow === 3}" (mouseover)="toggleMetaverseImage(3)">
+					Music &amp; Events
+					<span>Relax and have fun at different events across the world</span>
+				</button></li>
+				<li><button [ngClass]="{ 'active': metaverseImageToShow === 4}" (mouseover)="toggleMetaverseImage(4)">Art &amp; Shopping
+					<span>Admire art and purchase your own to fit your unique look</span>
+				</button></li>
+			</ul>			
+		</div>
+
+		
+		<div class="right">
+			<div class="image-container">
+				<img src="/assets/images/metaverse-social.webp" [ngClass]="{ 'show': metaverseImageToShow === 1}" width="400" />
+				<img src="/assets/images/metaverse-gaming.webp" [ngClass]="{ 'show': metaverseImageToShow === 2}" width="400" />
+				<img src="/assets/images/metaverse-music.webp" [ngClass]="{ 'show': metaverseImageToShow === 3}" width="400" />
+				<img src="/assets/images/metaverse-art.webp" [ngClass]="{ 'show': metaverseImageToShow === 4}" width="400" />
+			</div>
+		</div>
+		
+	</div>
+</section>
+
+
+<!-- Team -->
+<section class="team" id="team">
+	<div class="section-title">Team</div>
+	<h2>Web 3.0 Natives + Good Support</h2>
+	<div class="section-description">Trust, diversity, friendship, ambition. We are more than a team. <br/> We build innovative projects with care and so do our advisors.</div>
+	<ul class="team-list">
+		<li>
+			<img class="blob-bg" src="/assets/images/shapes/blob-green-1.png" width="240" />
+			<a href="https://twitter.com/KonradProbst" target="_blank">
+				<div class="profile-link"><i class="fab fa-twitter"></i></div>
+				<div class="image-profile-block">
+					<img src="/assets/images/team/konrad_probst.webp" width="150" alt="Konrad Probst" />
+				</div>
+				<h3>Konrad Probst</h3>
+				<div class="title">Chief Executive Officer</div>
+				<div class="team-member-description">
+					
+					<p class="description">
+						Strategic Direction, Business Development, Stakeholder Relations, Coordination.
+					</p>
+					
+				</div>
+			</a>
+		</li>
+		<li>
+			<img class="blob-bg" src="/assets/images/shapes/blob-purple-2.png" width="240" />
+			<a href="https://twitter.com/bluberry_cem" target="_blank">
+				<div class="profile-link"><i class="fab fa-twitter"></i></div>
+				<div class="image-profile-block">
+					<img src="/assets/images/team/cem_gedik.webp" width="150" alt="CEM" />
+				</div>
+				<h3>Cem Gedik </h3>
+				<div class="title">Creative Director</div>
+				<div class="team-member-description">
+					<p class="description">
+						Visual Branding, Lead Artist.
+					</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<img class="blob-bg rotate-160" src="/assets/images/shapes/blob-blue-3.png" width="240" />
+			<a href="https://twitter.com/jofnd_eth" target="_blank">
+				<div class="profile-link"><i class="fab fa-twitter"></i></div>
+				<div class="image-profile-block">
+					<img src="/assets/images/team/jo_effendy.webp" width="150" alt="Jo" />
+				</div>
+				<h3>Jo Effendy</h3>
+				<div class="title">Chief Growth Officer</div>
+				<div class="team-member-description">
+					<p class="description">
+						Strategic Direction, Community Growth & Management, Partnership Management.
+					</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<img class="blob-bg rotate-80" src="/assets/images/shapes/blob-red-4.png" width="240" />
+			<a href="https://twitter.com/daniel_datsenko" target="_blank">
+				<div class="profile-link"><i class="fab fa-twitter"></i></div>
+				<div class="image-profile-block">
+					<img src="/assets/images/team/daniel_datsenko.webp" width="150" alt="Daniel" />
+				</div>
+				<h3>Daniel Datsenko </h3>
+				<div class="title">Chief Marketing Officer</div>
+				<div class="team-member-description">
+					<p class="description">
+						Marketing, Communications, Business Development. 
+					</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<img class="blob-bg rotate-120" src="/assets/images/shapes/blob-orange-2.png" width="240" />
+			<a href="https://twitter.com/mischmeisterp" target="_blank">
+				<div class="profile-link"><i class="fab fa-twitter"></i></div>
+				<div class="image-profile-block">
+					<img src="/assets/images/team/felix_weigelt.webp" width="150" alt="Felix" />
+				</div>
+				<h3>Felix Weigelt (misch)</h3>
+				<div class="title">Head of Community Management</div>
+				<div class="team-member-description">
+					<p class="description">
+						Administration, Community Moderation, Coordination.
+					</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<img class="blob-bg rotate-120" src="/assets/images/shapes/blob-purple-2.png" width="240" />
+			<div class="team-member">
+				<!-- <div class="profile-link"><i class="fab fa-twitter"></i></div> -->
+				<div class="image-profile-block" style="border-radius: 100px; overflow: hidden">
+					<img src="/assets/images/team/enlightened-llama.webp" width="150" alt="EnlightenedLlama" />
+				</div>
+				<h3>Enlightened Llama</h3>
+				<div class="title">Product/Business developer</div>
+				<div class="team-member-description">
+					<p class="description">
+						Market analysis, Feature development, Partnership management.
+					</p>
+				</div>
+			</div>
+		</li>
+		<li>
+			<img class="blob-bg" src="/assets/images/shapes/blob-yellow-3.png" width="240" />
+			<div class="team-member">
+				<div class="image-profile-block image-crispy">
+					<img src="/assets/images/team/stevie.webp" width="150" alt="Stevie" />
+				</div>
+				<h3>Stevie</h3>
+				<div class="title">Hybrid FS Developer</div>
+				<div class="team-member-description">
+					<p class="description">
+						Web Design, Web 3.0 Integration. 
+					</p>
+				</div>
+			</div>
+		</li>
+	</ul>
+
+	<br/><br/>
+	<h2>The Advisory Board</h2>
+	<ul class="team-list">
+		<li>
+			<img class="blob-bg rotate" src="/assets/images/shapes/blob-purple-2.png" width="240" />
+			<a href="https://twitter.com/OwlTower" target="_blank">
+				<div class="profile-link"><i class="fab fa-twitter"></i></div>
+				<div class="image-profile-block">
+					<img src="/assets/images/team/marc.webp" width="150" />
+				</div>
+				<h3>HoodooOwl</h3>
+				<div class="title">Private Wealth Manager</div>
+				<div class="team-member-description">
+					<p class="description">
+						Business Development, Financial Advisor, Investor Relations. 
+					</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<img class="blob-bg rotate-40" src="/assets/images/shapes/blob-green-4.png" width="240" />
+			<a href="https://twitter.com/beijingdou" target="_blank">
+				<div class="profile-link"><i class="fab fa-twitter"></i></div>
+				<div class="image-profile-block">
+					<img src="/assets/images/team/josh_ong.webp" width="150" />
+				</div>
+				<h3>Josh Ong</h3>
+				<div class="title">Partner at Causeway Strategies</div>
+				<div class="team-member-description">
+					<p class="description">
+						Sandbox Ambassador, Communication Advisor.
+					</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<img class="blob-bg rotate-120" src="/assets/images/shapes/blob-yellow-3.png" width="240" />
+			<a href="https://twitter.com/saml314" target="_blank">
+				<div class="profile-link"><i class="fab fa-twitter"></i></div>
+				<div class="image-profile-block">
+					<div class="image-container image-crispy">
+						<img src="/assets/images/team/sam_li.webp" width="150" />
+					</div>
+				</div>
+				<h3>Sam Li</h3>
+				<div class="title">Partner Calvert Drive Ventures</div>
+				<div class="team-member-description">
+					<p class="description">
+						Investor Relations, IP & Legal Advisor. 
+					</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<img class="blob-bg rotate-160" src="/assets/images/shapes/blob-blue-4.png" width="240" />
+			<a href="https://twitter.com/KevinSusanto" target="_blank">
+				<div class="profile-link"><i class="fab fa-twitter"></i></div>
+				<div class="image-profile-block">
+					<img src="/assets/images/team/kevin_susanto.webp" width="150" />
+				</div>
+				<h3>Kevin Susanto</h3>
+				<div class="title">Founder Envigo</div>
+				<div class="team-member-description">
+					<p class="description">
+						Forbes 30 under 30 Entrepreneur, Business Advisor.
+					</p>
+				</div>
+			</a>
+		</li>
+		<li>
+			<img class="blob-bg" src="/assets/images/shapes/blob-red-1.png" width="240" />
+			<div class="team-member">
+				<div class="image-profile-block">
+					<img src="/assets/images/team/irene_lee.webp" width="150" />
+				</div>
+				<h3>Dr. Irene Lee</h3>
+				<div class="title">(Social-) Entrepreneur</div>
+				<div class="team-member-description">
+					<p class="description">
+						Business Advisor, Strategic Network.
+					</p>
+				</div>
+			</div>
+		</li>
+
+		<!-- <li>
+			<img class="blob-bg" src="/assets/images/shapes/blob-red-1.png" width="240" />
+			<div class="team-member">
+				<div class="image-profile-block">
+					<img src="/assets/images/team/irene_lee.png" width="150" />
+				</div>
+				<h3>Declan Pitts</h3>
+				<div class="title">Co-Founder Mianite</div>
+				<div class="team-member-description">
+					<p class="description">
+						Storytelling & Community Advisor.
+					</p>
+				</div>
+			</div>
+		</li> -->
+		<!-- <li>
+			<img class="blob-bg" src="/assets/images/shapes/blob-purple-2.png" width="240" />
+			<div class="team-member">
+				<div class="image-profile-block">
+					<img src="/assets/images/team/irene_lee.png" width="150" />
+				</div>
+				<h3>John van Rijck </h3>
+				<div class="title">Head of Legal</div>
+				<div class="team-member-description">
+					<p class="description">
+						Contracts, Legal Advisory & Representation.
+					</p>
+				</div>
+			</div>
+		</li>
+		<li>
+			<img class="blob-bg" src="/assets/images/shapes/blob-orange-2.png" width="240" />
+			<div class="team-member">
+				<div class="image-profile-block">
+					<img src="/assets/images/team/irene_lee.png" width="150" />
+				</div>
+				<h3>Dominik</h3>
+				<div class="title">Business Development Manager</div>
+				<div class="team-member-description">
+					<p class="description">
+						Partner Management & Acquisition.
+					</p>
+				</div>
+			</div>
+		</li> -->
+	</ul>
+</section>
+
+
+<section class="work-with-us" id="work-with-us">
+	<div class="wrapper">
+		<div class="section-title">Work With Us</div>
+		<h2>Your social network on the metaverse</h2>
+		<div class="section-description">We see no competition, only partners &amp; collaborators with messages. <br/>
+		We host brands, content &amp; games. Whatever you create - we have the platform for it.</div>
+
+		<a class="explore-partnerships-btn" target="_blank" href="https://docs.google.com/forms/d/1U8Ef8q-Er5ik_KuFp10BG42LqQYqZm6g6ttud2i7mTc/edit#responses">
+			<div class="text">
+				Explore Partnership Opportunities
+			</div>
+			<i class="fas fa-arrow-right"></i>
+		</a>
+
+		<div class="signup-for-newsletter">
+			<h3>Get Early Alpha via our Newsletter</h3>
+			<!-- Begin Mailchimp Signup Form -->
+			<link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7_dtp.css" rel="stylesheet" type="text/css">
+			<style type="text/css">
+				#mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
+				/* Add your own Mailchimp form style overrides in your site stylesheet or in this style block.
+				We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+			</style>
+			<div id="mc_embed_signup">
+			<form action="https://xyz.us20.list-manage.com/subscribe/post?u=bf982402b221b2037cfebb81c&amp;id=a8721e903e" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+				<div id="mc_embed_signup_scroll">
+				
+				<input style="margin-right: 10px" type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+				<!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+				<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_bf982402b221b2037cfebb81c_a8721e903e" tabindex="-1" value=""></div>
+					<div class="clear foot">
+					<input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+					</div>
+				<!-- <p><a href="http://eepurl.com/hTZjqn" title="Mailchimp - email marketing made easy and fun"><img class="referralBadge" src="https://eep.io/mc-cdn-images/template_images/branding_logo_text_dark_dtp.svg"></a></p> -->
+				</div>
+			</form>
+			</div>
+		</div>
+
+		<div class="partnerships-container">
+			<ul class="partners">
+				<carousel
+				 [autoplay]="carouselAutoplay"
+				 [loop]="carouselLoop"
+				 [autoplayInterval]="carouselAutoplayInterval"
+				 [pauseOnHover]="carouselPauseOnHover"
+				 [transitionDuration]="carouselTransitionInterval"
+				 [images]="partnershipLogoImages">
+				</carousel>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<div class="full-width-container">
+<section id="we-are-hiring">
+		<div class="wrapper">
+			<div class="section-title">We are Hiring</div>
+			<h2>Help us build Property's</h2>
+			<div class="section-description">We are looking for some talented people to join our team and help us build Property's to the next level. <br/> Check out our openings and tell us if you think you'd be a good fit!</div>
+
+			<a class="explore-partnerships-btn" target="_blank" href="https://jobs.wrk.xyz/propertysnft">
+				<div class="text">
+					Explore Job Openings
+				</div>
+				<i class="fas fa-arrow-right"></i>
+			</a>
+		</div>
+	</section>
+</div>
+
+
+<propertys-footer></propertys-footer>

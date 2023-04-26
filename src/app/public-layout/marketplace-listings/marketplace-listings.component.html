@@ -1,0 +1,157 @@
+<propertys-header></propertys-header>
+	<div class="wrapper">
+		<!--
+		<div id="balances">
+			<div id="balancesDetail">
+				<div id="currencies" class="inline-block">
+					<h3 class="topHeading">Current Balance</h3>
+					<p class="currValue" id="currentCurrency">0 BRIX</p>
+					<div class="">
+						<ul class="iconbox2">
+							<button id="brixiconBal" (click)="switchCurrencyBal(1)" class="iconBtn" ><img src="/assets/images/brixicon.png" class="icon" /></button>
+							<button id="maticiconBal" (click)="switchCurrencyBal(2)" class="iconBtn darken" ><img src="/assets/images/maticicon.png" class="icon" /></button>
+							<button id="ethiconBal" (click)="switchCurrencyBal(3)" class="iconBtn darken" ><img src="/assets/images/ethicon.png" class="icon"  /></button>
+							<button id="usdiconBal" (click)="switchCurrencyBal(4)" class="iconBtn darken" ><img src="/assets/images/usdcicon.png" class="icon"  /></button>
+						</ul>
+					</div>
+				</div>
+				<div class="vi inline-block"></div>
+				<div id="claimable" class="inline-block">
+					<h3 class="topHeading">Available Claim</h3>
+					<p class="currValue" id="claimValue">0 BRIX</p>
+					<div class="">
+						<button id="claimBtn" class="" (click)="claimBrix()">Claim BRIX</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		-->
+		<div class="top">
+			<h1>Marketplace</h1>
+			<div class="search-block">
+				<i class="fas fa-search"></i>
+				<input type="text" placeholder="Search" id="search" [(ngModel)]="searchTerm" (change)="applyFilter()"/>
+			</div>
+		</div>
+
+		<div class="two-column">
+			<ul class="filters">
+				<li [class]="{ 'active': isFilterToggled('price-range-brix') }">
+					<button (click)="toggleFilter('price-range-brix')"><i class="fas fa-circle-dollar"></i>Price Range $BRIX<i class="fas fa-chevron-down"></i></button>
+					<div class="subfilters-container">
+						<input class="filterinput" type="number" placeholder="0" value="0" id="brixMin" />
+						<input class="filterinput" type="number" placeholder="1000" value="1000" id="brixMax" />
+						<button type="button" class="clear-btn" (click)="applyFilter()">Apply</button>
+					</div>
+				</li>
+				<li [class]="{ 'active': isFilterToggled('price-range-usdc') }">
+					<button (click)="toggleFilter('price-range-usdc')"><i class="fas fa-circle-dollar"></i>Price Range $USDC<i class="fas fa-chevron-down"></i></button>
+					<div class="subfilters-container">
+						<input class="filterinput" type="number" placeholder="0" value="0" id="usdcMin" />
+						<input class="filterinput" type="number" placeholder="1000" value="1000" id="usdcMax" />
+						<button type="button" class="clear-btn" (click)="applyFilter()">Apply</button>
+					</div>
+				</li>
+				<li [class]="{ 'active': isFilterToggled('universetype') }">
+					<button (click)="toggleFilter('universetype')"><i class="fas fa-circle-dollar"></i>Metaverse<i class="fas fa-chevron-down"></i></button>
+					<div class="subfilters-container">
+						<button id="sandboxBtn" type="button" class="universeBtn" (click)="applyUniverse(1)">Sandbox NFTs</button>
+						<button id="oncyberBtn" type="button" class="universeBtn" (click)="applyUniverse(2)">OnCyber NFTs</button>
+					</div>
+				</li>
+			</ul>
+
+			<!-- Listings-->
+			<div class="listings-container">
+				<div class="active-filters-container">
+					<div class="text">Filters</div>
+					<ul class="active-filters">
+						<li *ngFor="let role of activeFilters">
+							<div class="filter-type-text">{{role["name"]}}</div>
+							<div *ngIf="role['name'] == 'SEARCH' || role['name'] == 'ONCYBER' || role['name'] == 'SANDBOX' ; then searchBlock else numberBlock"></div>
+								<ng-template #searchBlock>
+									<div class="filter-text">{{role["search"]}}</div>
+								</ng-template>
+								<ng-template #numberBlock>
+									<div class="filter-text">{{role["min"]}} - {{role["max"]}}</div>
+								</ng-template>	
+							<div *ngIf="activeFilters.length > 0; then buttonBlock else noButtonBlock"></div>
+							<ng-template #buttonBlock>
+								<button class="remove" (click)="removeFilter(role['name'])"><i class="fas fa-times"></i></button>
+							</ng-template>
+							<ng-template #noButtonBlock>
+								<div></div>
+							</ng-template>	
+						</li>
+											
+					</ul>
+				</div>
+
+				<!-- All listings-->
+				<ul class="listings">
+					<li *ngFor="let role of filteredList">
+						<div *ngIf="!role['soldout']; then thenBlock else elseBlock"></div>
+							<ng-template #thenBlock>
+								<a class="item" >
+									<div class="image">
+										<img class="nftimage" src="{{role['image']}}" />
+										
+									</div>
+									<div class="bottomcontent">
+										<div class="listing-details">
+											<div class="project-type">{{role["name"]}}</div>
+											<div class="">
+												<ul class="iconbox">
+													<button id="brixicon" (click)="switchCurrency(role['displayId'], 1)" class="iconBtn" ><img src="/assets/images/brixicon.png" class="icon" /></button>
+													<button id="maticicon" (click)="switchCurrency(role['displayId'], 2)" class="iconBtn darken" ><img src="/assets/images/maticicon.png" class="icon" /></button>
+													<button id="ethicon" (click)="switchCurrency(role['displayId'], 3)" class="iconBtn darken" ><img src="/assets/images/ethicon.png" class="icon"  /></button>
+													<button id="usdicon" (click)="switchCurrency(role['displayId'], 4)" class="iconBtn darken" ><img src="/assets/images/usdcicon.png" class="icon"  /></button>
+												</ul>
+											</div>
+											
+											
+										</div>
+										<div class="bottomBox">
+											<div class="priceBox">
+												<div class="priceBox">{{role["selectedPrice"]}}</div>
+												<img id="{{role['brixId']}}" src="/assets/images/brixicon.png" class="icon" />
+												<img id="{{role['maticId']}}" src="/assets/images/maticicon.png" class="icon hidden" />
+												<img id="{{role['ethId']}}" src="/assets/images/ethicon.png" class="icon hidden"  />
+												<img id="{{role['usdcId']}}" src="/assets/images/usdcicon.png" class="icon hidden"  />
+											</div>
+											<div class="priceBox priceBox2">{{role["maxSupply"]}} Available</div>
+										</div>
+											<div class="actions-container">
+												<a class="actionLink" routerLink="{{role['detailurl']}}"><button type="button" class="primary">Buy now</button></a>
+											</div>
+									</div>
+									
+								</a>
+							</ng-template>
+							<ng-template #elseBlock>
+								<a href="{{role['opensealink']}}" target="_blank" rel="noreferer">
+									<div class="project-type">{{role["name"]}}</div>
+									<div class="image">
+										<img src="{{role['image']}}" width="300" />
+										
+									</div>
+									<div class="listing-details">
+										<div class="price-container">
+											<p>Not on sale. Check Opensea for secondary market</p>
+										</div>
+										
+									</div>
+
+									<div class="actions-container">
+										<a href="{{role['opensealink']}}" target="_blank" rel="noreferer"><button type="button" class="primary">Opensea</button></a>
+									</div>
+								</a>
+							</ng-template>
+						
+					</li>					
+				</ul>
+			</div>
+		</div>
+
+	</div>
+<propertys-footer></propertys-footer>

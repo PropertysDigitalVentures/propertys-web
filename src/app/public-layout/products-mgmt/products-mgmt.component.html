@@ -1,0 +1,132 @@
+<propertys-header></propertys-header>
+	<div class="wrapper">
+
+		<!-- Product Information -->
+		<div class="product-container">
+
+			<div class="product-info newProduct">
+				<div class="listing-name">Product admin page</div>
+				<h2 class="product-name">Create new product</h2>
+				<table class="newProductTable">
+					<tr>
+						<td>
+							Contract Number:
+						</td>
+						<td>
+							<input id="inputContract" type="text" (change)="checkApproval()"/>
+							<span class="hidden" id="notvalid"> No valid EVM address</span>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Token ID:
+						</td>
+						<td>
+							<input id="inputTokenId" type="number"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Amount (ERC721 = 1):
+						</td>
+						<td>
+							<input id="inputAmount" type="number"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Price $BRIX:
+						</td>
+						<td>
+							<input id="inputbrix" type="number"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Price USD:
+						</td>
+						<td>
+							<input id="inputusd" type="number"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							Token Standard (ERC721 = 1 / ERC1155 = 2)
+						</td>
+						<td>
+							<input id="inputStandard" type="number" (change)="checkApproval()"/>
+							<span class="hidden" id="notvalidSt"> No valid standard</span>
+						</td>
+					</tr>
+				</table>
+				<div class="actions-container">
+					<button id="approveBtn" type="button" class="primary buy hidden" (click)="approveContract()">Approve Contract</button>
+					<button id="addbtn" type="button" class="primary buy" (click)="createProduct()">Create product</button>
+				</div>
+			</div>		
+		</div>
+		<div class="">
+			<h2>Items on Sale</h2>
+			<table class="productTable">
+				<thead>
+					<th>Item ID</th>
+					<th>Token Contract</th>
+					<th>Token ID</th>
+					<th>Name</th>
+					<th>MaxSupply</th>
+					<!--<th>Sold</th>-->
+					<th>Price BRIX</th>
+					<th>Price USD</th>
+					<th>On Sale</th>
+					<th>Image</th>
+				</thead>
+				<tbody >
+					<tr *ngFor="let role of productlist" class="productTr">
+						<td class="productTd">{{role["itemId"]}}</td>
+						<td class="productTd"><a href="https://polygonscan.com/address/{{role['contract']}}" target="_blank">{{role['contract']}}</a></td>
+						<td class="productTd">{{role["tokenId"]}}</td>
+						<td class="productTd">{{role["name"]}}</td>
+						<td class="productTd">{{role["maxSupply"]}}</td>
+						<!--<td class="">{{role["counter"]}}</td>-->
+						<td class="productTd"><input id='{{role["idBrixp"]}}' value='{{role["priceBrix"]}}' /><button (click)="updBrix(role['itemId'])" class="savebtn">Save Brix</button></td>
+						<td class="productTd"><input id='{{role["idUsdp"]}}' value='{{role["priceUsd"]}}' /><button (click)="updUsd(role['itemId'])" class="savebtn">Save USD</button></td>
+						<td class="productTd">{{!role["soldout"]}}<button class="savebtn" (click)="revert(role['itemId'])">Take from market</button></td>
+						<td class="productTd"><img width="50" src='{{role["image"]}}' /></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="soldItems">
+			<h2>Sold items</h2>
+			<table class="productTable">
+				<thead>
+					<th>Item ID</th>
+					<th>Token Contract</th>
+					<th>Token ID</th>
+					<th>Name</th>
+					<th>MaxSupply</th>
+					<!--<th>Sold</th>-->
+					<th>Price BRIX</th>
+					<th>Price USD</th>
+					<th>On Sale</th>
+					<th>Image</th>
+				</thead>
+				<tbody >
+					<tr *ngFor="let role of soldList">
+						<td class="productTd">{{role["itemId"]}}</td>
+						<td class="productTd">{{role["contract"]}}</td>
+						<td class="productTd">{{role["tokenId"]}}</td>
+						<td class="productTd">{{role["name"]}}</td>
+						<td class="productTd">{{role["maxSupply"]}}</td>
+						<!--<td class="">{{role["counter"]}}</td>-->
+						<td class="productTd"><p>{{role["priceBrix"]}}</p></td>
+						<td class="productTd"><p></p>{{role["priceUsd"]}}</td>
+						<td class="productTd">{{!role["soldout"]}}</td>
+						<td class="productTd"><img width="50" src='{{role["image"]}}' /></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+<propertys-footer></propertys-footer>
