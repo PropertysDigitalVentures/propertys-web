@@ -4,16 +4,16 @@
 
 export const environment = {
   production: false,
-  chainId: 1337,
+  chainId: 137,
   netlifyFnServer: 'https://propertys.xyz/.netlify/functions/',
   apiUrl: 'https://lit-island-00614.herokuapp.com/api/v1',
   moralisAppId: "dGameje8mQgxmoSUgOoaUgcuIFhNzVMlWrIJjSke",
   moralisServerUrl: "https://8oqk6qzhmmsf.usemoralis.com:2053/server",
   network: "eth",
-  marketaddress : "0xBbf9A4E8757C862D2725092BC3A396F89b59c1A4",
-  wethaddress: "0xA6FA4fB5f76172d178d61B04b0ecd319C5d1C0aa",
-  usdcaddress: "0xe6b8a5CF854791412c1f6EFC7CAf629f5Df1c747",
-  brixaddress: "0x858aE51B38c7fd338e1f0f57707079b157F46F50",
+  marketaddress : "0xb73497906Aa93a7D50Bf5889D9eD26F3C93AD87B",
+  wethaddress: "0x7ceB23fD6bC0adD59E62ac25578270cFf1b9f619",
+  usdcaddress: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+  brixaddress: "0xaBFFedaF784Dc40A4C1947F9D5ddB3AfE2075353",
   backendUrl: "http://ec2-3-120-174-145.eu-central-1.compute.amazonaws.com/"
 };
 
